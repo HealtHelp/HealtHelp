@@ -44,10 +44,12 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<UserDTO> updateUser(User updateUser) {
+    public ResponseEntity<Resource<UserDTO>> updateUser(User updateUser) {
         logger.info(" -- PUT  /user "+updateUser.getUsername());
-        UserDTO userDTO = userService.updateUser(updateUser);
-        return new ResponseEntity(userDTO,HttpStatus.OK);
+        Resource<UserDTO> resource = new Resource<>(userService.updateUser(updateUser));
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(updateUser));
+        resource.add(linkTo.withRel("-- PUT  /user"));
+        return new ResponseEntity(resource,HttpStatus.OK);
     }
 
 

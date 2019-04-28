@@ -35,6 +35,4 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
         this.crErrorDTO.setStatus(HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
     }
-
-
 }

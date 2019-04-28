@@ -4,6 +4,7 @@ import com.api.healthelp.model.User;
 import com.api.healthelp.model.dto.UserDTO;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.ExposesResourceFor;
+import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public interface UserController extends Serializable {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<UserDTO> updateUser(@ApiParam(name="User password", value="User password")@RequestBody User updateUser);
+    ResponseEntity<Resource<UserDTO>> updateUser(@ApiParam(name="User password", value="User password")@RequestBody User updateUser);
 
 
 
