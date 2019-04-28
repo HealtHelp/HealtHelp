@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.healthelp.dao.mapper.UserMapper">
+    <cache/>
+
+    <resultMap id="userMap" type="User">
+    <id property="id" column="id" />
+    <result property="username" column="username" />
+    <result property="password" column="password" />
+    <result property="tenantId" column="tenant_id" />
+    <result property="profileId" column="profile_id" />
+    <result property="email" column="email" />
+    <!--  <collection property="groups" ofType="Group">
+          <id property="id" column="group_id"/>
+          <result property="name" column="name" />
+          <result property="tenantId" column="tenant_id" />
+      </collection>-->
+</resultMap>
+
+    <resultMap id="userMapDTO" type="UserDTO">
+        <id property="id" column="id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="tenantId" column="tenant_id" />
+        <result property="profileId" column="profile_id" />
+        <result property="email" column="email" />
+    </resultMap>
+
+    <resultMap type="UserLogin" id="userLogin">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="role" property="role"/>
+    </resultMap>
+
+
+    <select id="getUsers" resultMap="userMapDTO">
+        select u.id,u.username,convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password,u.tenant_id,u.profile_id,convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email from users u
+    </select>
+
+    <select id="getUserByPassword" resultMap="userLogin">
+      select u.id, u.username,decrypt(u.password::bytea, 'key_to_encrypt', 'aes') as password, u.tenant_id, u.profile_id, decrypt(u.email::bytea, 'key_to_encrypt', 'aes')
+      from users u
+      inner join profiles p on
+      u.id=p.id
+      where convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{password};
+    </select>
+
+
+    <select id="getUserById" resultMap="userMap">
+    select u.id, u.username, convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password, u.tenant_id, u.profile_id, convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email
+       from users u
+      where id =#{userId};
+    </select>
+
+    <select id="getUserDTOById" resultMap="userMapDTO">
+    select u.id, u.username, convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password, u.tenant_id, u.profile_id, convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email
+       from users u
+      where id =#{userId};
+    </select>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE USERS
+        <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=encrypt(cast(#{password} as bytea),'key_to_encrypt','aes'),</if>
+            <if test="profileId != null">profile_id=#{profileId},</if>
+            <if test="tenantId != null">tenant_id=#{tenantId},</if>
+            <if test="email != null">email=encrypt(cast(#{email} as bytea),'key_to_encrypt','aes'),</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO USERS (id,username,password,profile_id,tenant_id,email) VALUES (
+            #{id},
+           	#{username},
+           	encrypt(cast(#{password} as bytea),'key_to_encrypt','aes'),
+            #{profileId},
+            #{tenantId},
+            encrypt(cast(#{email} as bytea),'key_to_encrypt','aes')
+            );
+     </insert>
+
+</mapper>
