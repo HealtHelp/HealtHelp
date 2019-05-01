@@ -1,6 +1,6 @@
 package com.api.healthelp;
 
-import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
