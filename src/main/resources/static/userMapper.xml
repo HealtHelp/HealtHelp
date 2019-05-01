@@ -39,10 +39,10 @@
     </select>
 
     <select id="getUserByPassword" resultMap="userLogin">
-      select u.id, u.username,decrypt(u.password::bytea, 'key_to_encrypt', 'aes') as password, u.tenant_id, u.profile_id, decrypt(u.email::bytea, 'key_to_encrypt', 'aes')
+      select u.id, u.username, decrypt(u.password::bytea, 'key_to_encrypt', 'aes') as password, p.name as role
       from users u
-      inner join profiles p on
-      u.id=p.id
+      inner join profiles p ON
+      u.profile_id=p.id
       where convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{password};
     </select>
 

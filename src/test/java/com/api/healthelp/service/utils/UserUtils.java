@@ -16,7 +16,7 @@ public class UserUtils {
         user.setId(1);
         user.setUsername("admin");
         user.setEmail("admin@admin.com");
-        user.setPassword("admin");
+        user.setPassword("healthelp");
         user.setProfileId(1);
         user.setTenantId(1);
         return user;
@@ -27,7 +27,7 @@ public class UserUtils {
         user.setId(1);
         user.setUsername("admin");
         user.setEmail("admin@admin.com");
-        user.setPassword("admin");
+        user.setPassword("healthelp");
         user.setProfileId(1);
         user.setTenantId(1);
         return user;
@@ -39,7 +39,7 @@ public class UserUtils {
         user.setId(1);
         user.setUsername("admin");
         user.setEmail("admin@admin.com");
-        user.setPassword("admin");
+        user.setPassword("healthelp");
         user.setProfileId(1);
         user.setTenantId(1);
         userDTOList.add(user);

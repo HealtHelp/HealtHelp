@@ -36,10 +36,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO updateUser(User updateUser) {
         User principal = userDao.getUserById(updateUser.getId());
+        boolean check = BCrypt.checkpw(principal.getPassword(),BCrypt.hashpw (principal.getPassword() , BCrypt.gensalt (12)));
         String securedPassword = BCrypt.hashpw (principal.getPassword() , BCrypt.gensalt (12));
+        logger.info("Check user : {}",check);
         logger.info("Secured password created: {}",securedPassword);
-        if(principal!=null){
-            logger.info(" -- Update user: {}",updateUser.getUsername());
+        if(check){
+            logger.info(" -- Update user: {} ok",updateUser.getUsername());
             return userDao.updateUser(updateUser);
         }
         else{

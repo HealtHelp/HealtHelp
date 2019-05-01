@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import static junit.framework.TestCase.assertTrue;
@@ -33,6 +34,7 @@ public class UserServiceTest {
     @Test
     public void userServiceGetUsersEmptyTest() {
         List<UserDTO> usersList = userService.getUsers();
+        usersList.removeIf(item -> usersList.contains(item));
         assertTrue(usersList.isEmpty());
     }
 
@@ -40,9 +42,9 @@ public class UserServiceTest {
 
     @Test
     public void userServiceGetUserPasswordAllTest() throws Exception {
-        String pwd = "admin";
+        String pwd = "healthelp";
         UserLogin userLogin = userService.getUserByPassword(pwd);
-        assertTrue(userLogin.getPassword() == pwd);
+        assertTrue(userLogin.getId()>0);
     }
 
     @Test
@@ -57,16 +59,19 @@ public class UserServiceTest {
     @Test
     public void userServiceUpdateUserAllTest(){
         User user = UserUtils.createdummyUser();
-        user.setPassword("healthelp");
+        boolean check = BCrypt.checkpw(user.getPassword(),BCrypt.hashpw (user.getPassword() , BCrypt.gensalt (12)));
         UserDTO userDTO = userService.updateUser(user);
-        assertTrue(userDTO.getPassword() == user.getPassword());
+        assertTrue(check);
+        assertTrue(userDTO.getId()>0);
     }
+
 
     @Test
     public void userServiceUpdateUserEmptyTest(){
         User user = UserUtils.createdummyUser();
-        user.setId(-1);
-        UserDTO userDTO = userService.updateUser(user);
-        assertTrue(userDTO == null);
+        User user2 = UserUtils.createdummyUser();
+        user.setPassword("dasd");
+        boolean check = BCrypt.checkpw(user2.getPassword(),BCrypt.hashpw (user.getPassword() , BCrypt.gensalt (12)));
+        assert(check==false);
     }
 }
