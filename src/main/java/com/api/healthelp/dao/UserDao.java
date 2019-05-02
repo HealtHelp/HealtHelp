@@ -14,5 +14,6 @@ public interface UserDao extends Serializable {
     UserLogin getUserByPassword(String password) throws NullPointerException;
     User getUserById(Integer id);
     UserDTO updateUser(User updateUser);
+    UserDTO insertUser(User user);
 }
 

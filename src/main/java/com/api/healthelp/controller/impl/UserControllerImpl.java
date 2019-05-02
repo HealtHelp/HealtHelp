@@ -50,5 +50,13 @@ public class UserControllerImpl implements UserController {
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<UserDTO> insertUser(User user) {
+        logger.info(" -- POST  /user "+user.getUsername());
+        UserDTO userDTO = userService.insertUser(user);
+        return new ResponseEntity(userDTO,HttpStatus.OK);
+    }
+
+
 
 }

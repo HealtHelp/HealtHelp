@@ -11,4 +11,5 @@ public interface UserService extends Serializable {
     List<UserDTO> getUsers() throws RuntimeException;
     UserLogin getUserByPassword(String password) throws Exception;
     UserDTO updateUser(User updateUser);
+    UserDTO insertUser(User user);
 }

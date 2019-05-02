@@ -16,7 +16,7 @@ import static junit.framework.TestCase.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceDao {
+public class UserDaoTest {
 
     @Autowired
     private UserDao userDao;
@@ -75,6 +75,16 @@ public class UserServiceDao {
         user.setId(-1);
         UserDTO userDTO = userDao.updateUser(user);
         assertTrue(userDTO == null);
+    }
 
+    @Test
+    public void userDaoInsertUserAllTest(){
+        User user = UserUtils.createdummyUser();
+        user.setId(2);
+        user.setUsername("emple1");
+        user.setPassword("emple1");
+        user.setProfileId(2);
+        UserDTO userDTO = userDao.insertUser(user);
+        assertTrue(userDTO.getId()>0);
     }
 }

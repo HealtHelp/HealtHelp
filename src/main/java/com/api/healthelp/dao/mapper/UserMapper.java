@@ -15,4 +15,5 @@ public interface UserMapper extends Serializable {
     User getUserById(@Param("userId") Integer id);
     void updateUser(@Param("id") Integer id, @Param("username") String username, @Param("password") String password, @Param("tenantId") Integer tenant_id, @Param("profileId") Integer profile_id, @Param("email") String email);
     UserDTO getUserDTOById(Integer id);
+    void insertUser(@Param("id") Integer id, @Param("username") String username, @Param("password") String password, @Param("tenantId") Integer tenantId, @Param("profileId") Integer profileId, @Param("email") String email);
 }

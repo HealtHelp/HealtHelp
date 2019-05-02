@@ -49,4 +49,9 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    @Override
+    public UserDTO insertUser(User user) {
+        return userDao.insertUser(user);
+    }
 }
