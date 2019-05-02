@@ -1,4 +1,4 @@
-package com.api.healthelp.service.utils;
+package com.api.healthelp.utils;
 
 import com.api.healthelp.model.User;
 import com.api.healthelp.model.UserCredentials;

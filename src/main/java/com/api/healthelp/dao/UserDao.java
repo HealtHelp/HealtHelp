@@ -15,3 +15,4 @@ public interface UserDao extends Serializable {
     User getUserById(Integer id);
     UserDTO updateUser(User updateUser);
 }
+

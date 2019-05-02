@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
         logger.info("Secured password created: {}",securedPassword);
         if(check){
             logger.info(" -- Update user: {} ok",updateUser.getUsername());
-            //userDao.insertGroups()
-            //userDao.insertUserGroup(updateUser.getId(),updateUser.getProfileId())
+            //groupDao.insertGroups()
+            //userGroup.insertUserGroup(updateUser.getId(),updateUser.getProfileId())
             return userDao.updateUser(updateUser);
         }
         else{

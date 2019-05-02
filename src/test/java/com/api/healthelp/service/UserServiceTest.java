@@ -4,7 +4,7 @@ package com.api.healthelp.service;
 import com.api.healthelp.model.User;
 import com.api.healthelp.model.UserLogin;
 import com.api.healthelp.model.dto.UserDTO;
-import com.api.healthelp.service.utils.UserUtils;
+import com.api.healthelp.utils.UserUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
