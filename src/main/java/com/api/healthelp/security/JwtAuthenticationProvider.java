@@ -37,7 +37,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
 
         String token = jwtAuthenticationToken.getToken();
         JwtUser jwtUser =validator.validate(token);
-
+        logger.info(jwtUser.getRole());
         /*
         *  public JwtUser validate(String token){
         JwtUser jwtUser = null;

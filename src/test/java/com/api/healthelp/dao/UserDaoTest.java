@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Random;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -72,7 +73,7 @@ public class UserDaoTest {
     @Test
     public void userDaoUpdateUserEmptyTest(){
         User user = UserUtils.createdummyUser();
-        user.setId(-1);
+        user.setId(null);
         UserDTO userDTO = userDao.updateUser(user);
         assertTrue(userDTO == null);
     }
@@ -80,11 +81,20 @@ public class UserDaoTest {
     @Test
     public void userDaoInsertUserAllTest(){
         User user = UserUtils.createdummyUser();
-        user.setId(2);
-        user.setUsername("emple1");
-        user.setPassword("emple1");
+        Random rm = new Random();
+        user.setId(rm.nextInt());
+        user.setUsername("test");
+        user.setPassword("test");
         user.setProfileId(2);
         UserDTO userDTO = userDao.insertUser(user);
         assertTrue(userDTO.getId()>0);
+    }
+
+    @Test
+    public void userDaoInsertUserEmptyTest(){
+        User user = UserUtils.createdummyUser();
+        user.setId(null);
+        UserDTO userDTO = userDao.insertUser(user);
+        assertTrue(userDTO == null);
     }
 }

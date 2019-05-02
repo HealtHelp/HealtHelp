@@ -35,4 +35,13 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
         this.crErrorDTO.setStatus(HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
     }
+
+    //org.postgresql.util.PSQLException
+    @ExceptionHandler(org.postgresql.util.PSQLException.class)
+    public ResponseEntity<CrErrorDTO> handleLoginException(org.postgresql.util.PSQLException e) {
+        logger.error(" -- SQL ERROR Duplicate key  {}  ",e.getLocalizedMessage());
+        setBuildException(e);
+        this.crErrorDTO.setStatus(HttpStatus.CONFLICT);
+        return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
+    }
 }

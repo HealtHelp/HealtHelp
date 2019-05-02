@@ -53,8 +53,10 @@ public class UserControllerImpl implements UserController {
     @Override
     public ResponseEntity<UserDTO> insertUser(User user) {
         logger.info(" -- POST  /user "+user.getUsername());
-        UserDTO userDTO = userService.insertUser(user);
-        return new ResponseEntity(userDTO,HttpStatus.OK);
+        Resource<UserDTO> resource = new Resource<>(userService.insertUser(user));
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(user));
+        resource.add(linkTo.withRel("insert-user"));
+        return new ResponseEntity(resource,HttpStatus.OK);
     }
 
 
