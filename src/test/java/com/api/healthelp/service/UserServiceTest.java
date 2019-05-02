@@ -70,7 +70,7 @@ public class UserServiceTest {
     public void userServiceUpdateUserEmptyTest(){
         User user = UserUtils.createdummyUser();
         User user2 = UserUtils.createdummyUser();
-        user.setPassword("dasd");
+        user.setPassword("admin");
         boolean check = BCrypt.checkpw(user2.getPassword(),BCrypt.hashpw (user.getPassword() , BCrypt.gensalt (12)));
         assert(check==false);
     }

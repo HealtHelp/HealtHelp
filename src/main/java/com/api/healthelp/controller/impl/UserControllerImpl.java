@@ -15,9 +15,7 @@ import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import java.lang.invoke.MethodHandles;
-
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -48,7 +46,7 @@ public class UserControllerImpl implements UserController {
         logger.info(" -- PUT  /user "+updateUser.getUsername());
         Resource<UserDTO> resource = new Resource<>(userService.updateUser(updateUser));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(updateUser));
-        resource.add(linkTo.withRel("-- PUT  /user"));
+        resource.add(linkTo.withRel("update-user"));
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 

@@ -38,10 +38,11 @@ public class UserServiceImpl implements UserService {
         User principal = userDao.getUserById(updateUser.getId());
         boolean check = BCrypt.checkpw(principal.getPassword(),BCrypt.hashpw (principal.getPassword() , BCrypt.gensalt (12)));
         String securedPassword = BCrypt.hashpw (principal.getPassword() , BCrypt.gensalt (12));
-        logger.info("Check user : {}",check);
         logger.info("Secured password created: {}",securedPassword);
         if(check){
             logger.info(" -- Update user: {} ok",updateUser.getUsername());
+            //userDao.insertGroups()
+            //userDao.insertUserGroup(updateUser.getId(),updateUser.getProfileId())
             return userDao.updateUser(updateUser);
         }
         else{

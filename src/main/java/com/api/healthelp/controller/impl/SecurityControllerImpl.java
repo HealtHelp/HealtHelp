@@ -28,14 +28,11 @@ public class SecurityControllerImpl implements SecurityController {
     @Override
     public ResponseEntity<List<String>> getToken(UserCredentials userCredentials) throws  NullPointerException {
         logger.info(" -- POST /login");
-
         UserLogin userLogin = userDao.getUserByPassword(userCredentials.getPassword());
         JwtUser jwtUser=new JwtUser();
         jwtUser.setId(userLogin.getId());
         jwtUser.setUsername(userLogin.getUsername());
         jwtUser.setRole(userLogin.getRole());
-
-
         if(jwtUser != null){
             List<String> list = new ArrayList<>();
             list.add("Bearer "+jwtGenerator.generate(jwtUser));
@@ -45,8 +42,6 @@ public class SecurityControllerImpl implements SecurityController {
             logger.error(jwtUser.getUsername()+" -- Unauthorized");
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
-
     }
 
 
