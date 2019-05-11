@@ -7,12 +7,16 @@ import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.utils.UserUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
+import java.util.Random;
+
 import static junit.framework.TestCase.assertTrue;
+import static org.mockito.Mockito.when;
 
 
 @RunWith(SpringRunner.class)
@@ -74,4 +78,15 @@ public class UserServiceTest {
         boolean check = BCrypt.checkpw(user2.getPassword(),BCrypt.hashpw (user.getPassword() , BCrypt.gensalt (12)));
         assert(check==false);
     }
+
+    @Test
+    public void userServiceInsertUserAllTest(){
+        Random rm = new Random();
+        User user = UserUtils.createdummyUser();
+        user.setId(rm.nextInt());
+        UserDTO userDTO = userService.insertUser(user);
+        assertTrue(userDTO!=null);
+    }
+
+
 }

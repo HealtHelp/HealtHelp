@@ -87,14 +87,8 @@ public class UserDaoTest {
         user.setPassword("test");
         user.setProfileId(2);
         UserDTO userDTO = userDao.insertUser(user);
-        assertTrue(userDTO.getId()>0);
+        assertTrue(userDTO.getId()!= null);
     }
 
-    @Test
-    public void userDaoInsertUserEmptyTest(){
-        User user = UserUtils.createdummyUser();
-        user.setId(null);
-        UserDTO userDTO = userDao.insertUser(user);
-        assertTrue(userDTO == null);
-    }
+
 }

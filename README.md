@@ -1,6 +1,6 @@
-# HealtHelp API RESTful
+#HealtHelp API RESTful
 
-###Author:Bl@di
-###Contact:HealtHelpOrganization@gmail.com
+Author:Bl@dimir Del Barrio Pizarro
+Contact:HealtHelpOrganization@gmail.com
 
 

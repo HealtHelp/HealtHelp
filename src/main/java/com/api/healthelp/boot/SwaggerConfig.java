@@ -33,7 +33,7 @@ public class SwaggerConfig {
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
-                .title("HealtHelp Organization REST API")
+                .title("HealtHelp Organization API REST")
                 .description("\" IMPORTANT: Add \"Bearer\" and a space next to your token.\"")
                 .contact(new springfox.documentation.service.Contact("HealtHelp Organization","https://github.com/HealtHelp","healthelporganization@gmail.com"))
                 .version("1.0.0")
