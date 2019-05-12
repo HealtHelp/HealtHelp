@@ -35,7 +35,7 @@
 
 
     <select id="getUsers" resultMap="userMapDTO">
-        select u.id,u.username,convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password,u.tenant_id,u.profile_id,convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email from users u
+        select u.id,u.username,convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password,u.tenant_id,u.profile_id,convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email from users u order by u.id asc
     </select>
 
     <select id="getUserByPassword" resultMap="userLogin">

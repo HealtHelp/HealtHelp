@@ -1,15 +1,12 @@
 package com.api.healthelp.boot;
 
 
-import com.api.healthelp.controller.SecurityController;
+
 import com.api.healthelp.controller.UserController;
-import com.api.healthelp.controller.impl.SecurityControllerImpl;
 import com.api.healthelp.controller.impl.UserControllerImpl;
 import com.api.healthelp.dao.UserDao;
 import com.api.healthelp.dao.impl.UserDaoImpl;
 import com.api.healthelp.dao.mapper.UserMapper;
-import com.api.healthelp.security.JwtGenerator;
-import com.api.healthelp.security.JwtValidator;
 import com.api.healthelp.service.UserService;
 import com.api.healthelp.service.impl.UserServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -75,17 +72,11 @@ public class ApiConfig {
         return new UserServiceImpl(userDao);
     }
     //controllers
-    @Bean
-    public SecurityController securityController(JwtGenerator jwtGenerator,UserDao userDao){return new SecurityControllerImpl(jwtGenerator,userDao);
-    }
+
     @Bean
     public UserController userController(final UserService userService){
         return new UserControllerImpl(userService);
     }
 
-    //jwt
-    @Bean
-    public JwtValidator jwtValidator(Properties properties){return new JwtValidator(properties);}
-    @Bean
-    public JwtGenerator jwtGenerator(Properties properties){return new JwtGenerator(properties);}
+
 }
