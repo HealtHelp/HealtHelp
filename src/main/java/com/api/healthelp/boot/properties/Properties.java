@@ -1,4 +1,4 @@
-package com.api.healthelp.boot;
+package com.api.healthelp.boot.properties;
 
 
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Properties{
+public class Properties {
     //DB connection pool
     @Value("${db.enabled}")
     private String dbEnabled;

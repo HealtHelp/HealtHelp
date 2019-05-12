@@ -1,7 +1,8 @@
-package com.api.healthelp.boot;
+package com.api.healthelp.boot.config;
 
 
 
+import com.api.healthelp.boot.properties.Properties;
 import com.api.healthelp.controller.UserController;
 import com.api.healthelp.controller.impl.UserControllerImpl;
 import com.api.healthelp.dao.UserDao;
@@ -17,7 +18,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-
 
 
 @Configuration
