@@ -27,12 +27,10 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<CrErrorDTO> handleLoginException(NullPointerException e) {
-        logger.error(" -- ERROR Invalid credentials {}  ",e.getLocalizedMessage());
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<CrErrorDTO> handleException(Exception e) {
+        logger.error(" -- ERROR Exception {}  ",e.getLocalizedMessage());
         setBuildException(e);
-        this.crErrorDTO.setMessage("Invalid credentials");
-        this.crErrorDTO.setStatus(HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
     }
 

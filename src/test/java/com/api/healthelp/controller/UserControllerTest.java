@@ -31,7 +31,7 @@ public class UserControllerTest {
 
     @Test
     public void userControllerGetUsersAllTest() throws Exception {
-        ResultActions resultActions = mockMvc.perform(get("/healthelp/users"));
+        ResultActions resultActions = mockMvc.perform(get("/users"));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk())
                    .andExpect(jsonPath("$[*].userDToes").isArray())
@@ -41,7 +41,7 @@ public class UserControllerTest {
 
     @Test
     public void userControllerGetUsersEmptyTest() throws Exception {
-       ResultActions resultActions = mockMvc.perform(get("/healthelp/user"));
+       ResultActions resultActions = mockMvc.perform(get("/user"));
        resultActions.andDo(print());
        resultActions.andExpect(status().is(405))
                .andExpect(jsonPath("$[*].userDToes").doesNotExist());

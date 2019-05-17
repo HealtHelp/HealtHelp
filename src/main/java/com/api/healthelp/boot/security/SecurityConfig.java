@@ -26,9 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/healthelp/users").hasAnyRole("ADMIN","USER")
-                .antMatchers(HttpMethod.POST,"/healthelp/user").hasAnyRole("ADMIN")
-                .antMatchers(HttpMethod.PUT,"/healthelp/user").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/users").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.POST,"/user").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/user").hasAnyRole("ADMIN")
                 .and()
                 .httpBasic();
     }
