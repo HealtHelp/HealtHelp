@@ -3,12 +3,16 @@ package com.api.healthelp.boot.config;
 
 
 import com.api.healthelp.boot.properties.Properties;
+import com.api.healthelp.controller.LoginController;
 import com.api.healthelp.controller.UserController;
+import com.api.healthelp.controller.impl.LoginControllerImpl;
 import com.api.healthelp.controller.impl.UserControllerImpl;
 import com.api.healthelp.dao.UserDao;
 import com.api.healthelp.dao.impl.UserDaoImpl;
 import com.api.healthelp.dao.mapper.UserMapper;
+import com.api.healthelp.service.LoginService;
 import com.api.healthelp.service.UserService;
+import com.api.healthelp.service.impl.LoginServiceImpl;
 import com.api.healthelp.service.impl.UserServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -71,12 +75,19 @@ public class ApiConfig {
     public UserService userService(final UserDao userDao){
         return new UserServiceImpl(userDao);
     }
-    //controllers
 
+    @Bean
+    public LoginService loginService (){return new LoginServiceImpl(); }
+
+    //controllers
     @Bean
     public UserController userController(final UserService userService){
         return new UserControllerImpl(userService);
     }
 
+
+    @Bean
+    public LoginController loginController(final LoginService loginService ){return new LoginControllerImpl(loginService);
+    }
 
 }
