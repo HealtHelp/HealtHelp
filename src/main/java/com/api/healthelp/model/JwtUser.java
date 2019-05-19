@@ -11,9 +11,9 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserLogin implements Serializable {
+public class JwtUser implements Serializable {
     private Integer id;
-    private String username;
+    private String email;
     private String password;
     private String role;
 }

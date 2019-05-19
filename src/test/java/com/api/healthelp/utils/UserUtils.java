@@ -2,7 +2,7 @@ package com.api.healthelp.utils;
 
 import com.api.healthelp.model.User;
 import com.api.healthelp.model.UserCredentials;
-import com.api.healthelp.model.UserLogin;
+import com.api.healthelp.model.JwtUser;
 import com.api.healthelp.model.dto.UserDTO;
 
 import java.util.ArrayList;
@@ -53,15 +53,9 @@ public class UserUtils {
         return users;
     }
 
-    public static UserCredentials createdummyUserCredentials(){
-        UserCredentials userCredentials = new UserCredentials();
-        userCredentials.setPassword("admin");
-        userCredentials.setUsername("admin");
-        return userCredentials;
-    }
 
-    public static UserLogin createdummyUserLogin(){
-        UserLogin userLogin = new UserLogin();
+    public static JwtUser createdummyUserLogin(){
+        JwtUser userLogin = new JwtUser();
         userLogin.setId(1);
         userLogin.setPassword("admin");
         userLogin.setRole("ADMIN");

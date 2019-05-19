@@ -3,7 +3,7 @@ package com.api.healthelp.service.impl;
 
 import com.api.healthelp.dao.UserDao;
 import com.api.healthelp.model.User;
-import com.api.healthelp.model.UserLogin;
+import com.api.healthelp.model.JwtUser;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
@@ -28,10 +28,6 @@ public class UserServiceImpl implements UserService {
         return userDao.getUsers();
     }
 
-    @Override
-    public UserLogin getUserByPassword(String password) throws Exception {
-        return userDao.getUserByPassword(password);
-    }
 
     @Override
     public UserDTO updateUser(User updateUser) {

@@ -16,7 +16,6 @@
     <typeAliases>
         <typeAlias alias="User" type="com.api.healthelp.model.User"></typeAlias>
         <typeAlias alias="UserDTO" type="com.api.healthelp.model.dto.UserDTO"></typeAlias>
-        <typeAlias alias="UserLogin" type="com.api.healthelp.model.UserLogin"></typeAlias>
     </typeAliases>
 
     <mappers>
