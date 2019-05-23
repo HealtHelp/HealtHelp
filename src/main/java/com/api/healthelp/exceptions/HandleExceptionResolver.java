@@ -26,13 +26,22 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
         return this.crErrorDTO;
     }
 
-
-    @ExceptionHandler(Exception.class)
+    /*@ExceptionHandler(Exception.class)
     public ResponseEntity<CrErrorDTO> handleException(Exception e) {
         logger.error(" -- ERROR Exception {}  ",e.getLocalizedMessage());
         setBuildException(e);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
+    }*/
+
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<CrErrorDTO> handleException(NullPointerException e) {
+        logger.error(" -- User Not Found {}  ",e.getLocalizedMessage());
+        setBuildException(e);
+        this.crErrorDTO.setStatus(HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
     }
+
+
 
 
     @ExceptionHandler(org.postgresql.util.PSQLException.class)

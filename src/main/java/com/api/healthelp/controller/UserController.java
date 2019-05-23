@@ -23,9 +23,11 @@ public interface UserController extends Serializable {
     @GetMapping(path="/users",produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<Resources<UserDTO>> getUsers()throws RuntimeException;
 
+
     @ApiOperation(value="Update user password",notes="Update user request. Enter Bearer and space after the token")
     @PutMapping(path="/user", produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.APPLICATION_JSON_VALUE })
     ResponseEntity<Resource<UserDTO>> updateUser(@ApiParam(name="User password", value="User password")@RequestBody User updateUser);
+
 
     @ApiOperation(value="Insert user ",notes="Insert user request. Enter Bearer and space after the token")
     @PostMapping(path="/user", produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.APPLICATION_JSON_VALUE })

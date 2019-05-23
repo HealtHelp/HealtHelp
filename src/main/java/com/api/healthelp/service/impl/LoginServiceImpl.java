@@ -35,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
         if(jwtUser != null){
             logger.info(" -- Welcome API HEALHELP {}",jwtUser.getEmail());
             List<String> list = new ArrayList<>();
-            list.add("Bearer "+authClaims.jwtGenerator(jwtUser));
+            list.add("Bearer "+authClaims.jwtGenerator(jwtUser)+" ");
             return list;
         }
         else{
