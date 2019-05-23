@@ -26,25 +26,25 @@
         <result property="email" column="email" />
     </resultMap>
 
-  <!--  <resultMap type="UserLogin" id="userLogin">
+   <resultMap id="jwtUser" type="JwtUser">
         <id column="id" property="id"/>
-        <result column="username" property="username"/>
+        <result column="email" property="email"/>
         <result column="password" property="password"/>
         <result column="role" property="role"/>
-    </resultMap>-->
+    </resultMap>
 
 
     <select id="getUsers" resultMap="userMapDTO">
         select u.id,u.username,convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password,u.tenant_id,u.profile_id,convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email from users u order by u.id asc
     </select>
 
-  <!--  <select id="getUserByPassword" resultMap="userLogin">
-      select u.id, u.username, decrypt(u.password::bytea, 'key_to_encrypt', 'aes') as password, p.name as role
+    <select id="getUserByPassword" resultMap="jwtUser">
+      select u.id, decrypt(u.email::bytea, 'key_to_encrypt', 'aes') as email, decrypt(u.password::bytea, 'key_to_encrypt', 'aes') as password, p.name as role
       from users u
       inner join profiles p ON
       u.profile_id=p.id
       where convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{password};
-    </select>-->
+    </select>
 
 
     <select id="getUserById" resultMap="userMap">

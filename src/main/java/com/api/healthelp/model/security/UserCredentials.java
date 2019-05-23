@@ -1,4 +1,5 @@
-package com.api.healthelp.model;
+package com.api.healthelp.model.security;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +12,8 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtUser implements Serializable {
-    private Integer id;
+public class UserCredentials implements Serializable {
     private String email;
     private String password;
-    private String role;
 }
+

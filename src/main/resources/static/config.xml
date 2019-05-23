@@ -14,8 +14,9 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="User" type="com.api.healthelp.model.User"></typeAlias>
+        <typeAlias alias="User" type="com.api.healthelp.model.entity.User"></typeAlias>
         <typeAlias alias="UserDTO" type="com.api.healthelp.model.dto.UserDTO"></typeAlias>
+        <typeAlias alias="JwtUser" type="com.api.healthelp.model.security.JwtUser"></typeAlias>
     </typeAliases>
 
     <mappers>

@@ -3,9 +3,9 @@ package com.api.healthelp.dao.impl;
 
 import com.api.healthelp.dao.UserDao;
 import com.api.healthelp.dao.mapper.UserMapper;
-import com.api.healthelp.model.User;
-import com.api.healthelp.model.JwtUser;
 import com.api.healthelp.model.dto.UserDTO;
+import com.api.healthelp.model.entity.User;
+import com.api.healthelp.model.security.JwtUser;
 
 import java.util.List;
 
@@ -22,6 +22,11 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<UserDTO> getUsers() throws RuntimeException {
         return userMapper.getUsers();
+    }
+
+    @Override
+    public JwtUser getUserByPassword(String password) throws NullPointerException {
+        return userMapper.getUserByPassword(password);
     }
 
 

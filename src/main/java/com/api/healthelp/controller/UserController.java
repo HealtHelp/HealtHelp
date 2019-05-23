@@ -1,7 +1,7 @@
 package com.api.healthelp.controller;
 
-import com.api.healthelp.model.User;
 import com.api.healthelp.model.dto.UserDTO;
+import com.api.healthelp.model.entity.User;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.hateoas.Resource;

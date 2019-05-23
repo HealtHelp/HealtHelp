@@ -2,6 +2,7 @@ package com.api.healthelp.boot.config;
 
 
 
+import com.api.healthelp.boot.auth.AuthClaims;
 import com.api.healthelp.boot.properties.Properties;
 import com.api.healthelp.controller.LoginController;
 import com.api.healthelp.controller.UserController;
@@ -77,17 +78,18 @@ public class ApiConfig {
     }
 
     @Bean
-    public LoginService loginService (){return new LoginServiceImpl(); }
+    public AuthClaims authClaims(Properties properties){return new AuthClaims(properties);}
+
+    @Bean
+    public LoginService loginService (final UserDao userDao,Properties properties,AuthClaims authClaims){return new LoginServiceImpl(userDao,properties,authClaims); }
 
     //controllers
     @Bean
-    public UserController userController(final UserService userService){
-        return new UserControllerImpl(userService);
-    }
+    public UserController userController(final UserService userService){ return new UserControllerImpl(userService); }
 
 
     @Bean
-    public LoginController loginController(final LoginService loginService ){return new LoginControllerImpl(loginService);
+    public LoginController loginController(final LoginService loginService){return new LoginControllerImpl(loginService);
     }
 
 }

@@ -1,9 +1,8 @@
 package com.api.healthelp.utils;
 
-import com.api.healthelp.model.User;
-import com.api.healthelp.model.UserCredentials;
-import com.api.healthelp.model.JwtUser;
 import com.api.healthelp.model.dto.UserDTO;
+import com.api.healthelp.model.entity.User;
+import com.api.healthelp.model.security.JwtUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +55,8 @@ public class UserUtils {
 
     public static JwtUser createdummyUserLogin(){
         JwtUser userLogin = new JwtUser();
-        userLogin.setId(1);
+        Long idL = new Long(1);
+        userLogin.setId(idL);
         userLogin.setPassword("admin");
         userLogin.setRole("ADMIN");
         return userLogin;

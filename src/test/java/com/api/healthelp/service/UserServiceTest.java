@@ -1,9 +1,8 @@
 package com.api.healthelp.service;
 
 
-import com.api.healthelp.model.User;
-import com.api.healthelp.model.JwtUser;
 import com.api.healthelp.model.dto.UserDTO;
+import com.api.healthelp.model.entity.User;
 import com.api.healthelp.utils.UserUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;

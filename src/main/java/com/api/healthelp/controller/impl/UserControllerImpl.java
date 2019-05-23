@@ -2,8 +2,8 @@ package com.api.healthelp.controller.impl;
 
 
 import com.api.healthelp.controller.UserController;
-import com.api.healthelp.model.User;
 import com.api.healthelp.model.dto.UserDTO;
+import com.api.healthelp.model.entity.User;
 import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

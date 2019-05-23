@@ -2,9 +2,8 @@ package com.api.healthelp.service.impl;
 
 
 import com.api.healthelp.dao.UserDao;
-import com.api.healthelp.model.User;
-import com.api.healthelp.model.JwtUser;
 import com.api.healthelp.model.dto.UserDTO;
+import com.api.healthelp.model.entity.User;
 import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
