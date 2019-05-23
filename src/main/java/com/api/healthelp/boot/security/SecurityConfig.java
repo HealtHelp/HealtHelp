@@ -5,6 +5,7 @@ import com.api.healthelp.boot.auth.AuthProv;
 import com.api.healthelp.boot.auth.AuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import org.springframework.security.authentication.ProviderManager;
@@ -41,11 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-             http
-                .csrf().disable()
-                .authorizeRequests()
-                     .antMatchers("/login").permitAll()
-                     .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
+             http.cors().and()
+                 .csrf().disable()
+                 .authorizeRequests()
+                     .antMatchers(HttpMethod.POST,"/login").permitAll()
+                     .antMatchers(HttpMethod.GET,"/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
                      .antMatchers("/api/**")
                 .authenticated()
                 .and()

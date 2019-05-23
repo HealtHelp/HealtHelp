@@ -7,6 +7,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.util.Date;
+
 @Component
 public class AuthClaims {
 
@@ -42,6 +45,7 @@ public class AuthClaims {
             claims.put(properties.getRole(),jwtUser.getRole());
             return Jwts.builder()
                     .setClaims(claims)
+                    .setExpiration(Date.from(Instant.now().plusSeconds(Long.valueOf(3600))))
                     .signWith(SignatureAlgorithm.HS512,properties.getBitSecret())
                     .compact();
         }catch (Exception ex){

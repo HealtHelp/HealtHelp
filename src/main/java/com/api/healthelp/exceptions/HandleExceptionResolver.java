@@ -34,7 +34,7 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
     }
 
-    //org.postgresql.util.PSQLException
+
     @ExceptionHandler(org.postgresql.util.PSQLException.class)
     public ResponseEntity<CrErrorDTO> handlePSQLException(org.postgresql.util.PSQLException e) {
         logger.error(" -- SQL ERROR Duplicate key  {}  ",e.getLocalizedMessage());
