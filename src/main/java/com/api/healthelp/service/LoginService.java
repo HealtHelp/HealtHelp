@@ -2,6 +2,8 @@ package com.api.healthelp.service;
 
 import com.api.healthelp.model.UserCredentials;
 
+import java.util.List;
+
 public interface LoginService {
-    String login(UserCredentials userCredentials);
+    List<String> login(UserCredentials userCredentials);
 }

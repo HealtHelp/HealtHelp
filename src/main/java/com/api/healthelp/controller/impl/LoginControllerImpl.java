@@ -4,6 +4,8 @@ import com.api.healthelp.controller.LoginController;
 import com.api.healthelp.model.UserCredentials;
 import com.api.healthelp.service.LoginService;
 
+import java.util.List;
+
 public class LoginControllerImpl implements LoginController {
 
     private LoginService loginService;
@@ -13,7 +15,7 @@ public class LoginControllerImpl implements LoginController {
     }
 
     @Override
-    public String login(UserCredentials userCredentials) {
+    public List<String> login(UserCredentials userCredentials) {
         return loginService.login(userCredentials);
     }
 }

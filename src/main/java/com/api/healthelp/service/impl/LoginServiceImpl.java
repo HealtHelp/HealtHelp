@@ -7,6 +7,9 @@ import com.api.healthelp.model.UserCredentials;
 import com.api.healthelp.model.security.JwtUser;
 import com.api.healthelp.service.LoginService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LoginServiceImpl implements LoginService {
 
     private UserDao userDao;
@@ -19,10 +22,12 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public String login(UserCredentials userCredentials) {
+    public List<String> login(UserCredentials userCredentials) {
         JwtUser jwtUser = userDao.getUserByPassword(userCredentials.getPassword());
         if(jwtUser != null){
-            return authClaims.jwtGenerator(jwtUser);
+            List<String> list = new ArrayList<>();
+            list.add("Bearer "+authClaims.jwtGenerator(jwtUser));
+            return list;
         }
         else{
             return null;
