@@ -9,14 +9,14 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.io.Serializable;
+
 
 
 @Api(tags = { "User" }, description = "User management resource")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @ExposesResourceFor(User.class)
-public interface UserController extends Serializable {
+public interface  UserController {
 
 
     @ApiOperation(value = "Get users", notes="Get users request. Enter Bearer and space after the token")
