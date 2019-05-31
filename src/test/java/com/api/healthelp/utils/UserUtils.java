@@ -21,6 +21,18 @@ public class UserUtils {
         return user;
     }
 
+    public static String createdummyUserString(){
+        String  user = "{\n" +
+                "\t\"id\":1,\n" +
+                "\t\"username\":\"admin\",\n" +
+                "\t\"password\":\"healthelp\",\n" +
+                "\t\"tenantId\":1,\n" +
+                "\t\"profileId\":1,\n" +
+                "\t\"email\":\"admin@admin.com\"\n" +
+                "}";
+        return user;
+    }
+
     public static UserDTO createdummyUserDTO(){
         UserDTO user = new UserDTO();
         user.setId(1);
