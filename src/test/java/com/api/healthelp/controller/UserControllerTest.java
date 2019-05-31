@@ -15,8 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.ResultMatcher.matchAll;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -35,7 +34,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void userControllerGetUsersAllTest() throws Exception {
+    public void userControllerGETUsersAllTest() throws Exception {
         ResultActions resultActions = mockMvc.perform(get("/users"));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk())
@@ -45,7 +44,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void userControllerGetUsersEmptyTest() throws Exception {
+    public void userControllerGETUsersEmptyTest() throws Exception {
        ResultActions resultActions = mockMvc.perform(get("/user"));
        resultActions.andDo(print());
        resultActions.andExpect(status().is(405))
@@ -54,7 +53,7 @@ public class UserControllerTest {
 
 
     @Test
-    public void userControllerPutUserAllTest() throws Exception {
+    public void userControllerPUTUserAllTest() throws Exception {
         String  user = UserUtils.createdummyUserString();
         ResultActions resultActions = mockMvc.perform(put("/user").contentType(MediaType.APPLICATION_JSON).content(user));
         resultActions.andDo(print());
@@ -65,8 +64,25 @@ public class UserControllerTest {
 
 
     @Test
-    public void userControllerPutUserEmptyTest() throws Exception {
+    public void userControllerPUTUserEmptyTest() throws Exception {
         ResultActions resultActions = mockMvc.perform(put("/user"));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().is(415));
+    }
+
+    @Test
+    public void userControllerPOSTUserAllTest() throws Exception {
+        String  user = UserUtils.createdummyUserStringEmple1();
+        ResultActions resultActions = mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(user));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(2))
+                .andExpect(jsonPath("$.username").value("emple1"));
+    }
+
+    @Test
+    public void userControllerPOSTUserEmptyTest() throws Exception {
+        ResultActions resultActions = mockMvc.perform(post("/user"));
         resultActions.andDo(print());
         resultActions.andExpect(status().is(415));
     }
