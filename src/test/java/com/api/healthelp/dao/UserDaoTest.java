@@ -2,6 +2,7 @@ package com.api.healthelp.dao;
 
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.entity.User;
+import com.api.healthelp.model.security.JwtUser;
 import com.api.healthelp.utils.UserUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +34,7 @@ public class UserDaoTest {
         userDTOList.removeIf(item->userDTOList.contains(item));
         assertTrue(userDTOList.isEmpty());
     }
-/*
+
     @Test
     public void userDaoGetUserPasswordAllTest(){
         String password = "healthelp";
@@ -46,7 +47,7 @@ public class UserDaoTest {
         String password = "xxx";
         JwtUser userLogin = userDao.getUserByPassword(password);
         assertTrue(userLogin == null);
-    }*/
+    }
 
     @Test
     public void userDaoGetUserByIdAllTest() {

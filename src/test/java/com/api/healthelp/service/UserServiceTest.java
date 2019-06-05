@@ -41,22 +41,6 @@ public class UserServiceTest {
 
 
 
-/*    @Test
-    public void userServiceGetUserPasswordAllTest() throws Exception {
-        String pwd = "healthelp";
-        JwtUser userLogin = userService.getUserByPassword(pwd);
-        assertTrue(userLogin.getId()>0);
-    }
-
-    @Test
-    public void userServiceGetUserPasswordEmptyTest() throws Exception{
-        String pwd = "xxx";
-        User user = UserUtils.createdummyUser();
-        ((User) user).setPassword(pwd);
-        JwtUser userLogin = userService.getUserByPassword(user.getPassword());
-        assertTrue(userLogin == null);
-    }*/
-
     @Test
     public void userServiceUpdateUserAllTest(){
         User user = UserUtils.createdummyUser();
