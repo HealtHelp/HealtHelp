@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 
+
 @Configuration
 public class ApiConfig {
 
@@ -91,5 +92,7 @@ public class ApiConfig {
     @Bean
     public LoginController loginController(final LoginService loginService){return new LoginControllerImpl(loginService);
     }
+
+
 
 }
