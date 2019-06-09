@@ -51,14 +51,14 @@ public class UserDaoTest {
 
     @Test
     public void userDaoGetUserByIdAllTest() {
-        Integer id = 1;
+        Long id = new Long(1);
         User user = userDao.getUserById(id);
         assertTrue(user.getId() > 0);
     }
 
     @Test
     public void userDaoGetUserByIdEmptyTest(){
-        Integer id = -1;
+        Long id = new Long(-1);
         User user = userDao.getUserById(id);
         assertTrue(user == null);
     }
@@ -81,8 +81,8 @@ public class UserDaoTest {
     @Test
     public void userDaoInsertUserAllTest(){
         User user = UserUtils.createdummyUser();
-        Random rm = new Random();
-        user.setId(rm.nextInt());
+        Long id = new Long(6);
+        user.setId(id);
         user.setUsername("test");
         user.setPassword("test");
         user.setProfileId(2);

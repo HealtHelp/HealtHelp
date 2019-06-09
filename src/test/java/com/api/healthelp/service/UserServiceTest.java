@@ -62,9 +62,9 @@ public class UserServiceTest {
 
     @Test
     public void userServiceInsertUserAllTest(){
-        Random rm = new Random();
+        Long id = new Long(7);
         User user = UserUtils.createdummyUser();
-        user.setId(rm.nextInt());
+        user.setId(id);
         UserDTO userDTO = userService.insertUser(user);
         assertTrue(userDTO!=null);
     }
