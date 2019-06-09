@@ -21,12 +21,12 @@ public interface  UserController {
 
 
     @ApiOperation(value = "Get users", notes="Get users request. Enter Bearer and space after the token")
+    @GetMapping(path="/users",produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
             value = "JWT Token",
             required = true,
             dataType = "string",
             paramType = "header") })
-    @GetMapping(path="/users",produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<Resources<UserDTO>> getUsers()throws RuntimeException;
 
 

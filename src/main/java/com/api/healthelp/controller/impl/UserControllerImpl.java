@@ -33,6 +33,7 @@ public class UserControllerImpl implements UserController {
         this.userService=userService;
     }
 
+
     @Override
     public ResponseEntity<Resources<UserDTO>> getUsers() throws RuntimeException {
         logger.info(" -- GET  /users " );
