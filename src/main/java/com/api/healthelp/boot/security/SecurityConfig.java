@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception {
         super.configure(auth);
         auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("healthelp")).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("emple1").password(passwordEncoder().encode("emple1")).roles("USER");
     }
 
 
@@ -43,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/v2/api-docs","/configuration/ui","/swagger-resources","/configuration/security","/swagger-ui.html","/webjars/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT,"/user").hasRole("ADMIN")
                 .anyRequest().authenticated()
