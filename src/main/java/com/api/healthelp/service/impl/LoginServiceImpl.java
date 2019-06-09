@@ -22,18 +22,18 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public String login(UserCredentials userCredentials) {
+    public boolean login(UserCredentials userCredentials) {
         JwtUser jwtUser = userDao.getUserByPassword(userCredentials.getPassword());
         JwtUser jwtUser2 = userDao.getUserByEmail(userCredentials.getEmail());
         //email
         logger.info(jwtUser.getEmail());
         if(jwtUser.getEmail().equals(jwtUser2.getEmail()) && jwtUser.getPassword().equals(jwtUser2.getPassword())){
             logger.info(" -- Welcome API HEALHELP {}",jwtUser.getEmail());
-            return "ok";
+            return true;
         }
         else{
             logger.info(" -- User Not Found {}",jwtUser.getEmail());
-            return null;
+            return false;
         }
     }
 }

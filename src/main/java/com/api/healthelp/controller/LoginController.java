@@ -18,5 +18,5 @@ public interface LoginController {
 
     @ApiOperation(value="Insert credentials ",notes="Insert login credentials.")
     @PostMapping(path="/login", produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.APPLICATION_JSON_VALUE })
-    String login(@ApiParam(name="User credentials", value="User credentials")@RequestBody UserCredentials userCredentials);
+    boolean login(@ApiParam(name="User credentials", value="User credentials")@RequestBody UserCredentials userCredentials);
 }

@@ -20,7 +20,7 @@ public class LoginControllerImpl implements LoginController {
     }
 
     @Override
-    public String login(UserCredentials userCredentials) {
+    public  boolean login(UserCredentials userCredentials) {
         logger.info(" -- POST  /login {}",userCredentials.getEmail());
         return loginService.login(userCredentials);
     }
