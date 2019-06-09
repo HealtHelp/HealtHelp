@@ -4,6 +4,7 @@ package com.api.healthelp.boot.config;
 
 
 import com.api.healthelp.boot.properties.Properties;
+import com.api.healthelp.boot.security.SecurityConfig;
 import com.api.healthelp.controller.LoginController;
 import com.api.healthelp.controller.UserController;
 import com.api.healthelp.controller.impl.LoginControllerImpl;
@@ -66,6 +67,7 @@ public class ApiConfig {
     }
 
 
+
     //dao
     @Bean
     public UserDao userDao( final UserMapper userMapper1){
@@ -89,5 +91,6 @@ public class ApiConfig {
     @Bean
     public LoginController loginController(final LoginService loginService){return new LoginControllerImpl(loginService);
     }
+
 
 }

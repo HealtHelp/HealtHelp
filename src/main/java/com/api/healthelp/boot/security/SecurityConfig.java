@@ -1,8 +1,9 @@
 package com.api.healthelp.boot.security;
 
 
-import com.api.healthelp.boot.properties.Properties;
+
 import com.api.healthelp.dao.UserDao;
+import com.api.healthelp.model.security.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,18 +15,22 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Configuration
+@Component
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private Properties properties;
+    private UserDao userDao;
 
-    public SecurityConfig(Properties properties,UserDao userDao) {
-        this.properties = properties;
+    public SecurityConfig( UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Autowired
@@ -43,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/login").permitAll()
                 .antMatchers(HttpMethod.GET,"/v2/api-docs","/configuration/ui","/swagger-resources","/configuration/security","/swagger-ui.html","/webjars/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")

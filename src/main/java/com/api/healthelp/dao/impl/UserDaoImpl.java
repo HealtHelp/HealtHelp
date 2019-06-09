@@ -52,5 +52,10 @@ public class UserDaoImpl implements UserDao {
         return userMapper.getUsersRoles();
     }
 
+    @Override
+    public JwtUser getUserByEmail(String email) {
+        return userMapper.getUserByEmail(email);
+    }
+
 
 }
