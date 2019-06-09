@@ -1,38 +1,57 @@
 package com.api.healthelp.boot.auth;
 
-import com.api.healthelp.boot.properties.Properties;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.api.healthelp.model.entity.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import javax.servlet.*;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class AuthFilter extends AbstractAuthenticationProcessingFilter {
 
-    @Autowired
-    private Properties properties;
+public class AuthFilter extends UsernamePasswordAuthenticationFilter {
 
-    public AuthFilter() {
-        super("/api/**");
+    private AuthenticationManager authenticationManager;
+
+
+    public AuthFilter(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-        String header = request.getHeader(properties.getHeader());
-        if(header == null || !header.startsWith(properties.getBearer())){
-            throw new RuntimeException("ERROR:  HEADER NULL TOKEN MISSING");
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        try {
+            User creds = new ObjectMapper()
+                    .readValue(request.getInputStream(), User.class);
+
+            return authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            creds.getUsername(),
+                            creds.getPassword(),
+                            new ArrayList<>())
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        String authenticationToken = header.substring(7);
-        AuthToken token = new AuthToken(authenticationToken);
-        return getAuthenticationManager().authenticate(token);
     }
 
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        super.successfulAuthentication(request, response, chain, authResult);
-        chain.doFilter(request,response);
-    }
+
+
 }
+
+/*
+*   io.jsonwebtoken.Claims claims = Jwts.claims()
+                .setSubject(jwtUser.getEmail());
+         claims.put(properties.getId(),String.valueOf(jwtUser.getId()));
+         claims.put(properties.getRole(),jwtUser.getRole());
+         return Jwts.builder()
+                 .setClaims(claims)
+                 .signWith(SignatureAlgorithm.HS256,properties.getBitSecret())
+                 .compact();
+*
+* */

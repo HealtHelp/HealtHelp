@@ -4,11 +4,15 @@ package com.api.healthelp.service.impl;
 import com.api.healthelp.dao.UserDao;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.entity.User;
+import com.api.healthelp.model.security.JwtUser;
+import com.api.healthelp.model.security.UserResponse;
 import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import javax.naming.AuthenticationException;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
@@ -49,4 +53,23 @@ public class UserServiceImpl implements UserService {
     public UserDTO insertUser(User user) {
         return userDao.insertUser(user);
     }
+
+    @Override
+    public UserResponse authenticateUser(User user) throws AuthenticationException {
+        JwtUser existingUser;
+        try{
+            existingUser = userDao.getUserByPassword(user.getPassword());
+        }catch(Exception ex){
+            throw new RuntimeException("Authenticateuser"+ex.toString());
+        }
+        if(existingUser!=null && BCrypt.checkpw(user.getPassword(), existingUser.getPassword())){
+            //return existingUser;
+            return null;
+        }else{
+            //throw new Exception();
+            return new UserResponse();
+        }
+    }
+
+
 }
