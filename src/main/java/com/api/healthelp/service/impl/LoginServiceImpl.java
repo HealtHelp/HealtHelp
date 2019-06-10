@@ -2,6 +2,7 @@ package com.api.healthelp.service.impl;
 
 
 
+import com.api.healthelp.boot.auth.AuthClaims;
 import com.api.healthelp.dao.UserDao;
 import com.api.healthelp.model.security.JwtUser;
 import com.api.healthelp.model.security.UserCredentials;
@@ -15,10 +16,12 @@ public class LoginServiceImpl implements LoginService {
 
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private UserDao userDao;
+    private AuthClaims authClaims;
 
 
-    public LoginServiceImpl(UserDao userDao){
+    public LoginServiceImpl(UserDao userDao,AuthClaims authClaims) {
         this.userDao = userDao;
+        this.authClaims = authClaims;
     }
 
     @Override
@@ -26,7 +29,8 @@ public class LoginServiceImpl implements LoginService {
         JwtUser jwtUser = userDao.getUserByPassword(userCredentials.getPassword());
         JwtUser jwtUser2 = userDao.getUserByEmail(userCredentials.getEmail());
         if(jwtUser.getEmail().equals(jwtUser2.getEmail()) && jwtUser.getPassword().equals(jwtUser2.getPassword())){
-            logger.info(" -- Welcome API HEALHELP {}",jwtUser.getEmail());
+            authClaims.generate(jwtUser);
+            logger.info(" -- Welcome API HEALHELP {}",authClaims.generate(jwtUser));
             return true;
         }
         else{
