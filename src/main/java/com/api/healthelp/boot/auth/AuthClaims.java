@@ -33,4 +33,23 @@ public class AuthClaims {
             return null;
         }
     }
+
+    public JwtUser validate(String token) {
+        JwtUser jwtUser = null;
+        try {
+            Claims body = Jwts.parser()
+                    .setSigningKey(properties.getBitSecret())
+                    .parseClaimsJws(token)
+                    .getBody();
+            jwtUser = new JwtUser();
+            jwtUser.setEmail(body.getSubject());
+            jwtUser.setId(Long.parseLong((String) body.get(properties.getId())));
+            jwtUser.setRole((String) body.get(properties.getRole()));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return jwtUser;
+    }
 }

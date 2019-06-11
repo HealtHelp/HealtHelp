@@ -4,7 +4,9 @@ package com.api.healthelp.boot.config;
 
 
 import com.api.healthelp.boot.auth.AuthClaims;
+import com.api.healthelp.boot.auth.AuthProvider;
 import com.api.healthelp.boot.properties.Properties;
+import com.api.healthelp.boot.security.SecurityConfig;
 import com.api.healthelp.controller.LoginController;
 import com.api.healthelp.controller.UserController;
 import com.api.healthelp.controller.impl.LoginControllerImpl;
@@ -24,11 +26,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-
+import org.springframework.security.authentication.AuthenticationManager;
 
 
 @Configuration
 public class ApiConfig {
+
+    private AuthenticationManager authenticationManager;
 
     //properties
     @Bean
@@ -85,7 +89,13 @@ public class ApiConfig {
     public AuthClaims authClaims(Properties properties){return new AuthClaims(properties);}
 
     @Bean
-    public LoginService loginService (final UserDao userDao, AuthClaims authClaims){return new LoginServiceImpl(userDao,authClaims); }
+    public AuthProvider authProvider(AuthClaims authClaims){return new AuthProvider(authClaims);}
+
+    @Bean
+    public SecurityConfig securityConfig(Properties properties,AuthProvider authProvider){return new SecurityConfig(properties,authProvider) ;}
+
+    @Bean
+    public LoginService loginService (final UserDao userDao, AuthClaims authClaims){ return new LoginServiceImpl(userDao,authClaims); }
 
     //controllers
     @Bean

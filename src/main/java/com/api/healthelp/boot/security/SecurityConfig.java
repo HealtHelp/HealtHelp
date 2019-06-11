@@ -2,67 +2,66 @@ package com.api.healthelp.boot.security;
 
 
 
-import com.api.healthelp.dao.UserDao;
-import com.api.healthelp.model.security.JwtUser;
+import com.api.healthelp.boot.auth.AuthFilter;
+import com.api.healthelp.boot.auth.AuthProvider;
+import com.api.healthelp.boot.auth.AuthToken;
+import com.api.healthelp.boot.auth.JwtSuccessHandler;
+import com.api.healthelp.boot.properties.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.util.List;
+import java.util.Collections;
 
 
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true)
 @EnableWebSecurity
 @Configuration
-@Component
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDao userDao;
+    private Properties properties;
+    private AuthProvider authProvider;
 
-    public SecurityConfig( UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception {
-        super.configure(auth);
-        auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("healthelp")).roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("emple1").password(passwordEncoder().encode("emple1")).roles("USER");
-    }
-
-
-
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and()
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/login").permitAll()
-                .antMatchers(HttpMethod.GET,"/v2/api-docs","/configuration/ui","/swagger-resources","/configuration/security","/swagger-ui.html","/webjars/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN","USER")
-                .antMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT,"/user").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .logout()
-                .and()
-                .httpBasic();
+    public SecurityConfig(Properties properties,AuthProvider authProvider){
+        this.properties = properties;
+        this.authProvider = authProvider;
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public AuthenticationManager authenticationManager() {
+        return new ProviderManager(Collections.singletonList(authProvider));
     }
+
+    @Bean
+    public AuthFilter authenticationTokenFilter(){
+        AuthFilter authFilter = new AuthFilter(properties);
+        authFilter.setAuthenticationManager(authenticationManager());
+        authFilter.setAuthenticationSuccessHandler(new JwtSuccessHandler());
+        return authFilter;
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+               // .antMatchers(HttpMethod.POST,"/login").permitAll()
+                .antMatchers("/hh/**").authenticated()
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.headers().cacheControl();
+    }
+
+
 
 }

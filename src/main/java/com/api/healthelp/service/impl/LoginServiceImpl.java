@@ -9,6 +9,11 @@ import com.api.healthelp.model.security.UserCredentials;
 import com.api.healthelp.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 
 import java.lang.invoke.MethodHandles;
@@ -18,6 +23,7 @@ public class LoginServiceImpl implements LoginService {
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private UserDao userDao;
     private AuthClaims authClaims;
+
 
 
     public LoginServiceImpl(UserDao userDao,AuthClaims authClaims) {
@@ -30,7 +36,7 @@ public class LoginServiceImpl implements LoginService {
         JwtUser jwtUser = userDao.getUserByPassword(userCredentials.getPassword());
         JwtUser jwtUser2 = userDao.getUserByEmail(userCredentials.getEmail());
         if(jwtUser.getEmail().equals(jwtUser2.getEmail()) && jwtUser.getPassword().equals(jwtUser2.getPassword())){
-            logger.info(" -- Welcome API HEALHELP {}",authClaims.generate(jwtUser));
+            logger.info(" -- Welcome API HEALHELP {}",jwtUser.getEmail());
             return "Bearer "+authClaims.generate(jwtUser);
         }
         else{
