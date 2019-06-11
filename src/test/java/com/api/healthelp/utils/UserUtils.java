@@ -35,7 +35,7 @@ public class UserUtils {
                 "\t\"username\":\"emple1\",\n" +
                 "\t\"password\":\"emple1\",\n" +
                 "\t\"tenantId\":1,\n" +
-                "\t\"profileId\":3,\n" +
+                "\t\"profileId\":2,\n" +
                 "\t\"email\":\"emple1@emple1.com\"\n" +
                 "}";
         return user;

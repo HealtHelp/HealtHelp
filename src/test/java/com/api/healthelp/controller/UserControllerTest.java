@@ -32,7 +32,7 @@ public class UserControllerTest {
 
     @Test
     public void userControllerGETUsersAllTest() throws Exception {
-        ResultActions resultActions = mockMvc.perform(get("/users"));
+        ResultActions resultActions = mockMvc.perform(get("/api/users"));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk())
                    .andExpect(jsonPath("$[*].userDToes").isArray())
@@ -42,7 +42,7 @@ public class UserControllerTest {
 
     @Test
     public void userControllerGETUsersEmptyTest() throws Exception {
-       ResultActions resultActions = mockMvc.perform(get("/user"));
+       ResultActions resultActions = mockMvc.perform(get("/api/user"));
        resultActions.andDo(print());
        resultActions.andExpect(status().is(405))
                .andExpect(jsonPath("$[*].userDToes").doesNotExist());
@@ -52,7 +52,7 @@ public class UserControllerTest {
     @Test
     public void userControllerPUTUserAllTest() throws Exception {
         String  user = UserUtils.createdummyUserString();
-        ResultActions resultActions = mockMvc.perform(put("/user").contentType(MediaType.APPLICATION_JSON).content(user));
+        ResultActions resultActions = mockMvc.perform(put("/api/user").contentType(MediaType.APPLICATION_JSON).content(user));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
@@ -62,7 +62,7 @@ public class UserControllerTest {
 
     @Test
     public void userControllerPUTUserEmptyTest() throws Exception {
-        ResultActions resultActions = mockMvc.perform(put("/user"));
+        ResultActions resultActions = mockMvc.perform(put("/api/user"));
         resultActions.andDo(print());
         resultActions.andExpect(status().is(415));
     }
@@ -70,7 +70,7 @@ public class UserControllerTest {
     @Test
     public void userControllerPOSTUserAllTest() throws Exception {
         String  user = UserUtils.createdummyUserStringEmple1();
-        ResultActions resultActions = mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(user));
+        ResultActions resultActions = mockMvc.perform(post("/api/user").contentType(MediaType.APPLICATION_JSON).content(user));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(2))
@@ -79,7 +79,7 @@ public class UserControllerTest {
 
     @Test
     public void userControllerPOSTUserEmptyTest() throws Exception {
-        ResultActions resultActions = mockMvc.perform(post("/user"));
+        ResultActions resultActions = mockMvc.perform(post("/api/user"));
         resultActions.andDo(print());
         resultActions.andExpect(status().is(415));
     }
