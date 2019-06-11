@@ -97,8 +97,5 @@ public class ApiConfig {
     }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 4cb7cb8459ba12d8c626ff479dbc1650761dca03
 }
