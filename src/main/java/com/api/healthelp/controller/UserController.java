@@ -21,7 +21,7 @@ public interface  UserController {
 
 
     @ApiOperation(value = "Get users", notes="Get users request. Enter Bearer and space after the token")
-    @GetMapping(path="/hh/users",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(path="/api/users",produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
             value = "JWT Token",
             required = true,

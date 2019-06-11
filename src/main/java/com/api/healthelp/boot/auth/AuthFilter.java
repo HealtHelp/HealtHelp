@@ -1,7 +1,6 @@
 package com.api.healthelp.boot.auth;
 
 import com.api.healthelp.boot.properties.Properties;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -19,7 +18,7 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
 
 
     public AuthFilter(Properties properties) {
-        super("/hh/**");
+        super("/api/**");
         this.properties = properties;
     }
 

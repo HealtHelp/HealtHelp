@@ -42,11 +42,19 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
     }
 
 
-
-
     @ExceptionHandler(org.postgresql.util.PSQLException.class)
     public ResponseEntity<CrErrorDTO> handlePSQLException(org.postgresql.util.PSQLException e) {
         logger.error(" -- SQL ERROR Duplicate key  {}  ",e.getLocalizedMessage());
+        setBuildException(e);
+        this.crErrorDTO.setStatus(HttpStatus.CONFLICT);
+        return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
+    }
+
+
+
+    @ExceptionHandler(java.lang.RuntimeException.class)
+    public ResponseEntity<CrErrorDTO> handleRuntimeException(java.lang.RuntimeException e) {
+        logger.error(" -- Token is missing  {}  ",e.getLocalizedMessage());
         setBuildException(e);
         this.crErrorDTO.setStatus(HttpStatus.CONFLICT);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
