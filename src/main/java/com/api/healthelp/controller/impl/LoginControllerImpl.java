@@ -1,7 +1,7 @@
 package com.api.healthelp.controller.impl;
 
 import com.api.healthelp.controller.LoginController;
-import com.api.healthelp.model.UserCredentials;
+import com.api.healthelp.model.security.UserCredentials;
 import com.api.healthelp.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class LoginControllerImpl implements LoginController {
     }
 
     @Override
-    public List<String> login(UserCredentials userCredentials) {
+    public  boolean login(UserCredentials userCredentials) {
         logger.info(" -- POST  /login {}",userCredentials.getEmail());
         return loginService.login(userCredentials);
     }

@@ -7,7 +7,8 @@ public class UserUtils {
 
     public static User createdummyUser(){
         User user = new User();
-        user.setId(1);
+        Long id = new Long(1);
+        user.setId(id);
         user.setUsername("admin");
         user.setEmail("admin@admin.com");
         user.setPassword("healthelp");

@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public User getUserById(Integer id) {
+    public User getUserById(Long id) {
         return userMapper.getUserById(id);
     }
 
@@ -45,6 +45,16 @@ public class UserDaoImpl implements UserDao {
     public UserDTO insertUser(User user) {
         userMapper.insertUser(user.getId(),user.getUsername(),user.getPassword(),user.getTenantId(),user.getProfileId(),user.getEmail());
         return userMapper.getUserDTOById(user.getId());
+    }
+
+    @Override
+    public List<JwtUser> getUsersRoles() {
+        return userMapper.getUsersRoles();
+    }
+
+    @Override
+    public JwtUser getUserByEmail(String email) {
+        return userMapper.getUserByEmail(email);
     }
 
 
