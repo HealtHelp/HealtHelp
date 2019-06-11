@@ -8,8 +8,7 @@ import com.api.healthelp.model.security.JwtUser;
 import com.api.healthelp.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
@@ -29,7 +28,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public List<String> login(UserCredentials userCredentials) {
-        logger.info("");
         JwtUser jwtUser = userDao.getUserByPassword(userCredentials.getPassword());
         logger.info(jwtUser.getEmail());
         if(jwtUser != null){
