@@ -3,10 +3,12 @@ package com.api.healthelp.exceptions;
 import com.api.healthelp.model.dto.CrErrorDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.NestedRuntimeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import java.lang.invoke.MethodHandles;
 import java.time.LocalDateTime;
@@ -26,16 +28,9 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
         return this.crErrorDTO;
     }
 
-    /*@ExceptionHandler(Exception.class)
-    public ResponseEntity<CrErrorDTO> handleException(Exception e) {
-        logger.error(" -- ERROR Exception {}  ",e.getLocalizedMessage());
-        setBuildException(e);
-        return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
-    }*/
-
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<CrErrorDTO> handleException(NullPointerException e) {
-        logger.error(" -- User Not Found {}  ",e.getLocalizedMessage());
+        logger.error(" -- User Not Found {}  ",e.getMessage());
         setBuildException(e);
         this.crErrorDTO.setStatus(HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
@@ -45,16 +40,6 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
     @ExceptionHandler(org.postgresql.util.PSQLException.class)
     public ResponseEntity<CrErrorDTO> handlePSQLException(org.postgresql.util.PSQLException e) {
         logger.error(" -- SQL ERROR Duplicate key  {}  ",e.getLocalizedMessage());
-        setBuildException(e);
-        this.crErrorDTO.setStatus(HttpStatus.CONFLICT);
-        return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
-    }
-
-
-
-    @ExceptionHandler(java.lang.RuntimeException.class)
-    public ResponseEntity<CrErrorDTO> handleRuntimeException(java.lang.RuntimeException e) {
-        logger.error(" -- Token is missing  {}  ",e.getLocalizedMessage());
         setBuildException(e);
         this.crErrorDTO.setStatus(HttpStatus.CONFLICT);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);

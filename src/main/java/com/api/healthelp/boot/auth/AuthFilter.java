@@ -2,9 +2,12 @@ package com.api.healthelp.boot.auth;
 
 import com.api.healthelp.boot.properties.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.web.server.ResponseStatusException;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +30,7 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         String header = request.getHeader(properties.getHeader());
         if (header == null || !header.startsWith(properties.getBearer())) {
-            throw new RuntimeException("JWT Token is missing");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Token is missing");
         }
         String authenticationToken = header.substring(7);
         AuthToken authToken = new AuthToken(authenticationToken);
