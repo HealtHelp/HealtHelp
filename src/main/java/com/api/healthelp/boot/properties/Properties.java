@@ -46,7 +46,6 @@ public class Properties {
     @Value("${security.token.role}")
     private String role;
 
-    @Value("${security.auth.login}")
-    private String authLogin;
+
 
 }
