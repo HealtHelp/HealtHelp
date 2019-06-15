@@ -43,7 +43,14 @@
     </select>
 
     <select id="getUsers" resultMap="userMapDTO">
-        select u.id,u.username,convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password,u.tenant_id,u.profile_id,convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email from users u order by u.id asc
+         select u.id, u.username, convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email,
+           convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password,
+              p.name as profile, t.name as tenant
+        from users u
+        inner join profiles p on
+            u.profile_id=p.id
+        inner join tenants t on
+            u.tenant_id=t.id
     </select>
 
     <select id="getUserByPassword" resultMap="jwtUser">
@@ -97,5 +104,9 @@
             encrypt(cast(#{email} as bytea),'key_to_encrypt','aes')
             );
      </insert>
+
+    <select id="getUsersFront">
+       select u.id,u.username,convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password,u.tenant_id,u.profile_id,convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email from users u order by u.id asc
+    </select>
 
 </mapper>
