@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Api(tags = { "User" }, description = "User management resource")
-<<<<<<< HEAD
-=======
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
->>>>>>> cfc9da636b64ffcc3e54b54ee5a099f7040c63de
 @RestController
 @ExposesResourceFor(User.class)
 public interface  UserController {

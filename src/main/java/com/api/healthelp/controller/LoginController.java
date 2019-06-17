@@ -4,12 +4,10 @@ package com.api.healthelp.controller;
 import com.api.healthelp.model.security.UserCredentials;
 import io.swagger.annotations.*;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @Api(tags = { "Login" }, description = "Access API management resource")
 @RestController
