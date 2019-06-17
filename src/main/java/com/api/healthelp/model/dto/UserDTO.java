@@ -15,7 +15,7 @@ public class UserDTO  {
     private String username;
     private String email;
     private String password;
-    private String profile;
-    private String tenant;
+    private String tenantId;
+    private String profileId;
 
 }
