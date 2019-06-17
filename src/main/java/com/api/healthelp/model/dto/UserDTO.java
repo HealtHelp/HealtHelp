@@ -11,11 +11,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO  {
-    private Integer id;
+    private Long id;
     private String username;
-    private String password;
-    private Integer tenantId;
-    private Integer profileId;
     private String email;
+    private String password;
+    private String profile;
+    private String tenant;
 
 }
