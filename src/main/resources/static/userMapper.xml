@@ -20,10 +20,10 @@
     <resultMap id="userMapDTO" type="UserDTO">
         <id property="id" column="id" />
         <result property="username" column="username" />
-        <result property="password" column="password" />
-        <result property="tenantId" column="tenant_id" />
-        <result property="profileId" column="profile_id" />
         <result property="email" column="email" />
+        <result property="profileId" column="profile_id" />
+        <result property="tenantId" column="tenant_id" />
+        <result property="password" column="password" />
     </resultMap>
 
    <resultMap id="jwtUser" type="JwtUser">
