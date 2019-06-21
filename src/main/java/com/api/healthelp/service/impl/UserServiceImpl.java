@@ -9,7 +9,6 @@ import com.api.healthelp.model.security.UserResponse;
 import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.naming.AuthenticationException;

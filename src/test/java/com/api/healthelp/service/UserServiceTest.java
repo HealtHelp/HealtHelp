@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
-import java.util.Random;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -27,14 +26,14 @@ public class UserServiceTest {
 
     @Test
     public void userServiceGetUsersAllTest(){
-        List<UserDTO> usersList = userService.getUsers();
+        List<UserGETDTO> usersList = userService.getUsers();
         assertTrue(usersList.size() > 0);
     }
 
 
     @Test
     public void userServiceGetUsersEmptyTest() {
-        List<UserDTO> usersList = userService.getUsers();
+        List<UserGETDTO> usersList = userService.getUsers();
         usersList.removeIf(item -> usersList.contains(item));
         assertTrue(usersList.isEmpty());
     }

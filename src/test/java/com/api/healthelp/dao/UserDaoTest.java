@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Random;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -24,13 +23,13 @@ public class UserDaoTest {
 
     @Test
     public void userDaoGetUsersAllTest(){
-        List<UserDTO> userDTOList = userDao.getUsers();
+        List<UserGETDTO> userDTOList = userDao.getUsers();
         assertTrue(userDTOList.size()>0);
     }
 
     @Test
     public void userDaoGetUsersEmptyTest(){
-        List<UserDTO> userDTOList = userDao.getUsers();
+        List<UserGETDTO> userDTOList = userDao.getUsers();
         userDTOList.removeIf(item->userDTOList.contains(item));
         assertTrue(userDTOList.isEmpty());
     }
