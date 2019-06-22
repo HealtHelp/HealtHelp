@@ -36,15 +36,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public UserDTO updateUser(User updateUser) {
+    public User updateUser(User updateUser) {
         userMapper.updateUser(updateUser.getId(),updateUser.getUsername(),updateUser.getPassword(),updateUser.getTenantId(),updateUser.getProfileId(),updateUser.getEmail());
-        return userMapper.getUserDTOById(updateUser.getId());
+        return userMapper.getUserById(updateUser.getId());
     }
 
     @Override
-    public UserDTO insertUser(User user) {
+    public User insertUser(User user) {
         userMapper.insertUser(user.getId(),user.getUsername(),user.getPassword(),user.getTenantId(),user.getProfileId(),user.getEmail());
-        return userMapper.getUserDTOById(user.getId());
+        return userMapper.getUserById(user.getId());
     }
 
     @Override

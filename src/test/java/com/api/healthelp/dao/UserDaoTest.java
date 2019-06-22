@@ -23,13 +23,13 @@ public class UserDaoTest {
 
     @Test
     public void userDaoGetUsersAllTest(){
-        List<UserGETDTO> userDTOList = userDao.getUsers();
+        List<UserDTO> userDTOList = userDao.getUsers();
         assertTrue(userDTOList.size()>0);
     }
 
     @Test
     public void userDaoGetUsersEmptyTest(){
-        List<UserGETDTO> userDTOList = userDao.getUsers();
+        List<UserDTO> userDTOList = userDao.getUsers();
         userDTOList.removeIf(item->userDTOList.contains(item));
         assertTrue(userDTOList.isEmpty());
     }
@@ -65,7 +65,7 @@ public class UserDaoTest {
     @Test
     public void userDaoUpdateUserAllTest(){
         User user = UserUtils.createdummyUser();
-        UserDTO userDTO = userDao.updateUser(user);
+        User userDTO = userDao.updateUser(user);
         assertTrue(userDTO.getId()>0);
     }
 
@@ -73,7 +73,7 @@ public class UserDaoTest {
     public void userDaoUpdateUserEmptyTest(){
         User user = UserUtils.createdummyUser();
         user.setId(null);
-        UserDTO userDTO = userDao.updateUser(user);
+        User userDTO = userDao.updateUser(user);
         assertTrue(userDTO == null);
     }
 
@@ -85,7 +85,7 @@ public class UserDaoTest {
         user.setUsername("test");
         user.setPassword("test");
         user.setProfileId(2);
-        UserDTO userDTO = userDao.insertUser(user);
+        User userDTO = userDao.insertUser(user);
         assertTrue(userDTO.getId()!= null);
     }
 

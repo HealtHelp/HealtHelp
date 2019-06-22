@@ -26,14 +26,14 @@ public class UserServiceTest {
 
     @Test
     public void userServiceGetUsersAllTest(){
-        List<UserGETDTO> usersList = userService.getUsers();
+        List<UserDTO> usersList = userService.getUsers();
         assertTrue(usersList.size() > 0);
     }
 
 
     @Test
     public void userServiceGetUsersEmptyTest() {
-        List<UserGETDTO> usersList = userService.getUsers();
+        List<UserDTO> usersList = userService.getUsers();
         usersList.removeIf(item -> usersList.contains(item));
         assertTrue(usersList.isEmpty());
     }
@@ -44,7 +44,7 @@ public class UserServiceTest {
     public void userServiceUpdateUserAllTest(){
         User user = UserUtils.createdummyUser();
         boolean check = BCrypt.checkpw(user.getPassword(),BCrypt.hashpw (user.getPassword() , BCrypt.gensalt (12)));
-        UserDTO userDTO = userService.updateUser(user);
+        User userDTO = userService.updateUser(user);
         assertTrue(check);
         assertTrue(userDTO.getId()>0);
     }
@@ -64,7 +64,7 @@ public class UserServiceTest {
         Long id = new Long(7);
         User user = UserUtils.createdummyUser();
         user.setId(id);
-        UserDTO userDTO = userService.insertUser(user);
+        User userDTO = userService.insertUser(user);
         assertTrue(userDTO!=null);
     }
 

@@ -36,7 +36,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<UserDTO>> updateUser(@ApiParam(name="User password", value="User password")@RequestBody User updateUser);
+    ResponseEntity<Resource<User>> updateUser(@ApiParam(name="User password", value="User password")@RequestBody User updateUser);
 
 
     @ApiOperation(value="Insert user ",notes="Insert user request. Enter Bearer and space after the token")
@@ -46,7 +46,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<UserDTO> insertUser(@ApiParam(name="User password", value="User password")@RequestBody User user);
+    ResponseEntity<User> insertUser(@ApiParam(name="User password", value="User password")@RequestBody User user);
 
 
 

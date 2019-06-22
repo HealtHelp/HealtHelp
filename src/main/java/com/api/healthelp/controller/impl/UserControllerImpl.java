@@ -43,18 +43,18 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<Resource<UserDTO>> updateUser(User updateUser) {
+    public ResponseEntity<Resource<User>> updateUser(User updateUser) {
         logger.info(" -- PUT  /user "+updateUser.getUsername());
-        Resource<UserDTO> resource = new Resource<>(userService.updateUser(updateUser));
+        Resource<User> resource = new Resource<>(userService.updateUser(updateUser));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(updateUser));
         resource.add(linkTo.withRel("update-user"));
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<UserDTO> insertUser(User user) {
+    public ResponseEntity<User> insertUser(User user) {
         logger.info(" -- POST  /user "+user.getUsername());
-        Resource<UserDTO> resource = new Resource<>(userService.insertUser(user));
+        Resource<User> resource = new Resource<>(userService.insertUser(user));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(user));
         resource.add(linkTo.withRel("insert-user"));
         return new ResponseEntity(resource,HttpStatus.OK);

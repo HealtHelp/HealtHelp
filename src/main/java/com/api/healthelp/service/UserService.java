@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface UserService extends Serializable {
     List<UserDTO> getUsers() throws RuntimeException;
-    UserDTO updateUser(User updateUser);
-    UserDTO insertUser(User user);
+    User updateUser(User updateUser);
+    User insertUser(User user);
     UserResponse authenticateUser(User user) throws AuthenticationException;
 }

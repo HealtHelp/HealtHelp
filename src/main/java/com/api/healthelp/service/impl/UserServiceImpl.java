@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDTO updateUser(User updateUser) {
+    public User updateUser(User updateUser) {
         User principal = userDao.getUserById(updateUser.getId());
         boolean check = BCrypt.checkpw(principal.getPassword(),BCrypt.hashpw (principal.getPassword() , BCrypt.gensalt (12)));
         String securedPassword = BCrypt.hashpw (principal.getPassword() , BCrypt.gensalt (12));
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO insertUser(User user) {
+    public User insertUser(User user) {
         return userDao.insertUser(user);
     }
 
