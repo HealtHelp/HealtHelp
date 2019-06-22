@@ -7,7 +7,7 @@
 
 DROP DATABASE  HeathHelp
 
-CREATE DATABASE HeathHelp
+CREATE DATABASE HealthHelp
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -73,15 +73,13 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 
-
-CREATE TABLE public.groups (
-    id SERIAL primary key NOT NULL,
-    name character varying(100) NOT NULL,
-    tenant_id SERIAL
+CREATE TABLE public.user_profiles (
+    user_id SERIAL NOT NULL,
+    profile_id SERIAL NOT NULL
 );
 
 
-ALTER TABLE public.groups OWNER TO postgres;
+ALTER TABLE public.user_profiles OWNER TO postgres;
 
 
 CREATE TABLE public.profiles (
@@ -109,13 +107,7 @@ ALTER TABLE public.tenants OWNER TO postgres;
 
 
 
-CREATE TABLE public.user_group (
-    user_id SERIAL NOT NULL,
-    group_id SERIAL NOT NULL
-);
 
-
-ALTER TABLE public.user_group OWNER TO postgres;
 
 CREATE TABLE public.tenants(
     id SERIAL NOT NULL,
@@ -130,6 +122,7 @@ ALTER TABLE public.tenants OWNER TO postgres;
 
 CREATE TABLE public.patients (
     id SERIAL primary key NOT NULL,
+    user_id SERIAL NOT NULL,
     tenant_id SERIAL NOT NULL,
     patientname character varying(100) NOT NULL,
     patientlastname character varying(100) NOT NULL,
@@ -146,8 +139,8 @@ ALTER TABLE public.patients OWNER TO postgres;
 
 CREATE TABLE public.sessions (
     id SERIAL primary key NOT NULL,
-    date timestamp without time zone,
     patient_id SERIAL NOT NULL,
+    date timestamp without time zone,
     diagnosis character varying(100) NOT NULL,
     valoration character varying(100) NOT NULL,
     exploration character varying(100) NOT NULL,
@@ -159,9 +152,10 @@ ALTER TABLE public.sessions OWNER TO postgres;
 
 CREATE TABLE public.billing (
     id SERIAL primary key NOT NULL,
-    date timestamp without time zone,
     patient_id SERIAL NOT NULL,
     session_id SERIAL NOT NULL,
+    tenant_id SERIAL NOT NULL,
+    date timestamp without time zone,
     amount integer NOT NULL
    
 );
@@ -170,36 +164,34 @@ CREATE TABLE public.billing (
 ALTER TABLE public.billing OWNER TO postgres;
 
 
-ALTER TABLE ONLY public.user_group
-    ADD CONSTRAINT fk_groups FOREIGN KEY (group_id) REFERENCES public.groups(id);
-
-
 
 ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_tenant FOREIGN KEY (tenant_id) REFERENCES public.tenants(id);
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_profile FOREIGN KEY (profile_id) REFERENCES public.profiles(id);
+
+ALTER TABLE ONLY public.user_profiles
     ADD CONSTRAINT fk_profiles FOREIGN KEY (profile_id) REFERENCES public.profiles(id);
 
-
-ALTER TABLE ONLY public.groups
-    ADD CONSTRAINT fk_tenants FOREIGN KEY (tenant_id) REFERENCES public.tenants(id);
-
-
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT fk_tenants FOREIGN KEY (tenant_id) REFERENCES public.tenants(id);
-
-
-
-
-ALTER TABLE ONLY public.user_group
+ALTER TABLE ONLY public.user_profiles
     ADD CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
-    
+ALTER TABLE ONLY public.patients
+    ADD CONSTRAINT fk_tenant FOREIGN KEY (tenant_id) REFERENCES public.tenants(id);
 
 ALTER TABLE ONLY public.patients
-    ADD CONSTRAINT fk_tenants FOREIGN KEY (tenant_id) REFERENCES public.tenants(id);
-
-
+    ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 ALTER TABLE ONLY public.sessions
     ADD CONSTRAINT fk_patient FOREIGN KEY (patient_id) REFERENCES public.patients(id);
+
+ALTER TABLE ONLY public.billing
+    ADD CONSTRAINT fk_patient FOREIGN KEY (patient_id) REFERENCES public.patients(id);
+
+ALTER TABLE ONLY public.billing
+    ADD CONSTRAINT fk_session FOREIGN KEY (session_id) REFERENCES public.sessions(id);
+
+ALTER TABLE ONLY public.billing
+    ADD CONSTRAINT fk_tenant FOREIGN KEY (tenant_id) REFERENCES public.tenants(id);

@@ -82,6 +82,7 @@ public class UserDaoTest {
         User user = UserUtils.createdummyUser();
         Long id = new Long(6);
         user.setId(id);
+        user.setEmail("test@test.com");
         user.setUsername("test");
         user.setPassword("test");
         user.setProfileId(2);
