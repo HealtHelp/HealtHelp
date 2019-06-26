@@ -60,7 +60,7 @@
       from users u
       inner join profiles p ON
       u.profile_id=p.id
-      where convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{password};
+      where convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{password} LIMIT 1;
     </select>
 
     <select id="getUserByEmail" resultMap="jwtUser">
@@ -68,7 +68,7 @@
       from users u
       inner join profiles p ON
       u.profile_id=p.id
-      where convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{email};
+      where convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{email} LIMIT 1;
     </select>
 
 

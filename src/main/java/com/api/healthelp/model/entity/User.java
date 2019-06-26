@@ -18,14 +18,4 @@ public class User implements Serializable {
     private Integer tenantId;
     private Integer profileId;
     private String email;
-
-
-    public User(Long id, String password, Integer tenantId, Integer profileId, String email) {
-        this.id = id;
-        this.password = password;
-        this.tenantId = tenantId;
-        this.profileId = profileId;
-        this.email = email;
-
-    }
 }
