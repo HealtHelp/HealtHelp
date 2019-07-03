@@ -9,10 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static junit.framework.TestCase.assertTrue;
 
 
@@ -99,16 +97,7 @@ public class UserDaoTest {
     public void userDaoDeleteUserAllTest(){
         List<UserDTO> users = userDao.getUsers();
         users.stream().filter(item -> item.getId()>1)
-                      .map(item2->userDao.deleteUser(item2.getId())).collect(Collectors.toList());
-        assertTrue(users.get(0).getUsername().equals("admin"));
-
+                      .map(usersList->userDao.deleteUser(usersList.getId())).collect(Collectors.toList());
+        assertTrue(users.size() == 1);
     }
-
-    @Test
-    public void userDaoDeleteUserEmptyTest(){
-        assertTrue(true);
-    }
-
-
-
 }
