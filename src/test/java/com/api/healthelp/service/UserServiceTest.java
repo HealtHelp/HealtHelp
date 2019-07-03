@@ -68,5 +68,18 @@ public class UserServiceTest {
         assertTrue(userDTO!=null);
     }
 
+    @Test
+    public void userServiceDeleteUserAllTest(){
+        Long id = new Long(7);
+        Boolean check = userService.deleteUser(id);
+        assertTrue(!check);
+    }
+
+    @Test
+    public void userServiceDeleteUserEmptyTest(){
+        Long id = new Long(-1);
+        Boolean check = userService.deleteUser(id);
+        assertTrue(!check);
+    }
 
 }

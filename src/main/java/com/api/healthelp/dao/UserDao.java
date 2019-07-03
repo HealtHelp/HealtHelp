@@ -15,6 +15,7 @@ public interface UserDao extends Serializable {
     User getUserById(Long id);
     User updateUser(User updateUser);
     User insertUser(User user);
+    Boolean deleteUser(Long id);
     List<JwtUser> getUsersRoles();
     JwtUser getUserByEmail(String email);
 }

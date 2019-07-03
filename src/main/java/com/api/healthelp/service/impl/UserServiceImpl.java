@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
         logger.info("Secured password created: {}",securedPassword);
         if(check){
             logger.info(" -- Update user: {} ok",updateUser.getUsername());
-
             return userDao.updateUser(updateUser);
         }
         else{
@@ -50,6 +49,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User insertUser(User user) {
         return userDao.insertUser(user);
+    }
+
+    @Override
+    public Boolean deleteUser(Long id) {
+        return userDao.deleteUser(id);
     }
 
     @Override

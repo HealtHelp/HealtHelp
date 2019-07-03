@@ -107,6 +107,8 @@
             );
      </insert>
 
-
+     <delete id="deleteUser" parameterType="User">
+         delete from users where id = #{userId}
+     </delete>
 
 </mapper>

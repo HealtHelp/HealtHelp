@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -82,5 +83,19 @@ public class UserControllerTest {
         ResultActions resultActions = mockMvc.perform(post("/api/user"));
         resultActions.andDo(print());
         resultActions.andExpect(status().is(415));
+    }
+
+    @Test
+    public void userControllerDELETEUserEmptyTest() throws Exception {
+        ResultActions resultActions = mockMvc.perform(delete("/api/user/{id}","100"));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().is(415));
+    }
+
+    @Test
+    public void userControllerDELETEUserAllTest() throws Exception {
+        ResultActions resultActions = mockMvc.perform(delete("/api/user/2").contentType(MediaType.APPLICATION_JSON));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().isOk());
     }
 }

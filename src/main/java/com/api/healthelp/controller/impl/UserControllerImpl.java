@@ -44,7 +44,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public ResponseEntity<Resource<User>> updateUser(User updateUser) {
-        logger.info(" -- PUT  /user "+updateUser.getUsername());
+        logger.info(" -- PUT  /user {}",updateUser.getUsername());
         Resource<User> resource = new Resource<>(userService.updateUser(updateUser));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(updateUser));
         resource.add(linkTo.withRel("update-user"));
@@ -52,14 +52,23 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<User> insertUser(User user) {
-        logger.info(" -- POST  /user "+user.getUsername());
+    public ResponseEntity<Resource<User>> insertUser(User user) {
+        logger.info(" -- POST  /user {}",user.getUsername());
         Resource<User> resource = new Resource<>(userService.insertUser(user));
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(user));
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).insertUser(user));
         resource.add(linkTo.withRel("insert-user"));
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Resource<Boolean>> deleteUser(Long id) {
+        logger.info(" -- DELETE  /user/{} ",id);
+        userService.deleteUser(id);
+        Resource<Boolean> resource = new Resource<>(userService.deleteUser(id));
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).deleteUser(id));
+        resource.add(linkTo.withRel("delete-user"));
+        return new ResponseEntity(resource,HttpStatus.OK);
+    }
 
 
 }

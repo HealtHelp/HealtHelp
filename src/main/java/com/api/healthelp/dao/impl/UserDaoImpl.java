@@ -48,6 +48,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public Boolean deleteUser(Long id) {
+       return userMapper.deleteUser(id);
+    }
+
+    @Override
     public List<JwtUser> getUsersRoles() {
         return userMapper.getUsersRoles();
     }
