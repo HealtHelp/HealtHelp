@@ -55,8 +55,8 @@ public interface  UserController {
             value = "JWT Token",
             required = true,
             dataType = "string",
-            paramType = "header") })
-    ResponseEntity<Resource<Boolean>> deleteUser(@ApiParam(name="User id request", value="User id",required = true)@PathVariable("id") Long id);
+            paramType = "header")})
+    ResponseEntity<Resource<Boolean>> deleteUser(@ApiParam(name="User id request", value="User id",required = true, type ="long")@PathVariable("id") Long id);
 
 
 
