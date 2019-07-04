@@ -87,7 +87,7 @@ public class UserControllerTest {
 
     @Test
     public void userControllerDELETEUserEmptyTest() throws Exception {
-        ResultActions resultActions = mockMvc.perform(delete("/api/user/{id}","100"));
+        ResultActions resultActions = mockMvc.perform(delete("/api/user/{id}","x"));
         resultActions.andDo(print());
         resultActions.andExpect(status().is(415));
     }
