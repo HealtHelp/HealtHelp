@@ -50,13 +50,13 @@ public interface  UserController {
 
 
     @ApiOperation(value="Delete user",notes="Delete user request.")
-    @DeleteMapping(path="/api/user/{id}",produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.APPLICATION_JSON_VALUE })
+    @DeleteMapping(path="/api/user/{id}",produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.ALL_VALUE })
     @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
             value = "JWT Token",
             required = true,
             dataType = "string",
             paramType = "header")})
-    ResponseEntity<Resource<Boolean>> deleteUser(@ApiParam(name="User id request", value="User id",required = true, type ="long")@PathVariable("id") Long id);
+    ResponseEntity<Resource<Boolean>> deleteUser(@ApiParam(name="User id request", value="User id",required = true, type ="string")@PathVariable("id") Long id);
 
 
 
