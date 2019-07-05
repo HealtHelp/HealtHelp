@@ -56,7 +56,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header")})
-    ResponseEntity<Resource<Boolean>> deleteUser(@ApiParam(name="User id request", value="User id",required = true, type ="string")@PathVariable("id") Long id);
+    ResponseEntity<Resource<Boolean>> deleteUser(@ApiParam(name="User id request", value="User id",required = true, type ="Long")@PathVariable("id") Long id);
 
 
 
