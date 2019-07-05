@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.healthelp.dao.mapper.PatientMapper">
+    <cache/>
+
+    <resultMap id="patientMap" type="PatientDTO">
+        <id property="id" column="id" />
+        <result property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="tenantId" column="tenant_id" />
+        <result property="patientName" column="patientname" />
+        <result property="patientLastName" column="patientlastname" />
+        <result property="patientDni" column="patientdni" />
+        <result property="patientTelephone" column="patienttelephone" />
+        <result property="patientAddress" column="patientaddress" />
+        <result property="patientLocation" column="patientlocation" />
+        <result property="patientProfesion" column="patientprofesion" />
+        <result property="patientEmail" column="patientemail" />
+    </resultMap>
+
+    <select id="getPatients" resultMap="patientMap">
+        SELECT user_id FROM patients
+    </select>
+
+</mapper>

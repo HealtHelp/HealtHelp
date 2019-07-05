@@ -89,7 +89,7 @@ public class UserControllerTest {
     public void userControllerDELETEUserEmptyTest() throws Exception {
         ResultActions resultActions = mockMvc.perform(delete("/api/user/{id}","x"));
         resultActions.andDo(print());
-        resultActions.andExpect(status().is(415));
+        resultActions.andExpect(status().is(400));
     }
 
     @Test

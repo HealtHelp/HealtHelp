@@ -11,8 +11,11 @@ import com.api.healthelp.controller.LoginController;
 import com.api.healthelp.controller.UserController;
 import com.api.healthelp.controller.impl.LoginControllerImpl;
 import com.api.healthelp.controller.impl.UserControllerImpl;
+import com.api.healthelp.dao.PatientDao;
 import com.api.healthelp.dao.UserDao;
+import com.api.healthelp.dao.impl.PatientDaoImpl;
 import com.api.healthelp.dao.impl.UserDaoImpl;
+import com.api.healthelp.dao.mapper.PatientMapper;
 import com.api.healthelp.dao.mapper.UserMapper;
 import com.api.healthelp.service.LoginService;
 import com.api.healthelp.service.UserService;
@@ -71,13 +74,24 @@ public class ApiConfig {
         return mfb;
     }
 
-
+    @Bean
+    public MapperFactoryBean<PatientMapper> patientMapper(final SqlSessionFactory sqlSessionFactory1){
+        final MapperFactoryBean<PatientMapper> mfb = new MapperFactoryBean<>();
+        mfb.setMapperInterface(PatientMapper.class);
+        mfb.setSqlSessionFactory(sqlSessionFactory1);
+        return mfb;
+    }
 
     //dao
     @Bean
     public UserDao userDao( final UserMapper userMapper1){
         return new UserDaoImpl(userMapper1);
     }
+
+    @Bean
+    public PatientDao patientDao( final PatientMapper patientMapper){return new PatientDaoImpl(patientMapper);}
+
+
     //services
     @Bean
     public UserService userService(final UserDao userDao){
