@@ -18,7 +18,14 @@ public class PatientDaoTets {
 
     @Test
     public void patientDaoGetPatientsAllTest(){
-        List<PatientDTO> patientDTOList = patientDao.getPatients();
-        assertTrue(patientDTOList.size()==0);
+        List<PatientDTO> patientList = patientDao.getPatients();
+        assertTrue(patientList.size()>0);
+    }
+
+    @Test
+    public void patientDaoGetPatientsEmptyTest(){
+        List<PatientDTO> patientList = patientDao.getPatients();
+        patientList.removeIf(patient->patientList.contains(patient));
+        assertTrue(patientList.isEmpty());
     }
 }

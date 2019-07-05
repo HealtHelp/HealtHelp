@@ -19,7 +19,9 @@
     </resultMap>
 
     <select id="getPatients" resultMap="patientMap">
-        SELECT user_id FROM patients
+        select p.id,p.user_id,p.tenant_id,p.patientname,p.patientdni,p.patienttelephone,p.patientaddress,
+               p.patientlocation,p.patientprofession,p.patientemail
+        from patients p
     </select>
 
 </mapper>
