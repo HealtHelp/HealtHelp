@@ -18,8 +18,10 @@ import com.api.healthelp.dao.impl.UserDaoImpl;
 import com.api.healthelp.dao.mapper.PatientMapper;
 import com.api.healthelp.dao.mapper.UserMapper;
 import com.api.healthelp.service.LoginService;
+import com.api.healthelp.service.PatientService;
 import com.api.healthelp.service.UserService;
 import com.api.healthelp.service.impl.LoginServiceImpl;
+import com.api.healthelp.service.impl.PatientServiceImpl;
 import com.api.healthelp.service.impl.UserServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -98,6 +100,8 @@ public class ApiConfig {
         return new UserServiceImpl(userDao);
     }
 
+    @Bean
+    public PatientService patientService(final PatientDao patientDao){return new PatientServiceImpl(patientDao);}
 
     @Bean
     public AuthClaims authClaims(Properties properties){return new AuthClaims(properties);}

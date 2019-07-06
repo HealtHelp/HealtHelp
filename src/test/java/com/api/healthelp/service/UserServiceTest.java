@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -63,12 +64,10 @@ public class UserServiceTest {
     }
 
     @Test
-    public void t5_userServiceInsertUserAllTest(){
-        Long id = new Long(7);
+    public void t5_userServiceInsertUserEmptyTest(){
         User user = UserUtils.createdummyUser();
-        user.setId(id);
         User userDTO = userService.insertUser(user);
-        assertTrue(userDTO!=null);
+        assertEquals(null, userDTO);
     }
 
 
