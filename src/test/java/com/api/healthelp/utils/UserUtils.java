@@ -10,7 +10,7 @@ public class UserUtils {
         Long id = new Long(1);
         user.setId(id);
         user.setUsername("admin");
-        user.setEmail("admintest@admintest.com");
+        user.setEmail("admin@admin.com");
         user.setPassword("healthelp");
         user.setProfileId(1);
         user.setTenantId(1);

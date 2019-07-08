@@ -41,13 +41,13 @@ public class UserControllerTest {
                    .andExpect(jsonPath("$[*].userDToes[0]username").value("admin"));*/
     }
 
-    @Test
+/*    @Test
     public void userControllerGETUsersEmptyTest() throws Exception {
        ResultActions resultActions = mockMvc.perform(get("/api/user"));
        resultActions.andDo(print());
        resultActions.andExpect(status().is(405))
                .andExpect(jsonPath("$[*].userDToes").doesNotExist());
-    }
+    }*/
 
 
     @Test

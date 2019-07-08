@@ -8,8 +8,10 @@ import com.api.healthelp.boot.auth.AuthProvider;
 import com.api.healthelp.boot.properties.Properties;
 import com.api.healthelp.boot.security.SecurityConfig;
 import com.api.healthelp.controller.LoginController;
+import com.api.healthelp.controller.PatientController;
 import com.api.healthelp.controller.UserController;
 import com.api.healthelp.controller.impl.LoginControllerImpl;
+import com.api.healthelp.controller.impl.PatientControllerImpl;
 import com.api.healthelp.controller.impl.UserControllerImpl;
 import com.api.healthelp.dao.PatientDao;
 import com.api.healthelp.dao.UserDao;
@@ -118,6 +120,9 @@ public class ApiConfig {
     //controllers
     @Bean
     public UserController userController(final UserService userService){ return new UserControllerImpl(userService); }
+
+    @Bean
+    public PatientController patientController(final PatientService patientService){return new PatientControllerImpl(patientService); }
 
 
     @Bean

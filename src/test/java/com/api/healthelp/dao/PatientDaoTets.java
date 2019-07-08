@@ -1,6 +1,8 @@
 package com.api.healthelp.dao;
 
 import com.api.healthelp.model.dto.PatientDTO;
+import com.api.healthelp.model.entity.Patient;
+import com.api.healthelp.utils.PatientUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,27 @@ public class PatientDaoTets {
     @Test
     public void patientDaoGetPatientIdAllTest(){
         Long patientId = new Long(1);
-        PatientDTO patient = patientDao.getPatientId(patientId);
+        PatientDTO patient = patientDao.getPatientById(patientId);
         assertTrue(patient!=null);
+    }
+
+    @Test
+    public void patientDaoGetPatientIdEmptyTest(){
+        Long patientId = new Long(-1);
+        PatientDTO patient = patientDao.getPatientById(patientId);
+        assertTrue(patient==null);
+    }
+
+    @Test
+    public void patientDaoGetPatientNameAllTest(){
+         Patient patient = PatientUtils.createdummyPatient();
+         PatientDTO patientDTO = patientDao.getPatientByName(patient.getPatientName());
+         assertTrue(patientDTO != null);
+    }
+
+    @Test
+    public void patientDaoGetPatientNameEmptyTest(){
+        PatientDTO patientDTO = patientDao.getPatientByName("test");
+        assertTrue(patientDTO == null);
     }
 }

@@ -29,7 +29,7 @@ public class LoginServiceImpl implements LoginService {
     public String login(UserCredentials userCredentials) {
         JwtUser jwtUser = userDao.getUserByPassword(userCredentials.getPassword());
         JwtUser jwtUser2 = userDao.getUserByEmail(userCredentials.getEmail());
-        if(jwtUser!=null && jwtUser2!=null){
+        if(jwtUser.getId().equals(jwtUser2.getId())){
             logger.info(" -- Welcome API HEALHELP {}",jwtUser.getEmail());
             return "Bearer "+authClaims.generate(jwtUser);
         }

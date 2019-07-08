@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface PatientMapper {
     List<PatientDTO> getPatients();
-    PatientDTO getPatientId(@Param("patientId")Long id);
+    PatientDTO getPatientById(@Param("patientId")Long id);
+    PatientDTO getPatientByName(@Param("patientName")String patientName);
 }

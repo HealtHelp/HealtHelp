@@ -19,16 +19,23 @@
     </resultMap>
 
     <select id="getPatients" resultMap="patientMap">
-        select p.id,p.user_id,p.tenant_id,p.patientname,p.patientdni,p.patienttelephone,p.patientaddress,
+        select p.id,p.user_id,p.tenant_id,p.patientname,p.patientlastname,p.patientdni,p.patienttelephone,p.patientaddress,
                p.patientlocation,p.patientprofession,p.patientemail
         from patients p
     </select>
 
-    <select id="getPatientId" resultMap="patientMap">
+    <select id="getPatientById" resultMap="patientMap">
         select p.id,p.user_id,p.tenant_id,p.patientname,p.patientdni,p.patienttelephone,p.patientaddress,
                p.patientlocation,p.patientprofession,p.patientemail
         from patients p
         where p.id = #{patientId}
+    </select>
+
+    <select id="getPatientByName" resultMap="patientMap">
+         select p.id,p.user_id,p.tenant_id,p.patientname,p.patientlastname,p.patientdni,p.patienttelephone,p.patientaddress,
+               p.patientlocation,p.patientprofession,p.patientemail
+        from patients p
+        where p.patientname = #{patientName}
     </select>
 
 </mapper>

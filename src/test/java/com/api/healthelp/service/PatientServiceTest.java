@@ -1,6 +1,8 @@
 package com.api.healthelp.service;
 
 import com.api.healthelp.model.dto.PatientDTO;
+import com.api.healthelp.model.entity.Patient;
+import com.api.healthelp.utils.PatientUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +21,37 @@ public class PatientServiceTest {
     private PatientService patientService;
 
     @Test
-    public void patientDaoGetPatientsAllTest(){
+    public void patientServiceGetPatientsAllTest(){
         List<PatientDTO> patientList = patientService.getPatients();
         assertTrue(patientList.size()>0);
     }
 
     @Test
-    public void patientDaoGetPatientsEmptyTest(){
+    public void patientServiceGetPatientsEmptyTest(){
         List<PatientDTO> patientList = patientService.getPatients();
         patientList.removeIf(patient->patientList.contains(patient));
         assertTrue(patientList.isEmpty());
     }
 
     @Test
-    public void patientDaoGetPatientIdAllTest(){
+    public void patientServiceGetPatientIdAllTest(){
         Long patientId = new Long(1);
-        PatientDTO patient = patientService.getPatientId(patientId);
+        PatientDTO patient = patientService.getPatientById(patientId);
         assertTrue(patient!=null);
+    }
+
+    @Test
+    public void patientServiceGetPatientNameAllTest(){
+        Patient patient = PatientUtils.createdummyPatient();
+        PatientDTO patientDTO = patientService.getPatientByName(patient.getPatientName());
+        assertTrue(patientDTO != null);
+
+    }
+
+    @Test
+    public void patientServiceGetPatientNameEmptyTest(){
+        PatientDTO patientDTO = patientService.getPatientByName("test");
+        assertTrue(patientDTO == null);
+
     }
 }

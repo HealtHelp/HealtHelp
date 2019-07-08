@@ -20,8 +20,13 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDTO getPatientId(Long id) {
-        return patientDao.getPatientId(id);
+    public PatientDTO getPatientById(Long id) {
+        return patientDao.getPatientById(id);
+    }
+
+    @Override
+    public PatientDTO getPatientByName(String patientName) {
+        return patientDao.getPatientByName(patientName);
     }
 
 
