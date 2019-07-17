@@ -18,6 +18,10 @@
         <result property="patientEmail" column="patientemail" />
     </resultMap>
 
+
+
+
+
     <select id="getPatients" resultMap="patientMap">
         select p.id,p.user_id,p.tenant_id,p.patientname,p.patientlastname,p.patientdni,p.patienttelephone,p.patientaddress,
                p.patientlocation,p.patientprofession,p.patientemail
@@ -37,5 +41,24 @@
         from patients p
         where p.patientname = #{patientName}
     </select>
+
+    <insert id="insertPatient" parameterType="PatientDTO">
+           INSERT INTO patients (id,user_id,tenant_id,patientname,patientlastname,patientdni,patienttelephone,patientaddress,patientlocation,patientprofession,patientemail)
+           values (
+            #{id},
+            #{userId},
+            #{tenantId},
+            #{patientName},
+            #{patientLastName},
+            #{patientDNI},
+            #{patientTelephone},
+            #{patientAddress},
+            #{patientLocation},
+            #{patientProfession},
+            #{patientEmail}
+             )
+     </insert>
+
+
 
 </mapper>

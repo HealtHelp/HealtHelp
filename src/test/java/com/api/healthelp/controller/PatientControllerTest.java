@@ -1,5 +1,8 @@
 package com.api.healthelp.controller;
 
+import com.api.healthelp.model.dto.PatientDTO;
+import com.api.healthelp.model.entity.Patient;
+import com.api.healthelp.utils.PatientUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +15,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -45,5 +47,16 @@ public class PatientControllerTest {
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk());
     }
+
+    @Test
+    public void patientControllerPOSTPatientAllTest() throws Exception {
+        String patient = PatientUtils.createdummyPatientPOSTJSON();
+        ResultActions resultActions = mockMvc.perform(post("/api/patient").contentType(MediaType.APPLICATION_JSON).content(patient));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(2))
+                .andExpect(jsonPath("$.patientName").value("testPatientName"));
+    }
+
 
 }

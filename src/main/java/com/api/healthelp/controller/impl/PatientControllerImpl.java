@@ -2,9 +2,7 @@ package com.api.healthelp.controller.impl;
 
 import com.api.healthelp.controller.PatientController;
 import com.api.healthelp.model.dto.PatientDTO;
-import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.entity.Patient;
-import com.api.healthelp.model.entity.User;
 import com.api.healthelp.service.PatientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.lang.invoke.MethodHandles;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 public class PatientControllerImpl implements PatientController {
 
@@ -39,6 +41,14 @@ public class PatientControllerImpl implements PatientController {
     public ResponseEntity<PatientDTO> getPatientById(Long id) throws RuntimeException {
         Resource<PatientDTO> resource = new Resource<>(patientService.getPatientById(id));
         resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
+        return new ResponseEntity(resource,HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Resource<PatientDTO>> insertPatient(Patient patient) {
+        Resource<PatientDTO> resource = new Resource<>(patientService.insertPatient(patient));
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).insertPatient(patient));
+        resource.add(linkTo.withRel("insert-patient"));
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
