@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = { "Patient" }, description = "Patient management resource")
@@ -36,12 +37,5 @@ public interface PatientController {
             paramType = "header") })
     ResponseEntity<PatientDTO> getPatientById(@ApiParam(name="Patient id request", value="Patient id",required = true, type ="Long")@PathVariable("id") Long id)throws RuntimeException;
 
-    @ApiOperation(value = "Get patient by id", notes="Get patient request.")
-    @GetMapping(path="/api/patient/name/{name}",produces = {MediaType.APPLICATION_JSON_VALUE} ,consumes = { MediaType.APPLICATION_JSON_VALUE })
-    @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
-            value = "JWT Token",
-            required = true,
-            dataType = "string",
-            paramType = "header") })
-    ResponseEntity<Resource<PatientDTO>> getPatientByName(@ApiParam(name="Patient name request", value="Patient name",required = true, type ="string")@PathVariable("patientname")String name)throws RuntimeException;
+
 }

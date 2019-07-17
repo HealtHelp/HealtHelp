@@ -39,7 +39,11 @@ public class PatientControllerTest {
         resultActions.andExpect(status().isOk());
     }
 
-  
-
+    @Test
+    public void patientControllerGETPatientIdAllTest() throws Exception {
+        ResultActions resultActions = mockMvc.perform(get("/api/patient/1").contentType(MediaType.APPLICATION_JSON));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().isOk());
+    }
 
 }

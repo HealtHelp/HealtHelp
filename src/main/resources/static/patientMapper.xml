@@ -25,7 +25,7 @@
     </select>
 
     <select id="getPatientById" resultMap="patientMap">
-        select p.id,p.user_id,p.tenant_id,p.patientname,p.patientdni,p.patienttelephone,p.patientaddress,
+        select p.id,p.user_id,p.tenant_id,p.patientname,p.patientlastname,p.patientdni,p.patienttelephone,p.patientaddress,
                p.patientlocation,p.patientprofession,p.patientemail
         from patients p
         where p.id = #{patientId}

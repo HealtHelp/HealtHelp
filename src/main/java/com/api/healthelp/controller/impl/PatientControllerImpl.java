@@ -37,14 +37,10 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     public ResponseEntity<PatientDTO> getPatientById(Long id) throws RuntimeException {
-        PatientDTO patientDTO = patientService.getPatientById(id);
-        return new ResponseEntity(patientDTO,HttpStatus.OK);
+        Resource<PatientDTO> resource = new Resource<>(patientService.getPatientById(id));
+        resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
+        return new ResponseEntity(resource,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<Resource<PatientDTO>> getPatientByName(String name) throws RuntimeException {
-        Resource<PatientDTO> resource = new Resource<>(patientService.getPatientByName(name));
-        resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
-        return  new ResponseEntity(resource,HttpStatus.OK);
-    }
+
 }
