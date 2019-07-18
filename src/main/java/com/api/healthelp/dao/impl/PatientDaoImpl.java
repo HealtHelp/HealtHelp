@@ -36,8 +36,15 @@ public class PatientDaoImpl implements PatientDao {
                                            patient.getPatientLastName(),patient.getPatientDni(),
                                            patient.getPatientTelephone(),patient.getPatientAddress(),patient.getPatientLocation(),
                                            patient.getPatientProfession(),patient.getPatientEmail());
-         return patientMapper.getPatientById((Long) patient.getId());
+         return patientMapper.getPatientById(patient.getId());
     }
 
-
+    @Override
+    public PatientDTO updatePatient(Patient patient) {
+        patientMapper.updatePatient(patient.getId(),patient.getUserId(),patient.getTenantId(),patient.getPatientName(),
+                                    patient.getPatientLastName(),patient.getPatientDni(),
+                                    patient.getPatientTelephone(),patient.getPatientAddress(),patient.getPatientLocation(),
+                                    patient.getPatientProfession(),patient.getPatientEmail());
+        return patientMapper.getPatientById(patient.getId());
+    }
 }

@@ -52,5 +52,13 @@ public class PatientControllerImpl implements PatientController {
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Resource<PatientDTO>> updatePatient(Patient patient) {
+        Resource<PatientDTO> resource = new Resource<>(patientService.updatePatient(patient));
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updatePatient(patient));
+        resource.add(linkTo.withRel("update-patient"));
+        return new ResponseEntity(resource,HttpStatus.OK);
+    }
+
 
 }

@@ -52,6 +52,27 @@ public class PatientServiceTest {
     public void patientServiceGetPatientNameEmptyTest(){
         PatientDTO patientDTO = patientService.getPatientByName("test");
         assertTrue(patientDTO == null);
+    }
 
+    @Test
+    public void patientServicePOSTPatientAllTest(){
+        Patient patient = PatientUtils.createdummyPatientPOSTService2();
+        PatientDTO patientDTO = patientService.insertPatient(patient);
+        assertTrue(patientDTO != null);
+    }
+
+    @Test
+    public void patientServicePUTPatientEmptyTest(){
+        Patient patient = PatientUtils.createdummyPatientPOSTService2();
+        patient.setId(null);
+        PatientDTO patientDTO = patientService.updatePatient(patient);
+        assertTrue(patientDTO == null);
+    }
+
+    @Test
+    public void patientServicePUTPatientAllTest(){
+        Patient patient = PatientUtils.createdummyPatientPOSTService2();
+        PatientDTO patientDTO = patientService.updatePatient(patient);
+        assertTrue(patientDTO != null);
     }
 }

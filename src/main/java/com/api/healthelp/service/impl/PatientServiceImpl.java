@@ -35,5 +35,10 @@ public class PatientServiceImpl implements PatientService {
         return patientDao.insertPatient(patient);
     }
 
+    @Override
+    public PatientDTO updatePatient(Patient patient) {
+        return patientDao.updatePatient(patient);
+    }
+
 
 }

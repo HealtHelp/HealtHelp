@@ -58,5 +58,15 @@ public class PatientControllerTest {
                 .andExpect(jsonPath("$.patientName").value("testPatientName"));
     }
 
+    @Test
+    public void patientControllerPUTPatientAllTest() throws Exception {
+        String patient = PatientUtils.createdummyPatientPUTJSON();
+        ResultActions resultActions = mockMvc.perform(put("/api/patient").contentType(MediaType.APPLICATION_JSON).content(patient));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(2))
+                .andExpect(jsonPath("$.patientName").value("testUpdate"));
+    }
+
 
 }

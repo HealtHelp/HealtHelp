@@ -59,6 +59,23 @@
              )
      </insert>
 
+    <update id="updatePatient" parameterType="PatientDTO">
+        UPDATE patients
+        <set>
+            <if test="userId != null">user_id=#{userId},</if>
+            <if test="tenantId != null">tenant_id=#{tenantId},</if>
+            <if test="patientName != null">patientname=#{patientName},</if>
+            <if test="patientLastName != null">patientlastname=#{patientLastName},</if>
+            <if test="patientDni != null">patientdni=#{patientDni},</if>
+            <if test="patientTelephone != null">patienttelephone=#{patientTelephone},</if>
+            <if test="patientAddress != null">patientaddress=#{patientAddress},</if>
+            <if test="patientLocation != null">patientlocation=#{patientLocation},</if>
+            <if test="patientProfession != null">patientprofession=#{patientProfession},</if>
+            <if test="patientEmail != null">patientemail=#{patientEmail},</if>
+        </set>
+        where id=#{id}
+    </update>
+
 
 
 </mapper>

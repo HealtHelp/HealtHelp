@@ -45,4 +45,14 @@ public interface PatientController {
     ResponseEntity<Resource<PatientDTO>> insertPatient(@ApiParam(name="Patient request", value="Patient request")@RequestBody Patient patient);
 
 
+    @ApiOperation(value="Update patient",notes="Update patient request.")
+    @PutMapping(path="/api/patient", produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.APPLICATION_JSON_VALUE })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
+            value = "JWT Token",
+            required = true,
+            dataType = "string",
+            paramType = "header") })
+    ResponseEntity<Resource<PatientDTO>> updatePatient(@ApiParam(name="Patient request", value="Patient request")@RequestBody Patient patient);
+
+
 }

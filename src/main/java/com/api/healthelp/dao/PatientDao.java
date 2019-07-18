@@ -10,4 +10,5 @@ public interface PatientDao {
     PatientDTO getPatientById(Long id);
     PatientDTO getPatientByName(String patientName);
     PatientDTO insertPatient(Patient patient);
+    PatientDTO updatePatient(Patient patient);
 }

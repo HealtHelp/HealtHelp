@@ -15,4 +15,9 @@ public interface PatientMapper {
                           @Param("patientDNI") String patientDNI, @Param("patientTelephone") String patientTelephone,
                           @Param("patientAddress") String patientAddress, @Param("patientLocation") String patientLocation,
                           @Param("patientProfession") String patientProfession, @Param("patientEmail") String patientEmail);
+    void updatePatient(@Param("id") Long id, @Param("userId") Long userId,@Param("tenantId") Long tenantId,
+                       @Param("patientName") String patientName,@Param("patientLastName") String patientLastName,
+                       @Param("patientDni") String patientDni, @Param("patientTelephone") String patientTelephone,
+                       @Param("patientAddress") String patientAddress, @Param("patientLocation") String patientLocation,
+                       @Param("patientProfession") String patientProfession, @Param("patientEmail") String patientEmail);
 }

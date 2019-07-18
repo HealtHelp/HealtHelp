@@ -31,6 +31,7 @@ public class PatientDaoTets {
         assertTrue(patientList.isEmpty());
     }
 
+
     @Test
     public void patientDaoGetPatientIdAllTest(){
         Long patientId = new Long(1);
@@ -55,6 +56,28 @@ public class PatientDaoTets {
     @Test
     public void patientDaoGetPatientNameEmptyTest(){
         PatientDTO patientDTO = patientDao.getPatientByName("test");
+        assertTrue(patientDTO == null);
+    }
+
+    @Test
+    public void patientDaoPOSTPatientAllTest(){
+        Patient patient = PatientUtils.createdummyPatientPOSTService();
+        PatientDTO patientDTO = patientDao.insertPatient(patient);
+        assertTrue(patientDTO != null);
+    }
+
+    @Test
+    public void patientDaoPUTPatientAllTest(){
+        Patient patient = PatientUtils.createdummyPatient();
+        PatientDTO patientDTO = patientDao.updatePatient(patient);
+        assertTrue(patientDTO != null);
+    }
+
+    @Test
+    public void patientDaoPUTPatientEmptyTest(){
+        Patient patient = PatientUtils.createdummyPatient();
+        patient.setId(null);
+        PatientDTO patientDTO = patientDao.updatePatient(patient);
         assertTrue(patientDTO == null);
     }
 }
