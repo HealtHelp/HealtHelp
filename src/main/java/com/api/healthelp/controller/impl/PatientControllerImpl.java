@@ -38,10 +38,12 @@ public class PatientControllerImpl implements PatientController {
     }
 
     @Override
-    public ResponseEntity<PatientDTO> getPatientById(Long id) throws RuntimeException {
+    public ResponseEntity<Resource<PatientDTO>> getPatientById(Long id) throws RuntimeException {
+        logger.info(" -- GET  /patient/{}",id);
         Resource<PatientDTO> resource = new Resource<>(patientService.getPatientById(id));
         resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
         return new ResponseEntity(resource,HttpStatus.OK);
+
     }
 
     @Override
