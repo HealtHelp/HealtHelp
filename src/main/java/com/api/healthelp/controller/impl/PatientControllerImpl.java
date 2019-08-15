@@ -38,11 +38,9 @@ public class PatientControllerImpl implements PatientController {
     }
 
     @Override
-<<<<<<< HEAD
-    public ResponseEntity<PatientDTO> getPatientById(Long id) throws RuntimeException {
-=======
+
     public ResponseEntity<Resource<PatientDTO>> getPatientById(Long id) throws RuntimeException {
->>>>>>> 0a5d7dd3b7ed502ecf22fc9e41717adf0e9e654c
+
         logger.info(" -- GET  /patient/{}",id);
         Resource<PatientDTO> resource = new Resource<>(patientService.getPatientById(id));
         resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
