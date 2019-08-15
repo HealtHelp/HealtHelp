@@ -9,3 +9,8 @@ Contact:HealtHelpOrganization@gmail.com
 http://localhost:8088/swagger-ui.html
 
 
+#Hal-Browser
+
+http://localhost:8088/browser/index.html#/
+
+

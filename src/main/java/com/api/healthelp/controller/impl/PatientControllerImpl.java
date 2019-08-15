@@ -39,13 +39,23 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     public ResponseEntity<PatientDTO> getPatientById(Long id) throws RuntimeException {
+        logger.info(" -- GET  /patient/{}",id);
         Resource<PatientDTO> resource = new Resource<>(patientService.getPatientById(id));
         resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
     @Override
+    public ResponseEntity<PatientDTO> getPatientByName(String name) throws RuntimeException {
+        logger.info(" -- GET  /patient/{}",name);
+        Resource<PatientDTO> resource = new Resource<>(patientService.getPatientByName(name));
+        resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
+        return new ResponseEntity(resource,HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<Resource<PatientDTO>> insertPatient(Patient patient) {
+        logger.info(" -- POST  /patient/",patient.getPatientName());
         Resource<PatientDTO> resource = new Resource<>(patientService.insertPatient(patient));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).insertPatient(patient));
         resource.add(linkTo.withRel("insert-patient"));
@@ -54,6 +64,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     public ResponseEntity<Resource<PatientDTO>> updatePatient(Patient patient) {
+        logger.info(" -- PUT  /patient/",patient.getPatientName());
         Resource<PatientDTO> resource = new Resource<>(patientService.updatePatient(patient));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updatePatient(patient));
         resource.add(linkTo.withRel("update-patient"));
