@@ -1,9 +1,12 @@
 package com.api.healthelp.controller.impl;
 
+import com.api.healthelp.boot.properties.Properties;
 import com.api.healthelp.controller.PatientController;
 import com.api.healthelp.model.dto.PatientDTO;
 import com.api.healthelp.model.entity.Patient;
 import com.api.healthelp.service.PatientService;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,8 @@ import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+
 import java.lang.invoke.MethodHandles;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -24,9 +29,11 @@ public class PatientControllerImpl implements PatientController {
     private EntityLinks entityLinks;
     private PatientService patientService;
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    private Properties properties;
 
-    public PatientControllerImpl(PatientService patientService) {
+    public PatientControllerImpl(PatientService patientService,Properties properties) {
         this.patientService = patientService;
+        this.properties = properties;
     }
 
     @Override
@@ -49,11 +56,13 @@ public class PatientControllerImpl implements PatientController {
     }
 
     @Override
-    public ResponseEntity<PatientDTO> getPatientByName(String name) throws RuntimeException {
+    public ResponseEntity<Resources<PatientDTO>> getPatientsByName(String name) throws RuntimeException {
         logger.info(" -- GET  /patient/{}",name);
-        Resource<PatientDTO> resource = new Resource<>(patientService.getPatientByName(name));
-        resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
+        Resources<PatientDTO> resource = new Resources<>(patientService.getPatientsByName(name));
+        resource.add(this.entityLinks.linkToCollectionResource(Patient.class).withTitle("Get patient by name")
+                .withHref(this.properties.getGetPatientByName()+name));
         return new ResponseEntity(resource,HttpStatus.OK);
+
     }
 
     @Override

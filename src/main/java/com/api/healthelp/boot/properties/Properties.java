@@ -46,6 +46,10 @@ public class Properties {
     @Value("${security.token.role}")
     private String role;
 
+    //Hateoas
+    @Value("${hateoas.getpatientbyname}")
+    private String getPatientByName;
+
 
 
 }

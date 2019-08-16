@@ -17,7 +17,7 @@ public class Patient implements Serializable {
     private Long tenantId;
     private String patientName;
     private String patientLastName;
-    private String patientDni;
+    private String patientDNI;
     private String patientTelephone;
     private String patientAddress;
     private String patientLocation;

@@ -11,7 +11,7 @@ public class PatientUtils {
         patient.setTenantId((long)1);
         patient.setPatientName("Roberto");
         patient.setPatientLastName("del Barrio");
-        patient.setPatientDni("71107371L");
+        patient.setPatientDNI("71107371L");
         patient.setPatientTelephone("625589030");
         patient.setPatientAddress("C/San Antón, 13");
         patient.setPatientLocation("Madrid");
@@ -27,7 +27,7 @@ public class PatientUtils {
         patient.setTenantId((long)1);
         patient.setPatientName("Bladimir");
         patient.setPatientLastName("del Barrio");
-        patient.setPatientDni("71107371L");
+        patient.setPatientDNI("71107371L");
         patient.setPatientTelephone("625589030");
         patient.setPatientAddress("C/Mar Menor, 28");
         patient.setPatientLocation("Madrid");
@@ -43,7 +43,7 @@ public class PatientUtils {
         patient.setTenantId((long)1);
         patient.setPatientName("TestPost");
         patient.setPatientLastName("del Barrio");
-        patient.setPatientDni("71107371L");
+        patient.setPatientDNI("71107371L");
         patient.setPatientTelephone("625589030");
         patient.setPatientAddress("C/Mar Menor, 28");
         patient.setPatientLocation("Madrid");
@@ -59,7 +59,7 @@ public class PatientUtils {
         patient.setTenantId((long)1);
         patient.setPatientName("TestPostService");
         patient.setPatientLastName("del Barrio");
-        patient.setPatientDni("71107371L");
+        patient.setPatientDNI("71107371L");
         patient.setPatientTelephone("625589030");
         patient.setPatientAddress("C/Mar Menor, 28");
         patient.setPatientLocation("Madrid");

@@ -2,6 +2,7 @@ package com.api.healthelp.service.impl;
 
 import com.api.healthelp.dao.PatientDao;
 import com.api.healthelp.model.dto.PatientDTO;
+import com.api.healthelp.model.dto.PatientListDTO;
 import com.api.healthelp.model.entity.Patient;
 import com.api.healthelp.service.PatientService;
 
@@ -26,8 +27,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDTO getPatientByName(String patientName) {
-        return patientDao.getPatientByName(patientName);
+    public List<PatientDTO> getPatientsByName(String patientName) {
+        return patientDao.getPatientsByName(patientName);
     }
 
     @Override

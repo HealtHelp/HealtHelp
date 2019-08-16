@@ -122,7 +122,7 @@ public class ApiConfig {
     public UserController userController(final UserService userService){ return new UserControllerImpl(userService); }
 
     @Bean
-    public PatientController patientController(final PatientService patientService){return new PatientControllerImpl(patientService); }
+    public PatientController patientController(final PatientService patientService,Properties properties){return new PatientControllerImpl(patientService,properties); }
 
 
     @Bean
