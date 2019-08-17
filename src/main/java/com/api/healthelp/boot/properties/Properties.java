@@ -47,9 +47,11 @@ public class Properties {
     private String role;
 
     //Hateoas
-    @Value("${hateoas.getpatientbyname}")
+    @Value("${hateoas.get.patientbyname}")
     private String getPatientByName;
 
+    @Value("${hateoas.get.useridbyemail}")
+    private String getUserIdByEmail;
 
 
 }

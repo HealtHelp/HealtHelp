@@ -39,6 +39,7 @@ public interface PatientController {
 
 
 
+
     @ApiOperation(value = "Get patient by name", notes="Get patient request.")
     @GetMapping(path="/api/patient/name/{name}",produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
@@ -47,7 +48,6 @@ public interface PatientController {
             dataType = "string",
             paramType = "header") })
     ResponseEntity<Resources<PatientDTO>> getPatientsByName(@ApiParam(name="Patient name request", value="Patient name",required = true, type ="String")@PathVariable("name") String name)throws RuntimeException;
-
 
 
 

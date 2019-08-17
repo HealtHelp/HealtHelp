@@ -19,4 +19,5 @@ public interface UserMapper extends Serializable {
     UserDTO getUserDTOById(Long id);
     void insertUser(@Param("id") Long id, @Param("username") String username, @Param("password") String password, @Param("tenantId") Integer tenantId, @Param("profileId") Integer profileId, @Param("email") String email);
     List<JwtUser> getUsersRoles();
+    User getUserIdByEmail(@Param("userEmail")String email);
 }

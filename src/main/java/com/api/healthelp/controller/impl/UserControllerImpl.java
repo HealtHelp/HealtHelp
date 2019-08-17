@@ -1,6 +1,7 @@
 package com.api.healthelp.controller.impl;
 
 
+import com.api.healthelp.boot.properties.Properties;
 import com.api.healthelp.controller.UserController;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.entity.User;
@@ -26,11 +27,13 @@ public class UserControllerImpl implements UserController {
     @Autowired
     private EntityLinks entityLinks;
     private UserService userService;
+    private Properties properties;
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
-    public UserControllerImpl(final UserService userService){
-        this.userService=userService;
+    public UserControllerImpl(final UserService userService,Properties properties){
+        this.properties = properties;
+        this.userService = userService;
     }
 
 
@@ -41,6 +44,16 @@ public class UserControllerImpl implements UserController {
         resources.add(this.entityLinks.linkToCollectionResource(User.class));
         return new ResponseEntity(resources,HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Resource<User>> getUserIdByEmail(String email) throws RuntimeException {
+        logger.info(" -- GET  /user/email/{} ",email );
+        Resource<User> resource = new Resource<>(userService.getUserIdByEmail(email));
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getUserIdByEmail(email));
+        resource.add(linkTo.withRel("get userId by email"));
+        return new ResponseEntity(resource,HttpStatus.OK);
+    }
+
 
     @Override
     public ResponseEntity<Resource<User>> updateUser(User updateUser) {

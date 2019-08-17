@@ -14,5 +14,6 @@ public interface UserService extends Serializable {
     User updateUser(User updateUser);
     User insertUser(User user);
     Boolean deleteUser(Long id);
+    User getUserIdByEmail(String email);
     UserResponse authenticateUser(User user) throws AuthenticationException;
 }

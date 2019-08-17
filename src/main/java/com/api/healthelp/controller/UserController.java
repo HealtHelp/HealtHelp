@@ -28,6 +28,15 @@ public interface  UserController {
             paramType = "header") })
     ResponseEntity<Resources<UserDTO>> getUsers()throws RuntimeException;
 
+    @ApiOperation(value = "Get userId by email", notes="Get users request.")
+    @GetMapping(path="/api/user/email/{email}",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
+            value = "JWT Token",
+            required = true,
+            dataType = "string",
+            paramType = "header") })
+    ResponseEntity<Resource<User>> getUserIdByEmail(@ApiParam(name="User email request", value="User email",required = true, type="String")@PathVariable("email") String email)throws RuntimeException;
+
 
     @ApiOperation(value="Update user password",notes="Update user request.")
     @PutMapping(path="/api/user", produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.APPLICATION_JSON_VALUE })

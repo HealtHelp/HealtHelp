@@ -18,5 +18,6 @@ public interface UserDao extends Serializable {
     Boolean deleteUser(Long id);
     List<JwtUser> getUsersRoles();
     JwtUser getUserByEmail(String email);
+    User getUserIdByEmail(String email);
 }
 

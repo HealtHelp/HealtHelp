@@ -34,6 +34,15 @@
         <result column="role" property="role"/>
     </resultMap>
 
+    <resultMap id="userIdDTO" type="UserIdDTO">
+    <id column="id" property="id"/>
+    <result property="username" column="username" />
+    <result property="profileId" column="tenantId" />
+    <result property="tenantId" column="tenantId" />
+    <result property="email" column="email" />
+</resultMap>
+
+
 
     <select id="getUsers" resultMap="userMapDTO">
           select u.id, u.username, convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email,
@@ -82,6 +91,12 @@
     select u.id, u.username, convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password, u.tenant_id, u.profile_id, convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email
        from users u
       where id =#{userId};
+    </select>
+
+    <select id="getUserIdByEmail" resultMap="userMap">
+    select u.id,convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email,u.profile_id,u.tenant_id
+      from users u
+    where  convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') = #{userEmail}
     </select>
 
     <update id="updateUser" parameterType="User">

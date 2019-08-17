@@ -63,6 +63,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserIdByEmail(String email) {
+        return userDao. getUserIdByEmail(email);
+    }
+
+    @Override
     public UserResponse authenticateUser(User user) throws AuthenticationException {
         JwtUser existingUser;
         try{

@@ -62,5 +62,10 @@ public class UserDaoImpl implements UserDao {
         return userMapper.getUserByEmail(email);
     }
 
+    @Override
+    public User getUserIdByEmail(String email) {
+        return userMapper.getUserIdByEmail(email);
+    }
+
 
 }
