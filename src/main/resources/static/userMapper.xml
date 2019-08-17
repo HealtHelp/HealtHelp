@@ -34,13 +34,7 @@
         <result column="role" property="role"/>
     </resultMap>
 
-    <resultMap id="userIdDTO" type="UserIdDTO">
-    <id column="id" property="id"/>
-    <result property="username" column="username" />
-    <result property="profileId" column="tenantId" />
-    <result property="tenantId" column="tenantId" />
-    <result property="email" column="email" />
-</resultMap>
+
 
 
 
