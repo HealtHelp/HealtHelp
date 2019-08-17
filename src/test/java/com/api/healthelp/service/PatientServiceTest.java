@@ -41,14 +41,14 @@ public class PatientServiceTest {
     @Test
     public void patientServiceGetPatientNameAllTest(){
         Patient patient = PatientUtils.createdummyPatient();
-        PatientDTO patientDTO = patientService.getPatientByName(patient.getPatientName());
+        List<PatientDTO> patientDTO = patientService.getPatientsByName(patient.getPatientName());
         assertTrue(patientDTO != null);
 
     }
 
     @Test
     public void patientServiceGetPatientNameEmptyTest(){
-        PatientDTO patientDTO = patientService.getPatientByName("test");
+        List<PatientDTO> patientDTO = patientService.getPatientsByName("test");
         assertTrue(patientDTO == null);
     }
 

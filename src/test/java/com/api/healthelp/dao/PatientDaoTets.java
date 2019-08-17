@@ -49,13 +49,13 @@ public class PatientDaoTets {
     @Test
     public void patientDaoGetPatientNameAllTest(){
          Patient patient = PatientUtils.createdummyPatient();
-         PatientDTO patientDTO = patientDao.getPatientByName(patient.getPatientName());
+         List<PatientDTO> patientDTO = patientDao.getPatientsByName(patient.getPatientName());
          assertTrue(patientDTO != null);
     }
 
     @Test
     public void patientDaoGetPatientNameEmptyTest(){
-        PatientDTO patientDTO = patientDao.getPatientByName("test");
+        List<PatientDTO> patientDTO = patientDao.getPatientsByName("test");
         assertTrue(patientDTO == null);
     }
 

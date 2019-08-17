@@ -45,10 +45,12 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(java.lang.IllegalArgumentException.class)
     public ResponseEntity<CrErrorDTO> handleIllegalArgumentException(java.lang.IllegalArgumentException e) {
-        logger.error(" -- Email Duplicate   {}  ",e.getLocalizedMessage());
+        logger.error(" -- Argument error   {}  ",e.getLocalizedMessage());
         setBuildException(e);
         this.crErrorDTO.setStatus(HttpStatus.CONFLICT);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
     }
+
+
 
 }
