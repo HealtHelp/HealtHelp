@@ -39,7 +39,7 @@
          select p.id,p.user_id,p.tenant_id,p.patientname,p.patientlastname,p.patientdni,p.patienttelephone,p.patientaddress,
                p.patientlocation,p.patientprofession,p.patientemail
         from patients p
-        where p.patientname = #{patientName} and p.user_id = 1;
+        where p.patientname = #{patientName} and p.user_id = #{userId};
     </select>
 
     <insert id="insertPatient" parameterType="PatientDTO">

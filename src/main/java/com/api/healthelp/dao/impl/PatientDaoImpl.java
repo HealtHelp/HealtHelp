@@ -27,8 +27,8 @@ public class PatientDaoImpl implements PatientDao {
     }
 
     @Override
-    public List<PatientDTO> getPatientsByName(String patientName) {
-        return patientMapper.getPatientsByName(patientName);
+    public List<PatientDTO> getPatientsByName(String patientName,Long userId) {
+        return patientMapper.getPatientsByName(patientName,userId);
     }
 
     @Override

@@ -56,9 +56,9 @@ public class PatientControllerImpl implements PatientController {
     }
 
     @Override
-    public ResponseEntity<Resources<PatientDTO>> getPatientsByName(String name) throws RuntimeException {
+    public ResponseEntity<Resources<PatientDTO>> getPatientsByName(String name,Long userId) throws RuntimeException {
         logger.info(" -- GET  /patient/{}",name);
-        Resources<PatientDTO> resource = new Resources<>(patientService.getPatientsByName(name));
+        Resources<PatientDTO> resource = new Resources<>(patientService.getPatientsByName(name,userId));
         resource.add(this.entityLinks.linkToCollectionResource(Patient.class).withTitle("Get patient by name")
                 .withHref(this.properties.getGetPatientByName()+name));
         return new ResponseEntity(resource,HttpStatus.OK);

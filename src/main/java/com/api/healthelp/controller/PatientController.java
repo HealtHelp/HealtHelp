@@ -41,13 +41,15 @@ public interface PatientController {
 
 
     @ApiOperation(value = "Get patient by name", notes="Get patient request.")
-    @GetMapping(path="/api/patient/name/{name}",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(path="/api/patient/name/{name}/userId/{userId}",produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
             value = "JWT Token",
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resources<PatientDTO>> getPatientsByName(@ApiParam(name="Patient name request", value="Patient name",required = true, type ="String")@PathVariable("name") String name)throws RuntimeException;
+    ResponseEntity<Resources<PatientDTO>> getPatientsByName(@ApiParam(name="Patient name request", value="Patient name",required = true, type ="String")@PathVariable("name")String name,
+                                                            @ApiParam(name="User id request", value="User id",required = true)@PathVariable("userId") Long id
+    )throws RuntimeException;
 
 
 

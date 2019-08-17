@@ -10,7 +10,7 @@ import java.util.List;
 public interface PatientMapper {
     List<PatientDTO> getPatients();
     PatientDTO getPatientById(@Param("patientId")Long id);
-    List<PatientDTO> getPatientsByName(@Param("patientName")String patientName);
+    List<PatientDTO> getPatientsByName(@Param("patientName")String patientName,@Param("userId")Long userId);
     void insertPatient(@Param("id") Long id, @Param("userId") Long userId,@Param("tenantId") Long tenantId,
                           @Param("patientName") String patientName,@Param("patientLastName") String patientLastName,
                           @Param("patientDNI") String patientDNI, @Param("patientTelephone") String patientTelephone,
