@@ -9,7 +9,7 @@ public class PatientUtils {
         patient.setId((long)1);
         patient.setUserId((long)1);
         patient.setTenantId((long)1);
-        patient.setPatientName("Roberto");
+        patient.setPatientName("Bladimir Test");
         patient.setPatientLastName("del Barrio");
         patient.setPatientDNI("71107371L");
         patient.setPatientTelephone("625589030");
@@ -25,7 +25,7 @@ public class PatientUtils {
         patient.setId((long)2);
         patient.setUserId((long)1);
         patient.setTenantId((long)1);
-        patient.setPatientName("Bladimir");
+        patient.setPatientName("Bladimir Test");
         patient.setPatientLastName("del Barrio");
         patient.setPatientDNI("71107371L");
         patient.setPatientTelephone("625589030");
@@ -39,16 +39,16 @@ public class PatientUtils {
     public static Patient createdummyPatientPOSTService(){
         Patient patient = new Patient();
         patient.setId((long)3);
-        patient.setUserId((long)1);
+        patient.setUserId((long)46775);
         patient.setTenantId((long)1);
-        patient.setPatientName("TestPost");
+        patient.setPatientName("Rodrigo Test");
         patient.setPatientLastName("del Barrio");
         patient.setPatientDNI("71107371L");
         patient.setPatientTelephone("625589030");
         patient.setPatientAddress("C/Mar Menor, 28");
         patient.setPatientLocation("Madrid");
         patient.setPatientProfession("Development");
-        patient.setPatientEmail("bladidb@gmail.com");
+        patient.setPatientEmail("rodrigodelbarrio@gmail.com");
         return patient;
     }
 
@@ -57,13 +57,13 @@ public class PatientUtils {
         patient.setId((long)4);
         patient.setUserId((long)1);
         patient.setTenantId((long)1);
-        patient.setPatientName("TestPostService");
-        patient.setPatientLastName("del Barrio");
+        patient.setPatientName("Maria Test");
+        patient.setPatientLastName("Pizarro");
         patient.setPatientDNI("71107371L");
         patient.setPatientTelephone("625589030");
-        patient.setPatientAddress("C/Mar Menor, 28");
+        patient.setPatientAddress("C/El Cid, 28");
         patient.setPatientLocation("Madrid");
-        patient.setPatientProfession("Development");
+        patient.setPatientProfession("Maestra");
         patient.setPatientEmail("bladidb@gmail.com");
         return patient;
     }
@@ -72,15 +72,15 @@ public class PatientUtils {
         String patient = "{\n" +
                 "\t\"id\":2,\n" +
                 "\t\"userId\":1,\n" +
-                "\t\"tenantId\":1,\n" +
-                "\t\"patientName\":\"testPatientName\",\n" +
-                "\t\"patientLastName\":\"testPatientLastName\",\n" +
-                "\t\"patientDni\":\"71107371L\",\n" +
+                "\t\"tenantId\":46775,\n" +
+                "\t\"patientName\":\"Rodolfo Test\",\n" +
+                "\t\"patientLastName\":\"Rodolfo LastName\",\n" +
+                "\t\"patientDNI\":\"71107371L\",\n" +
                 "\t\"patientTelephone\":\"625589030\",\n" +
                 "\t\"patientAddress\":\"C/test,34\",\n" +
                 "\t\"patientLocation\":\"Madrid\",\n" +
                 "\t\"patientProfession\":\"development\",\n" +
-                "\t\"patientEmail\":\"test@test.com\"\n" +
+                "\t\"patientEmail\":\"Rodolfo@test.com\"\n" +
                 "}";
         return patient;
     }
@@ -90,9 +90,9 @@ public class PatientUtils {
                 "\t\"id\":2,\n" +
                 "\t\"userId\":1,\n" +
                 "\t\"tenantId\":1,\n" +
-                "\t\"patientName\":\"testUpdate\",\n" +
+                "\t\"patientName\":\"Manuel Test\",\n" +
                 "\t\"patientLastName\":\"testPatientLastName\",\n" +
-                "\t\"patientDni\":\"71107371L\",\n" +
+                "\t\"patientDNI\":\"71107371L\",\n" +
                 "\t\"patientTelephone\":\"625589030\",\n" +
                 "\t\"patientAddress\":\"C/test,34\",\n" +
                 "\t\"patientLocation\":\"Milagros\",\n" +
@@ -100,5 +100,20 @@ public class PatientUtils {
                 "\t\"patientEmail\":\"test@test.com\"\n" +
                 "}";
         return patient;
+    }
+
+    public static String createdummyPatientName(){
+        String name = "Roberto";
+        return name;
+    }
+
+    public static String createdummyUserId(){
+        String userId = "1";
+        return userId;
+    }
+
+    public static Long createdummyUserIdLong(){
+        Long userId =  new Long("1");
+        return userId;
     }
 }

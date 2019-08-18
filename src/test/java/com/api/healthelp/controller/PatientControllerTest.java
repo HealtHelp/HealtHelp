@@ -36,37 +36,46 @@ public class PatientControllerTest {
     }
 
     @Test
-    public void patientControllerGETPatientsAllTest() throws Exception {
+    public void patientControllerGETPatientsAll() throws Exception {
         ResultActions resultActions = mockMvc.perform(get("/api/patients"));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk());
     }
 
     @Test
-    public void patientControllerGETPatientIdAllTest() throws Exception {
+    public void patientControllerGETPatientByIdAll() throws Exception {
         ResultActions resultActions = mockMvc.perform(get("/api/patient/1").contentType(MediaType.APPLICATION_JSON));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk());
     }
 
     @Test
-    public void patientControllerPOSTPatientAllTest() throws Exception {
+    public void patientControllerPOSTPatientAll() throws Exception {
         String patient = PatientUtils.createdummyPatientPOSTJSON();
         ResultActions resultActions = mockMvc.perform(post("/api/patient").contentType(MediaType.APPLICATION_JSON).content(patient));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(2))
-                .andExpect(jsonPath("$.patientName").value("testPatientName"));
+                .andExpect(jsonPath("$.patientName").value("Rodolfo Test"));
     }
 
     @Test
-    public void patientControllerPUTPatientAllTest() throws Exception {
+    public void patientControllerPUTPatientAll() throws Exception {
         String patient = PatientUtils.createdummyPatientPUTJSON();
         ResultActions resultActions = mockMvc.perform(put("/api/patient").contentType(MediaType.APPLICATION_JSON).content(patient));
         resultActions.andDo(print());
         resultActions.andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(2))
-                .andExpect(jsonPath("$.patientName").value("testUpdate"));
+                .andExpect(jsonPath("$.patientName").value("Manuel Test"));
+    }
+
+    @Test
+    public void patientControllerGETPatientsByNameAll() throws Exception {
+        String patientName = PatientUtils.createdummyPatientName();
+        String userId = PatientUtils.createdummyUserId();
+        ResultActions resultActions = mockMvc.perform(get("/api/patient/name/"+patientName+"/userId/"+userId));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().isOk());
     }
 
 

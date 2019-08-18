@@ -41,15 +41,17 @@ public class PatientServiceTest {
     @Test
     public void patientServiceGetPatientNameAllTest(){
         Patient patient = PatientUtils.createdummyPatient();
-        List<PatientDTO> patientDTO = patientService.getPatientsByName(patient.getPatientName());
+        Long userId = PatientUtils.createdummyUserIdLong();
+        List<PatientDTO> patientDTO = patientService.getPatientsByName(patient.getPatientName(),userId);
         assertTrue(patientDTO != null);
 
     }
 
     @Test
     public void patientServiceGetPatientNameEmptyTest(){
-        List<PatientDTO> patientDTO = patientService.getPatientsByName("test");
-        assertTrue(patientDTO == null);
+        Long userId = PatientUtils.createdummyUserIdLong();
+        List<PatientDTO> patientDTO = patientService.getPatientsByName("Name not found",userId);
+        assertTrue(patientDTO.size() == 0);
     }
 
     @Test

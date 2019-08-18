@@ -19,13 +19,13 @@ public class PatientDaoTets {
     private PatientDao patientDao;
 
     @Test
-    public void patientDaoGetPatientsAllTest(){
+    public void patientDaoGetPatientsAll(){
         List<PatientDTO> patientList = patientDao.getPatients();
         assertTrue(patientList.size()>0);
     }
 
     @Test
-    public void patientDaoGetPatientsEmptyTest(){
+    public void patientDaoGetPatientsEmpty(){
         List<PatientDTO> patientList = patientDao.getPatients();
         patientList.removeIf(patient->patientList.contains(patient));
         assertTrue(patientList.isEmpty());
@@ -33,30 +33,32 @@ public class PatientDaoTets {
 
 
     @Test
-    public void patientDaoGetPatientIdAllTest(){
+    public void patientDaoGetPatientIdAll(){
         Long patientId = new Long(1);
         PatientDTO patient = patientDao.getPatientById(patientId);
         assertTrue(patient!=null);
     }
 
     @Test
-    public void patientDaoGetPatientIdEmptyTest(){
+    public void patientDaoGetPatientIdEmpty(){
         Long patientId = new Long(-1);
         PatientDTO patient = patientDao.getPatientById(patientId);
         assertTrue(patient==null);
     }
 
     @Test
-    public void patientDaoGetPatientNameAllTest(){
+    public void patientDaoGetPatientNameAll(){
          Patient patient = PatientUtils.createdummyPatient();
-         List<PatientDTO> patientDTO = patientDao.getPatientsByName(patient.getPatientName());
+         Long userId = PatientUtils.createdummyUserIdLong();
+         List<PatientDTO> patientDTO = patientDao.getPatientsByName(patient.getPatientName(),userId);
          assertTrue(patientDTO != null);
     }
 
     @Test
     public void patientDaoGetPatientNameEmptyTest(){
-        List<PatientDTO> patientDTO = patientDao.getPatientsByName("test");
-        assertTrue(patientDTO == null);
+        Long userId = PatientUtils.createdummyUserIdLong();
+        List<PatientDTO> patientDTO = patientDao.getPatientsByName("Name not found",userId);
+        assertTrue(patientDTO.size() == 0);
     }
 
     @Test
