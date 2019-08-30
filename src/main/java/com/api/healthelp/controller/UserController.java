@@ -1,6 +1,7 @@
 package com.api.healthelp.controller;
 
 import com.api.healthelp.model.dto.UserDTO;
+import com.api.healthelp.model.dto.UserKeyValueDTO;
 import com.api.healthelp.model.entity.User;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -35,7 +36,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<User>> getUserIdByEmail(@ApiParam(name="User email request", value="User email",required = true, type="String")@PathVariable("email") String email)throws RuntimeException;
+    ResponseEntity<Resource<UserKeyValueDTO>> getUserIdByEmail(@ApiParam(name="User email request", value="User email",required = true, type="String")@PathVariable("email") String email)throws RuntimeException;
 
 
     @ApiOperation(value="Update user password",notes="Update user request.")

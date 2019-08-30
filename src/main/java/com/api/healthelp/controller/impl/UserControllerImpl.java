@@ -4,6 +4,7 @@ package com.api.healthelp.controller.impl;
 import com.api.healthelp.boot.properties.Properties;
 import com.api.healthelp.controller.UserController;
 import com.api.healthelp.model.dto.UserDTO;
+import com.api.healthelp.model.dto.UserKeyValueDTO;
 import com.api.healthelp.model.entity.User;
 import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
@@ -46,9 +47,9 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<Resource<User>> getUserIdByEmail(String email) throws RuntimeException {
+    public ResponseEntity<Resource<UserKeyValueDTO>> getUserIdByEmail(String email) throws RuntimeException {
         logger.info(" -- GET  /user/email/{} ",email );
-        Resource<User> resource = new Resource<>(userService.getUserIdByEmail(email));
+        Resource<UserKeyValueDTO> resource = new Resource<>(userService.getUserIdByEmail(email));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getUserIdByEmail(email));
         resource.add(linkTo.withRel("get userId by email"));
         return new ResponseEntity(resource,HttpStatus.OK);

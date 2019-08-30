@@ -34,6 +34,12 @@
         <result column="role" property="role"/>
     </resultMap>
 
+   <resultMap id="userKeyValueDTOMap" type="UserKeyValueDTO">
+       <id column="id" property="id"/>
+       <result column="email" property="email"/>
+       <result column="profile_id" property="profileId"/>
+       <result column="tenant_id" property="tenantId"/>
+   </resultMap>
 
 
 
@@ -87,7 +93,7 @@
       where id =#{userId};
     </select>
 
-    <select id="getUserIdByEmail" resultMap="userMap">
+    <select id="getUserIdByEmail" resultMap="userKeyValueDTOMap">
     select u.id,convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email,u.profile_id,u.tenant_id
       from users u
     where  convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') = #{userEmail}

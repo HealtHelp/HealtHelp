@@ -16,6 +16,7 @@
     <typeAliases>
         <typeAlias alias="User" type="com.api.healthelp.model.entity.User"></typeAlias>
         <typeAlias alias="UserDTO" type="com.api.healthelp.model.dto.UserDTO"></typeAlias>
+        <typeAlias alias="UserKeyValueDTO" type="com.api.healthelp.model.dto.UserKeyValueDTO"></typeAlias>
         <typeAlias alias="JwtUser" type="com.api.healthelp.model.security.JwtUser"></typeAlias>
         <typeAlias alias="Patient" type="com.api.healthelp.model.entity.Patient"></typeAlias>
         <typeAlias alias="PatientDTO" type="com.api.healthelp.model.dto.PatientDTO"></typeAlias>
