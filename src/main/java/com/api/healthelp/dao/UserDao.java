@@ -4,6 +4,7 @@ package com.api.healthelp.dao;
 
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
+import com.api.healthelp.model.dto.UserMAXIdDTO;
 import com.api.healthelp.model.entity.User;
 import com.api.healthelp.model.security.JwtUser;
 
@@ -20,5 +21,6 @@ public interface UserDao extends Serializable {
     List<JwtUser> getUsersRoles();
     JwtUser getUserByEmail(String email);
     UserKeyValueDTO getUserIdByEmail(String email);
+    UserMAXIdDTO getMaxUserId();
 }
 

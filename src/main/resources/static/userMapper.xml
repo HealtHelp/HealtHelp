@@ -41,7 +41,15 @@
        <result column="tenant_id" property="tenantId"/>
    </resultMap>
 
+    <resultMap id="userMAXIdDTO" type="UserMAXIdDTO">
 
+        <result column="max" property="maxUserId"/>
+    </resultMap>
+
+
+    <select id="getMaxUserId" resultMap="userMAXIdDTO">
+        select max(id)  from users
+    </select>
 
 
     <select id="getUsers" resultMap="userMapDTO">

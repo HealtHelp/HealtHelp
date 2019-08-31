@@ -2,6 +2,7 @@ package com.api.healthelp.controller;
 
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
+import com.api.healthelp.model.dto.UserMAXIdDTO;
 import com.api.healthelp.model.entity.User;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -37,6 +38,22 @@ public interface  UserController {
             dataType = "string",
             paramType = "header") })
     ResponseEntity<Resource<UserKeyValueDTO>> getUserIdByEmail(@ApiParam(name="User email request", value="User email",required = true)@PathVariable("email") String email)throws RuntimeException;
+
+
+
+    @ApiOperation(value = "Get max userId", notes="Get users request.")
+    @GetMapping(path="/api/user/lastUserId",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
+            value = "JWT Token",
+            required = true,
+            dataType = "string",
+            paramType = "header") })
+    ResponseEntity<Resource<UserMAXIdDTO>> getMaxUserId()throws RuntimeException;
+
+
+
+
+
 
 
     @ApiOperation(value="Update user password",notes="Update user request.")

@@ -5,6 +5,7 @@ import com.api.healthelp.dao.UserDao;
 import com.api.healthelp.dao.mapper.UserMapper;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
+import com.api.healthelp.model.dto.UserMAXIdDTO;
 import com.api.healthelp.model.entity.User;
 import com.api.healthelp.model.security.JwtUser;
 
@@ -66,6 +67,11 @@ public class UserDaoImpl implements UserDao {
     @Override
     public UserKeyValueDTO getUserIdByEmail(String email) {
         return userMapper.getUserIdByEmail(email);
+    }
+
+    @Override
+    public UserMAXIdDTO getMaxUserId() {
+        return userMapper.getMaxUserId();
     }
 
 
