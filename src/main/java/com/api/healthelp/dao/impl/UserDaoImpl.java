@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(Integer id) {
         return userMapper.getUserById(id);
     }
 
@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Boolean deleteUser(Long id) {
+    public Boolean deleteUser(Integer id) {
        return userMapper.deleteUser(id);
     }
 

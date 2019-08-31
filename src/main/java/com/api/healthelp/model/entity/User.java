@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {
-    private Long id;
+    private Integer id;
     private String username;
     private String password;
     private Integer tenantId;

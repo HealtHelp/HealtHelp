@@ -12,9 +12,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PatientDTO {
-    private Long id;
-    private Long userId;
-    private Long tenantId;
+    private Integer id;
+    private Integer userId;
+    private Integer tenantId;
     private String patientName;
     private String patientLastName;
     private String patientDNI;

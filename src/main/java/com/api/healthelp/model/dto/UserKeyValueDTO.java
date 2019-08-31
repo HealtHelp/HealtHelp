@@ -7,8 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserKeyValueDTO {
-    private Long id;
+    private Integer id;
     private String email;
-    private Long profileId;
-    private Long tenantId;
+    private Integer profileId;
+    private Integer tenantId;
 }

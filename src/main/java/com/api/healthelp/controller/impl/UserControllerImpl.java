@@ -75,7 +75,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<Resource<Boolean>> deleteUser(Long id) {
+    public ResponseEntity<Resource<Boolean>> deleteUser(Integer id) {
         logger.info(" -- DELETE  /user/{} ",id);
         Resource<Boolean> resource = new Resource<>(userService.deleteUser(id));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).deleteUser(id));

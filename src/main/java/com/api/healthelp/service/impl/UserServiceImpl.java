@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean deleteUser(Long id) {
+    public Boolean deleteUser(Integer id) {
         return userDao.deleteUser(id);
     }
 

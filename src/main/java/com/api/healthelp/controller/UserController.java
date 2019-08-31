@@ -36,7 +36,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<UserKeyValueDTO>> getUserIdByEmail(@ApiParam(name="User email request", value="User email",required = true, type="String")@PathVariable("email") String email)throws RuntimeException;
+    ResponseEntity<Resource<UserKeyValueDTO>> getUserIdByEmail(@ApiParam(name="User email request", value="User email",required = true)@PathVariable("email") String email)throws RuntimeException;
 
 
     @ApiOperation(value="Update user password",notes="Update user request.")
@@ -46,7 +46,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<User>> updateUser(@ApiParam(name="User request", value="User request")@RequestBody User updateUser);
+    ResponseEntity<Resource<User>> updateUser(@ApiParam(name="User request", value="User request",required = true)@RequestBody User updateUser);
 
 
     @ApiOperation(value="Insert user ",notes="Insert user request.")
@@ -56,7 +56,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<User>> insertUser(@ApiParam(name="User request", value="User request")@RequestBody User user);
+    ResponseEntity<Resource<User>> insertUser(@ApiParam(name="User request", value="User request",required = true)@RequestBody User user);
 
 
     @ApiOperation(value="Delete user",notes="Delete user request.")
@@ -66,7 +66,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header")})
-    ResponseEntity<Resource<Boolean>> deleteUser(@ApiParam(name="User id request", value="User id",required = true, type ="Long")@PathVariable("id") Long id);
+    ResponseEntity<Resource<Boolean>> deleteUser(@ApiParam(name="User id request", value="User id", required = true)@PathVariable("id") Integer id);
 
 
 

@@ -35,7 +35,7 @@ public interface PatientController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<PatientDTO>> getPatientById(@ApiParam(name="Patient id request", value="Patient id",required = true, type ="Long")@PathVariable("id") Long id)throws RuntimeException;
+    ResponseEntity<Resource<PatientDTO>> getPatientById(@ApiParam(name="Patient id request", value="Patient id",required = true)@PathVariable("id") Integer id)throws RuntimeException;
 
 
 
@@ -47,8 +47,8 @@ public interface PatientController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resources<PatientDTO>> getPatientsByName(@ApiParam(name="Patient name request", value="Patient name",required = true, type ="String")@PathVariable("name")String name,
-                                                            @ApiParam(name="User id request", value="User id",required = true)@PathVariable("userId") Long id
+    ResponseEntity<Resources<PatientDTO>> getPatientsByName(@ApiParam(name="Patient name request", value="Patient name",required = true)@PathVariable("name")String name,
+                                                            @ApiParam(name="User id request", value="User id",required = true)@PathVariable("userId") Integer id
     )throws RuntimeException;
 
 
@@ -60,7 +60,7 @@ public interface PatientController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<PatientDTO>> insertPatient(@ApiParam(name="Patient request", value="Patient request")@RequestBody Patient patient);
+    ResponseEntity<Resource<PatientDTO>> insertPatient(@ApiParam(name="Patient request", value="Patient request",required = true)@RequestBody Patient patient);
 
 
     @ApiOperation(value="Update patient",notes="Update patient request.")
@@ -70,7 +70,7 @@ public interface PatientController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<PatientDTO>> updatePatient(@ApiParam(name="Patient request", value="Patient request")@RequestBody Patient patient);
+    ResponseEntity<Resource<PatientDTO>> updatePatient(@ApiParam(name="Patient request", value="Patient request",required = true)@RequestBody Patient patient);
 
 
 }

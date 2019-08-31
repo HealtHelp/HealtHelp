@@ -13,10 +13,10 @@ import java.util.List;
 public interface UserDao extends Serializable {
     List<UserDTO> getUsers() throws RuntimeException;
     JwtUser getUserByPassword(String password) throws NullPointerException;
-    User getUserById(Long id);
+    User getUserById(Integer id);
     User updateUser(User updateUser);
     User insertUser(User user);
-    Boolean deleteUser(Long id);
+    Boolean deleteUser(Integer id);
     List<JwtUser> getUsersRoles();
     JwtUser getUserByEmail(String email);
     UserKeyValueDTO getUserIdByEmail(String email);

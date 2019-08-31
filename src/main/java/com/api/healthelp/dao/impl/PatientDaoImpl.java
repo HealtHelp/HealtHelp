@@ -22,12 +22,12 @@ public class PatientDaoImpl implements PatientDao {
     }
 
     @Override
-    public PatientDTO getPatientById(Long id) {
+    public PatientDTO getPatientById(Integer id) {
         return patientMapper.getPatientById(id);
     }
 
     @Override
-    public List<PatientDTO> getPatientsByName(String patientName,Long userId) {
+    public List<PatientDTO> getPatientsByName(String patientName,Integer userId) {
         return patientMapper.getPatientsByName(patientName,userId);
     }
 

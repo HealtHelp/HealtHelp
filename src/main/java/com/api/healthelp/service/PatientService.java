@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface PatientService {
     List<PatientDTO> getPatients();
-    PatientDTO getPatientById(Long id);
-    List<PatientDTO> getPatientsByName(String patientName,Long userId);
+    PatientDTO getPatientById(Integer id);
+    List<PatientDTO> getPatientsByName(String patientName,Integer userId);
     PatientDTO insertPatient(Patient patient);
     PatientDTO updatePatient(Patient patient);
 }

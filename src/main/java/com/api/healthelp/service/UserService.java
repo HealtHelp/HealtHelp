@@ -14,7 +14,7 @@ public interface UserService extends Serializable {
     List<UserDTO> getUsers() throws RuntimeException;
     User updateUser(User updateUser);
     User insertUser(User user);
-    Boolean deleteUser(Long id);
+    Boolean deleteUser(Integer id);
     UserKeyValueDTO getUserIdByEmail(String email);
     UserResponse authenticateUser(User user) throws AuthenticationException;
 }
