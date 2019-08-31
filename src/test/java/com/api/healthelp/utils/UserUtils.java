@@ -7,7 +7,7 @@ public class UserUtils {
 
     public static User createdummyUser(){
         User user = new User();
-        Long id = new Long(1);
+        Integer id = new Integer(1);
         user.setId(id);
         user.setUsername("admin");
         user.setEmail("admin@admin.com");

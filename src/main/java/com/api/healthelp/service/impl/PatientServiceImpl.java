@@ -41,5 +41,10 @@ public class PatientServiceImpl implements PatientService {
         return patientDao.updatePatient(patient);
     }
 
+    @Override
+    public Boolean deletePatient(Integer id) {
+        return patientDao.deletePatient(id);
+    }
+
 
 }

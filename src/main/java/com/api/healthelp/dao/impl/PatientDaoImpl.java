@@ -48,4 +48,9 @@ public class PatientDaoImpl implements PatientDao {
                                     patient.getPatientProfession(),patient.getPatientEmail());
         return patientMapper.getPatientById(patient.getId());
     }
+
+    @Override
+    public Boolean deletePatient(Integer id) {
+        return patientMapper.deletePatient(id);
+    }
 }

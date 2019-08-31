@@ -78,5 +78,18 @@ public class PatientControllerTest {
         resultActions.andExpect(status().isOk());
     }
 
+    @Test
+    public void patientControllerDELETEPatientEmptyTest() throws Exception {
+        ResultActions resultActions = mockMvc.perform(delete("/api/patient/{id}","x"));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().is(400));
+    }
 
+
+    @Test
+    public void patientControllerDELETEUserAllTest() throws Exception {
+        ResultActions resultActions = mockMvc.perform(delete("/api/patient/2").contentType(MediaType.APPLICATION_JSON));
+        resultActions.andDo(print());
+        resultActions.andExpect(status().isOk());
+    }
 }

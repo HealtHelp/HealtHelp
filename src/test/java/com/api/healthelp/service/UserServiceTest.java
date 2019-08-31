@@ -73,8 +73,7 @@ public class UserServiceTest {
 
     @Test
     public void t6_userServiceDeleteUserEmptyTest(){
-        Long id = new Long(-1);
-        Boolean check = userService.deleteUser(id);
+        Boolean check = userService.deleteUser(-1);
         assertTrue(!check);
     }
 

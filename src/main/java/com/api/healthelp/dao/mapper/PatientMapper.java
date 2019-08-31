@@ -21,4 +21,5 @@ public interface PatientMapper {
                        @Param("patientDni") String patientDni, @Param("patientTelephone") String patientTelephone,
                        @Param("patientAddress") String patientAddress, @Param("patientLocation") String patientLocation,
                        @Param("patientProfession") String patientProfession, @Param("patientEmail") String patientEmail);
+    Boolean deletePatient(@Param("patientId") Integer id);
 }

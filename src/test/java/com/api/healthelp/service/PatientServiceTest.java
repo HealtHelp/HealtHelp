@@ -33,15 +33,14 @@ public class PatientServiceTest {
 
     @Test
     public void patientServiceGetPatientIdAllTest(){
-        Long patientId = new Long(1);
-        PatientDTO patient = patientService.getPatientById(patientId);
+        PatientDTO patient = patientService.getPatientById(1);
         assertTrue(patient!=null);
     }
 
     @Test
     public void patientServiceGetPatientNameAllTest(){
         Patient patient = PatientUtils.createdummyPatient();
-        Long userId = PatientUtils.createdummyUserIdLong();
+        Integer userId = PatientUtils.createdummyUserIdInteger();
         List<PatientDTO> patientDTO = patientService.getPatientsByName(patient.getPatientName(),userId);
         assertTrue(patientDTO != null);
 
@@ -49,7 +48,7 @@ public class PatientServiceTest {
 
     @Test
     public void patientServiceGetPatientNameEmptyTest(){
-        Long userId = PatientUtils.createdummyUserIdLong();
+        Integer userId = PatientUtils.createdummyUserIdInteger();
         List<PatientDTO> patientDTO = patientService.getPatientsByName("Name not found",userId);
         assertTrue(patientDTO.size() == 0);
     }

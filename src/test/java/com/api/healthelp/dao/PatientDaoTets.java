@@ -34,29 +34,27 @@ public class PatientDaoTets {
 
     @Test
     public void patientDaoGetPatientIdAll(){
-        Long patientId = new Long(1);
-        PatientDTO patient = patientDao.getPatientById(patientId);
+        PatientDTO patient = patientDao.getPatientById(1);
         assertTrue(patient!=null);
     }
 
     @Test
     public void patientDaoGetPatientIdEmpty(){
-        Long patientId = new Long(-1);
-        PatientDTO patient = patientDao.getPatientById(patientId);
+        PatientDTO patient = patientDao.getPatientById(-1);
         assertTrue(patient==null);
     }
 
     @Test
     public void patientDaoGetPatientNameAll(){
          Patient patient = PatientUtils.createdummyPatient();
-         Long userId = PatientUtils.createdummyUserIdLong();
+         Integer userId = PatientUtils.createdummyUserIdInteger();
          List<PatientDTO> patientDTO = patientDao.getPatientsByName(patient.getPatientName(),userId);
          assertTrue(patientDTO != null);
     }
 
     @Test
     public void patientDaoGetPatientNameEmptyTest(){
-        Long userId = PatientUtils.createdummyUserIdLong();
+        Integer userId = PatientUtils.createdummyUserIdInteger();
         List<PatientDTO> patientDTO = patientDao.getPatientsByName("Name not found",userId);
         assertTrue(patientDTO.size() == 0);
     }

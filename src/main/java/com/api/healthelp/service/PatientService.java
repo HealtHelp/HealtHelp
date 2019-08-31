@@ -12,4 +12,5 @@ public interface PatientService {
     List<PatientDTO> getPatientsByName(String patientName,Integer userId);
     PatientDTO insertPatient(Patient patient);
     PatientDTO updatePatient(Patient patient);
+    Boolean deletePatient(Integer id);
 }

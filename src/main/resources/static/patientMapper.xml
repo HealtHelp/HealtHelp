@@ -76,6 +76,8 @@
         where id=#{id}
     </update>
 
-
+    <delete id="deletePatient" parameterType="PatientDTO">
+        delete from patients where id = #{patientId}
+    </delete>
 
 </mapper>

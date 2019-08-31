@@ -6,9 +6,9 @@ public class PatientUtils {
 
     public static Patient createdummyPatient(){
         Patient patient = new Patient();
-        patient.setId((long)1);
-        patient.setUserId((long)1);
-        patient.setTenantId((long)1);
+        patient.setId(1);
+        patient.setUserId(1);
+        patient.setTenantId(1);
         patient.setPatientName("Bladimir Test");
         patient.setPatientLastName("del Barrio");
         patient.setPatientDNI("71107371L");
@@ -22,9 +22,9 @@ public class PatientUtils {
 
     public static Patient createdummyPatientPOST(){
         Patient patient = new Patient();
-        patient.setId((long)2);
-        patient.setUserId((long)1);
-        patient.setTenantId((long)1);
+        patient.setId(2);
+        patient.setUserId(1);
+        patient.setTenantId(1);
         patient.setPatientName("Bladimir Test");
         patient.setPatientLastName("del Barrio");
         patient.setPatientDNI("71107371L");
@@ -38,9 +38,9 @@ public class PatientUtils {
 
     public static Patient createdummyPatientPOSTService(){
         Patient patient = new Patient();
-        patient.setId((long)3);
-        patient.setUserId((long)46775);
-        patient.setTenantId((long)1);
+        patient.setId(3);
+        patient.setUserId(46775);
+        patient.setTenantId(1);
         patient.setPatientName("Rodrigo Test");
         patient.setPatientLastName("del Barrio");
         patient.setPatientDNI("71107371L");
@@ -54,9 +54,9 @@ public class PatientUtils {
 
     public static Patient createdummyPatientPOSTService2(){
         Patient patient = new Patient();
-        patient.setId((long)4);
-        patient.setUserId((long)1);
-        patient.setTenantId((long)1);
+        patient.setId(4);
+        patient.setUserId(1);
+        patient.setTenantId(1);
         patient.setPatientName("Maria Test");
         patient.setPatientLastName("Pizarro");
         patient.setPatientDNI("71107371L");
@@ -115,5 +115,9 @@ public class PatientUtils {
     public static Long createdummyUserIdLong(){
         Long userId =  new Long("1");
         return userId;
+    }
+
+    public static Integer createdummyUserIdInteger(){
+        return 1;
     }
 }

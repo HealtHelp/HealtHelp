@@ -83,5 +83,14 @@ public class PatientControllerImpl implements PatientController {
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Resource<Boolean>> deletePatient(Integer id) {
+        logger.info(" -- DELETE /patient{}",id);
+        Resource<Boolean> resource = new Resource<>(patientService.deletePatient(id));
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).deletePatient(id));
+        resource.add(linkTo.withRel("delete-user"));
+        return new ResponseEntity(resource,HttpStatus.OK);
+    }
+
 
 }

@@ -72,5 +72,14 @@ public interface PatientController {
             paramType = "header") })
     ResponseEntity<Resource<PatientDTO>> updatePatient(@ApiParam(name="Patient request", value="Patient request",required = true)@RequestBody Patient patient);
 
+    @ApiOperation(value="Delete patient",notes="Delete patient request.")
+    @DeleteMapping(path="/api/patient/{id}",produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.ALL_VALUE })
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
+            value = "JWT Token",
+            required = true,
+            dataType = "string",
+            paramType = "header")})
+    ResponseEntity<Resource<Boolean>> deletePatient(@ApiParam(name="Patient id request", value="Patient id", required = true,defaultValue = "0")@PathVariable("id") Integer id);
+
 
 }
