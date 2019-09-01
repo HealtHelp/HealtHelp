@@ -11,10 +11,7 @@ import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityLinks;
-import org.springframework.hateoas.ExposesResourceFor;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
+import org.springframework.hateoas.*;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,6 +50,8 @@ public class UserControllerImpl implements UserController {
         Resource<UserKeyValueDTO> resource = new Resource<>(userService.getUserIdByEmail(email));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getUserIdByEmail(email));
         resource.add(linkTo.withRel("get userId by email"));
+        Link link = linkTo(UserControllerImpl.class).slash(email).withSelfRel();
+        resource.add(link);
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
@@ -90,6 +89,8 @@ public class UserControllerImpl implements UserController {
         Resource<Boolean> resource = new Resource<>(userService.deleteUser(id));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).deleteUser(id));
         resource.add(linkTo.withRel("delete-user"));
+        Link link = linkTo(UserControllerImpl.class).slash("/api/user/"+id).withSelfRel();
+        resource.add(link);
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 

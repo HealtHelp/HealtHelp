@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserMAXIdDTO {
-   
+
     private int maxUserId;
 }
