@@ -97,31 +97,19 @@ CREATE TABLE public.tenants (
     name character varying(40) NOT NULL,
     cif character varying(50),
     bussinessname character varying(50),
-    address character varying(50),
+    address character varying(50)
 );
 
 
 ALTER TABLE public.tenants OWNER TO postgres;
 
-
-
-
-
-
-
-CREATE TABLE public.tenants(
-    id SERIAL NOT NULL,
-    name character varying(40) NOT NULL,
-    cif character varying(50),
-    bussinessname character varying(50),
-    address character varying(50)
-);
 
 ALTER TABLE public.tenants OWNER TO postgres;
 
 
 CREATE TABLE public.patients (
     id SERIAL primary key NOT NULL,
+    lopd SERIAL NOT NULL,
     user_id SERIAL NOT NULL,
     tenant_id SERIAL NOT NULL,
     patientname character varying(100) NOT NULL,
