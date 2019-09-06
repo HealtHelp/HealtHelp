@@ -39,9 +39,10 @@ public class UserControllerImpl implements UserController {
     @Override
     public ResponseEntity<Resources<UserDTO>> getUsers() throws RuntimeException {
         logger.info(" -- GET  /users " );
-        Resources<UserDTO> resources = new Resources<>(userService.getUsers());
-        resources.add(this.entityLinks.linkToCollectionResource(User.class));
-        return new ResponseEntity(resources,HttpStatus.OK);
+        Resources<UserDTO> resource = new Resources<>(userService.getUsers());
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getUsers());
+        resource.add(linkTo.withRel("-- GET /users"));
+        return new ResponseEntity(resource,HttpStatus.OK);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class UserControllerImpl implements UserController {
         logger.info(" -- GET  /user/lastUserId/" );
         Resource<UserMAXIdDTO> resource = new Resource<>(userService.getMaxUserId());
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getMaxUserId());
-        resource.add(linkTo.withRel("get max userId"));
+        resource.add(linkTo.withRel(" -- GET  /user/lastUserId/"));
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
@@ -70,7 +71,7 @@ public class UserControllerImpl implements UserController {
         logger.info(" -- PUT  /user {}",updateUser.getUsername());
         Resource<User> resource = new Resource<>(userService.updateUser(updateUser));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(updateUser));
-        resource.add(linkTo.withRel("update-user"));
+        resource.add(linkTo.withRel("-- PUT  /user"));
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
@@ -79,7 +80,7 @@ public class UserControllerImpl implements UserController {
         logger.info(" -- POST  /user {}",user.getUsername());
         Resource<User> resource = new Resource<>(userService.insertUser(user));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).insertUser(user));
-        resource.add(linkTo.withRel("insert-user"));
+        resource.add(linkTo.withRel(" -- POST  /user"));
         return new ResponseEntity(resource,HttpStatus.OK);
     }
 
@@ -87,8 +88,6 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<Resource<Boolean>> deleteUser(Integer id) {
         logger.info(" -- DELETE  /user/{} ",id);
         Resource<Boolean> resource = new Resource<>(userService.deleteUser(id));
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).deleteUser(id));
-        resource.add(linkTo.withRel("delete-user"));
         Link link = linkTo(UserControllerImpl.class).slash("/api/user/"+id).withSelfRel();
         resource.add(link);
         return new ResponseEntity(resource,HttpStatus.OK);
