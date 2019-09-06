@@ -49,9 +49,7 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<Resource<UserKeyValueDTO>> getUserIdByEmail(String email) throws RuntimeException {
         logger.info(" -- GET  /user/email/{} ",email );
         Resource<UserKeyValueDTO> resource = new Resource<>(userService.getUserIdByEmail(email));
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getUserIdByEmail(email));
-        resource.add(linkTo.withRel("get userId by email"));
-        Link link = linkTo(UserControllerImpl.class).slash(email).withSelfRel();
+        Link link = linkTo(UserControllerImpl.class).slash("api/user/email/"+email).withSelfRel();
         resource.add(link);
         return new ResponseEntity(resource,HttpStatus.OK);
     }
