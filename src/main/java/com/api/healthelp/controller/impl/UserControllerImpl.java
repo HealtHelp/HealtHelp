@@ -24,14 +24,11 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class UserControllerImpl implements UserController {
 
     @Autowired
-    private EntityLinks entityLinks;
     private UserService userService;
-    private Properties properties;
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 
-    public UserControllerImpl(final UserService userService,Properties properties){
-        this.properties = properties;
+    public UserControllerImpl(final UserService userService){
         this.userService = userService;
     }
 
@@ -42,7 +39,7 @@ public class UserControllerImpl implements UserController {
         Resources<UserDTO> resource = new Resources<>(userService.getUsers());
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getUsers());
         resource.add(linkTo.withRel("-- GET /users"));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
     @Override
@@ -51,7 +48,7 @@ public class UserControllerImpl implements UserController {
         Resource<UserKeyValueDTO> resource = new Resource<>(userService.getUserIdByEmail(email));
         Link link = linkTo(UserControllerImpl.class).slash("api/user/email/"+email).withSelfRel();
         resource.add(link);
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
     @Override
@@ -60,7 +57,7 @@ public class UserControllerImpl implements UserController {
         Resource<UserMAXIdDTO> resource = new Resource<>(userService.getMaxUserId());
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getMaxUserId());
         resource.add(linkTo.withRel(" -- GET  /user/lastUserId/"));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
 
@@ -70,7 +67,7 @@ public class UserControllerImpl implements UserController {
         Resource<User> resource = new Resource<>(userService.updateUser(updateUser));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updateUser(updateUser));
         resource.add(linkTo.withRel("-- PUT  /user"));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
     @Override
@@ -79,7 +76,7 @@ public class UserControllerImpl implements UserController {
         Resource<User> resource = new Resource<>(userService.insertUser(user));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).insertUser(user));
         resource.add(linkTo.withRel(" -- POST  /user"));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
     @Override
@@ -88,8 +85,6 @@ public class UserControllerImpl implements UserController {
         Resource<Boolean> resource = new Resource<>(userService.deleteUser(id));
         Link link = linkTo(UserControllerImpl.class).slash("/api/user/"+id).withSelfRel();
         resource.add(link);
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
-
-
 }
