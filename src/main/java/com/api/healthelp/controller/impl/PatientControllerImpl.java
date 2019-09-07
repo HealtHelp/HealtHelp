@@ -42,7 +42,7 @@ public class PatientControllerImpl implements PatientController {
         logger.info(" -- GET  /patients");
         Resources<PatientDTO> resources = new Resources<>(patientService.getPatients());
         resources.add(this.entityLinks.linkToCollectionResource(Patient.class));
-        return new ResponseEntity(resources,HttpStatus.OK);
+        return new ResponseEntity<>(resources,HttpStatus.OK);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class PatientControllerImpl implements PatientController {
         logger.info(" -- GET  /patient/{}",id);
         Resource<PatientDTO> resource = new Resource<>(patientService.getPatientById(id));
         resource.add(this.entityLinks.linkToCollectionResource(Patient.class));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
 
     }
 
@@ -62,7 +62,7 @@ public class PatientControllerImpl implements PatientController {
         Resources<PatientDTO> resource = new Resources<>(patientService.getPatientsByName(name,userId));
         resource.add(this.entityLinks.linkToCollectionResource(Patient.class).withTitle("Get patient by name")
                 .withHref(this.properties.getGetPatientByName()+name));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
 
     }
 
@@ -72,7 +72,7 @@ public class PatientControllerImpl implements PatientController {
         Resource<PatientDTO> resource = new Resource<>(patientService.insertPatient(patient));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).insertPatient(patient));
         resource.add(linkTo.withRel("insert-patient"));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class PatientControllerImpl implements PatientController {
         Resource<PatientDTO> resource = new Resource<>(patientService.updatePatient(patient));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updatePatient(patient));
         resource.add(linkTo.withRel("update-patient"));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
     @Override
@@ -90,8 +90,6 @@ public class PatientControllerImpl implements PatientController {
         Resource<Boolean> resource = new Resource<>(patientService.deletePatient(id));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).deletePatient(id));
         resource.add(linkTo.withRel("delete-user"));
-        return new ResponseEntity(resource,HttpStatus.OK);
+        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
-
-
 }
