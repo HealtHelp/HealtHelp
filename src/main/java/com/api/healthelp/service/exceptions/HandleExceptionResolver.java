@@ -1,4 +1,4 @@
-package com.api.healthelp.exceptions;
+package com.api.healthelp.service.exceptions;
 
 import com.api.healthelp.model.dto.CrErrorDTO;
 import org.slf4j.Logger;
@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
 import java.lang.invoke.MethodHandles;
 import java.time.LocalDateTime;
 
@@ -43,8 +44,8 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(java.lang.IllegalArgumentException.class)
-    public ResponseEntity<CrErrorDTO> handleIllegalArgumentException(java.lang.IllegalArgumentException e) {
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<CrErrorDTO> handleIllegalArgumentException(IllegalArgumentException e) {
         logger.error(" -- Argument error   {}  ",e.getLocalizedMessage());
         setBuildException(e);
         this.crErrorDTO.setStatus(HttpStatus.CONFLICT);
