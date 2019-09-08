@@ -1,8 +1,8 @@
 package com.api.healthelp.controller;
 
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
-import com.api.healthelp.model.dto.UserMAXIdDTO;
 import com.api.healthelp.model.entity.User;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -48,10 +48,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<UserMAXIdDTO>> getMaxUserId()throws RuntimeException;
-
-
-
+    ResponseEntity<Resource<MAXIdDTO>> getMaxUserId()throws RuntimeException;
 
 
 

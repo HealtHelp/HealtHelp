@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserMAXIdDTO {
+public class MAXIdDTO {
 
-    private int maxUserId;
+    private int maxId;
 }

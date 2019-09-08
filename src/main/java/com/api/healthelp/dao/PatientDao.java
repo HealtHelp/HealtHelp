@@ -1,5 +1,6 @@
 package com.api.healthelp.dao;
 
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.PatientDTO;
 import com.api.healthelp.model.dto.PatientListDTO;
 import com.api.healthelp.model.entity.Patient;
@@ -13,4 +14,5 @@ public interface PatientDao {
     PatientDTO insertPatient(Patient patient);
     PatientDTO updatePatient(Patient patient);
     Boolean deletePatient(Integer id);
+    MAXIdDTO getMaxPatientId();
 }

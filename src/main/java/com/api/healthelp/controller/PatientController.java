@@ -1,6 +1,7 @@
 package com.api.healthelp.controller;
 
 
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.PatientDTO;
 import com.api.healthelp.model.dto.PatientListDTO;
 import com.api.healthelp.model.entity.Patient;
@@ -36,7 +37,6 @@ public interface PatientController {
             dataType = "string",
             paramType = "header") })
     ResponseEntity<Resource<PatientDTO>> getPatientById(@ApiParam(name="Patient id request", value="Patient id",required = true)@PathVariable("id") Integer id)throws RuntimeException;
-
 
 
 
@@ -81,5 +81,13 @@ public interface PatientController {
             paramType = "header")})
     ResponseEntity<Resource<Boolean>> deletePatient(@ApiParam(name="Patient id request", value="Patient id", required = true,defaultValue = "0")@PathVariable("id") Integer id);
 
+    @ApiOperation(value = "Get max patientId", notes="Get patient request.")
+    @GetMapping(path="/api/patient/lastPatientId",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
+            value = "JWT Token",
+            required = true,
+            dataType = "string",
+            paramType = "header") })
+    ResponseEntity<Resource<MAXIdDTO>> getMaxPatientId()throws RuntimeException;
 
 }

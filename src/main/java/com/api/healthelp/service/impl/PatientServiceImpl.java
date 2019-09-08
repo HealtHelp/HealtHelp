@@ -1,6 +1,7 @@
 package com.api.healthelp.service.impl;
 
 import com.api.healthelp.dao.PatientDao;
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.PatientDTO;
 import com.api.healthelp.model.dto.PatientListDTO;
 import com.api.healthelp.model.entity.Patient;
@@ -44,6 +45,11 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public Boolean deletePatient(Integer id) {
         return patientDao.deletePatient(id);
+    }
+
+    @Override
+    public MAXIdDTO getMaxPatientId() {
+        return patientDao.getMaxPatientId();
     }
 
 

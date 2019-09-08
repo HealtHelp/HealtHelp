@@ -1,5 +1,6 @@
 package com.api.healthelp.dao.mapper;
 
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.PatientDTO;
 import com.api.healthelp.model.dto.PatientListDTO;
 import com.api.healthelp.model.entity.Patient;
@@ -22,4 +23,5 @@ public interface PatientMapper {
                        @Param("patientAddress") String patientAddress, @Param("patientLocation") String patientLocation,
                        @Param("patientProfession") String patientProfession, @Param("patientEmail") String patientEmail);
     Boolean deletePatient(@Param("patientId") Integer id);
+    MAXIdDTO getMaxPatientId();
 }

@@ -2,6 +2,7 @@ package com.api.healthelp.controller.impl;
 
 import com.api.healthelp.boot.properties.Properties;
 import com.api.healthelp.controller.PatientController;
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.PatientDTO;
 import com.api.healthelp.model.entity.Patient;
 import com.api.healthelp.service.PatientService;
@@ -90,6 +91,15 @@ public class PatientControllerImpl implements PatientController {
         Resource<Boolean> resource = new Resource<>(patientService.deletePatient(id));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).deletePatient(id));
         resource.add(linkTo.withRel("delete-user"));
+        return new ResponseEntity<>(resource,HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Resource<MAXIdDTO>> getMaxPatientId() throws RuntimeException {
+        logger.info(" -- GET  /patient/lastPatientId/" );
+        Resource<MAXIdDTO> resource = new Resource<>(patientService.getMaxPatientId());
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getMaxPatientId());
+        resource.add(linkTo.withRel(" -- GET  /user/lastPatientId/"));
         return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 }

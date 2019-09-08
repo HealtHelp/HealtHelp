@@ -1,11 +1,10 @@
 package com.api.healthelp.controller.impl;
 
 
-import com.api.healthelp.boot.properties.Properties;
 import com.api.healthelp.controller.UserController;
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
-import com.api.healthelp.model.dto.UserMAXIdDTO;
 import com.api.healthelp.model.entity.User;
 import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
@@ -52,9 +51,9 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<Resource<UserMAXIdDTO>> getMaxUserId() throws RuntimeException {
+    public ResponseEntity<Resource<MAXIdDTO>> getMaxUserId() throws RuntimeException {
         logger.info(" -- GET  /user/lastUserId/" );
-        Resource<UserMAXIdDTO> resource = new Resource<>(userService.getMaxUserId());
+        Resource<MAXIdDTO> resource = new Resource<>(userService.getMaxUserId());
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getMaxUserId());
         resource.add(linkTo.withRel(" -- GET  /user/lastUserId/"));
         return new ResponseEntity<>(resource,HttpStatus.OK);

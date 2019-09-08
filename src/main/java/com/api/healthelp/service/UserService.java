@@ -1,9 +1,9 @@
 package com.api.healthelp.service;
 
 
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
-import com.api.healthelp.model.dto.UserMAXIdDTO;
 import com.api.healthelp.model.entity.User;
 import com.api.healthelp.model.security.UserResponse;
 
@@ -18,5 +18,5 @@ public interface UserService extends Serializable {
     Boolean deleteUser(Integer id);
     UserKeyValueDTO getUserIdByEmail(String email);
     UserResponse authenticateUser(User user) throws AuthenticationException;
-    UserMAXIdDTO getMaxUserId();
+    MAXIdDTO getMaxUserId();
 }

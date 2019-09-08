@@ -2,6 +2,7 @@ package com.api.healthelp.dao.impl;
 
 import com.api.healthelp.dao.PatientDao;
 import com.api.healthelp.dao.mapper.PatientMapper;
+import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.PatientDTO;
 import com.api.healthelp.model.dto.PatientListDTO;
 import com.api.healthelp.model.entity.Patient;
@@ -52,5 +53,10 @@ public class PatientDaoImpl implements PatientDao {
     @Override
     public Boolean deletePatient(Integer id) {
         return patientMapper.deletePatient(id);
+    }
+
+    @Override
+    public MAXIdDTO getMaxPatientId() {
+        return patientMapper.getMaxPatientId();
     }
 }
