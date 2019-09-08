@@ -129,9 +129,11 @@ CREATE TABLE public.sessions (
     id SERIAL primary key NOT NULL,
     patient_id SERIAL NOT NULL,
     date timestamp without time zone,
+    reason character varying(100) NOT NULL,
+    background character varying(100) NOT NULL,
     diagnosis character varying(100) NOT NULL,
     valoration character varying(100) NOT NULL,
-    exploration character varying(100) NOT NULL,
+    complementary character varying(100) NOT NULL,
     treatment character varying(100) NOT NULL
 );
 
