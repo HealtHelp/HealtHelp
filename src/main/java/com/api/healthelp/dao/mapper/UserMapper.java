@@ -19,8 +19,9 @@ public interface UserMapper extends Serializable {
     Boolean deleteUser(@Param("userId") Integer id);
     void updateUser(@Param("id") Integer id, @Param("username") String username, @Param("password") String password, @Param("tenantId") Integer tenant_id, @Param("profileId") Integer profile_id, @Param("email") String email);
     UserDTO getUserDTOById(Integer id);
-    void insertUser(@Param("id") Integer id, @Param("username") String username, @Param("password") String password, @Param("tenantId") Integer tenantId, @Param("profileId") Integer profileId, @Param("email") String email);
+    Boolean insertUser(@Param("username") String username, @Param("password") String password, @Param("tenantId") Integer tenantId, @Param("profileId") Integer profileId, @Param("email") String email);
     List<JwtUser> getUsersRoles();
     UserKeyValueDTO getUserIdByEmail(@Param("userEmail")String email);
     MAXIdDTO getMaxUserId();
+    UserDTO getUserDTOByEmail(@Param("userEmail") String email);
 }

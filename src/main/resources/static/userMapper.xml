@@ -87,6 +87,14 @@
       where convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{email} LIMIT 1;
     </select>
 
+    <select id="getUserDTOByEmail" resultMap="userMapDTO">
+         select u.id, decrypt(u.email::bytea, 'key_to_encrypt', 'aes') as email, decrypt(u.password::bytea, 'key_to_encrypt', 'aes') as password, p.name as role
+      from users u
+      inner join profiles p ON
+      u.profile_id=p.id
+      where convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{userEmail}
+
+    </select>
 
     <select id="getUserById" resultMap="userMap">
     select u.id, u.username, convert_from(decrypt(u.password::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as password, u.tenant_id, u.profile_id, convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email
@@ -119,8 +127,7 @@
     </update>
 
     <insert id="insertUser" parameterType="User">
-        INSERT INTO USERS (id,username,password,profile_id,tenant_id,email) VALUES (
-            #{id},
+        INSERT INTO USERS (username,password,profile_id,tenant_id,email) VALUES (
            	#{username},
            	encrypt(cast(#{password} as bytea),'key_to_encrypt','aes'),
             #{profileId},

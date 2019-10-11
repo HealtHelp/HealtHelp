@@ -4,6 +4,7 @@ import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
 import com.api.healthelp.model.entity.User;
+import com.api.healthelp.model.security.JwtUser;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.hateoas.Resource;
@@ -70,7 +71,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Resource<User>> insertUser(@ApiParam(name="User request", value="User request",required = true)@RequestBody User user);
+    ResponseEntity<Boolean> insertUser(@ApiParam(name="User request", value="User request",required = true)@RequestBody User user);
 
 
     @ApiOperation(value="Delete user",notes="Delete user request.")

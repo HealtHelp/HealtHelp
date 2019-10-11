@@ -6,6 +6,7 @@ import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
 import com.api.healthelp.model.entity.User;
+import com.api.healthelp.model.security.JwtUser;
 import com.api.healthelp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,12 +71,14 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<Resource<User>> insertUser(User user) {
+    public ResponseEntity<Boolean> insertUser(User user) {
         logger.info(" -- POST  /user {}",user.getUsername());
-        Resource<User> resource = new Resource<>(userService.insertUser(user));
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).insertUser(user));
-        resource.add(linkTo.withRel(" -- POST  /user"));
-        return new ResponseEntity<>(resource,HttpStatus.OK);
+        Boolean check = userService.insertUser(user);
+        Resource<Boolean> resource = new Resource<>(userService.insertUser(user));
+        Link link = linkTo(UserControllerImpl.class).slash("/api/user/").withSelfRel();
+        resource.add(link);
+
+        return new ResponseEntity<>(userService.insertUser(user),HttpStatus.OK);
     }
 
     @Override

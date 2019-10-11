@@ -44,13 +44,13 @@ public class HandleExceptionResolver extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
+   /* @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<CrErrorDTO> handleIllegalArgumentException(IllegalArgumentException e) {
         logger.error(" -- Argument error   {}  ",e.getLocalizedMessage());
         setBuildException(e);
         this.crErrorDTO.setStatus(HttpStatus.CONFLICT);
         return new ResponseEntity<>(this.crErrorDTO,HttpStatus.NOT_FOUND);
-    }
+    }*/
 
 
 

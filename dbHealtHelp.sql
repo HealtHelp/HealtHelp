@@ -112,14 +112,14 @@ CREATE TABLE public.patients (
     lopd SERIAL NOT NULL,
     user_id SERIAL NOT NULL,
     tenant_id SERIAL NOT NULL,
-    patientname character varying(100) NOT NULL,
-    patientlastname character varying(100) NOT NULL,
-    patientdni character varying(100) NOT NULL,
-    patienttelephone character varying(100) NOT NULL,
-    patientaddress character varying(100) NOT NULL,
-    patientlocation character varying(100) NOT NULL,
-    patientprofession character varying(100) NOT NULL,
-    patientemail character varying(100) NOT NULL
+    name character varying(100) NOT NULL,
+    lastname character varying(100) NOT NULL,
+    dni character varying(100) NOT NULL,
+    telephone character varying(100) NOT NULL,
+    address character varying(100) NOT NULL,
+    location character varying(100) NOT NULL,
+    profession character varying(100) NOT NULL,
+    email character varying(100) NOT NULL
 );
 
 ALTER TABLE public.patients OWNER TO postgres;
