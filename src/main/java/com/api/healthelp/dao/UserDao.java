@@ -21,7 +21,6 @@ public interface UserDao extends Serializable {
     List<JwtUser> getUsersRoles();
     JwtUser getUserByEmail(String email);
     UserKeyValueDTO getUserIdByEmail(String email);
-    MAXIdDTO getMaxUserId();
 
 }
 

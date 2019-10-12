@@ -69,10 +69,4 @@ public class UserDaoImpl implements UserDao {
         return userMapper.getUserIdByEmail(email);
     }
 
-    @Override
-    public MAXIdDTO getMaxUserId() {
-        return userMapper.getMaxUserId();
-    }
-
-
 }

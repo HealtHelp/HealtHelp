@@ -46,10 +46,6 @@
     </resultMap>
 
 
-    <select id="getMaxUserId" resultMap="userMAXIdDTO">
-        select max(id)  from users
-    </select>
-
 
     <select id="getUsers" resultMap="userMapDTO">
           select u.id, u.username, convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email,

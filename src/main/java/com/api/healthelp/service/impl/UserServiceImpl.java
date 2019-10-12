@@ -86,10 +86,4 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public MAXIdDTO getMaxUserId() {
-        return userDao.getMaxUserId();
-    }
-
-
 }

@@ -19,5 +19,5 @@ public interface UserService extends Serializable {
     Boolean deleteUser(Integer id);
     UserKeyValueDTO getUserIdByEmail(String email);
     UserResponse authenticateUser(User user) throws AuthenticationException;
-    MAXIdDTO getMaxUserId();
+
 }

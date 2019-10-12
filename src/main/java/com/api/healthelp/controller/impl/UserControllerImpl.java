@@ -50,14 +50,7 @@ public class UserControllerImpl implements UserController {
         return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<Resource<MAXIdDTO>> getMaxUserId() throws RuntimeException {
-        logger.info(" -- GET  /user/lastUserId/" );
-        Resource<MAXIdDTO> resource = new Resource<>(userService.getMaxUserId());
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getMaxUserId());
-        resource.add(linkTo.withRel(" -- GET  /user/lastUserId/"));
-        return new ResponseEntity<>(resource,HttpStatus.OK);
-    }
+
 
 
     @Override

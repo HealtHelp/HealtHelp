@@ -69,7 +69,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     public ResponseEntity<Resource<PatientDTO>> insertPatient(Patient patient) {
-        logger.info(" -- POST  /patient/",patient.getPatientName());
+        logger.info(" -- POST  /patient/{}",patient.getPatientName());
         Resource<PatientDTO> resource = new Resource<>(patientService.insertPatient(patient));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).insertPatient(patient));
         resource.add(linkTo.withRel("insert-patient"));
@@ -78,7 +78,7 @@ public class PatientControllerImpl implements PatientController {
 
     @Override
     public ResponseEntity<Resource<PatientDTO>> updatePatient(Patient patient) {
-        logger.info(" -- PUT  /patient/",patient.getPatientName());
+        logger.info(" -- PUT  /patient/{}",patient.getPatientName());
         Resource<PatientDTO> resource = new Resource<>(patientService.updatePatient(patient));
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).updatePatient(patient));
         resource.add(linkTo.withRel("update-patient"));

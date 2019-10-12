@@ -42,17 +42,6 @@ public interface  UserController {
 
 
 
-    @ApiOperation(value = "Get max userId", notes="Get users request.")
-    @GetMapping(path="/api/user/lastUserId",produces = {MediaType.APPLICATION_JSON_VALUE})
-    @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
-            value = "JWT Token",
-            required = true,
-            dataType = "string",
-            paramType = "header") })
-    ResponseEntity<Resource<MAXIdDTO>> getMaxUserId()throws RuntimeException;
-
-
-
 
     @ApiOperation(value="Update user password",notes="Update user request.")
     @PutMapping(path="/api/user", produces = { MediaType.APPLICATION_JSON_VALUE },consumes = { MediaType.APPLICATION_JSON_VALUE })
