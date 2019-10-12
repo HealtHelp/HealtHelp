@@ -94,12 +94,4 @@ public class PatientControllerImpl implements PatientController {
         return new ResponseEntity<>(resource,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<Resource<MAXIdDTO>> getMaxPatientId() throws RuntimeException {
-        logger.info(" -- GET  /patient/lastPatientId/" );
-        Resource<MAXIdDTO> resource = new Resource<>(patientService.getMaxPatientId());
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getMaxPatientId());
-        resource.add(linkTo.withRel(" -- GET  /user/lastPatientId/"));
-        return new ResponseEntity<>(resource,HttpStatus.OK);
-    }
 }

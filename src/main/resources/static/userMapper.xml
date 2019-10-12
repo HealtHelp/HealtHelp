@@ -41,9 +41,7 @@
        <result column="tenant_id" property="tenantId"/>
    </resultMap>
 
-    <resultMap id="userMAXIdDTO" type="MAXIdDTO">
-        <result column="max" property="maxId"/>
-    </resultMap>
+
 
 
 

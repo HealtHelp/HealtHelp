@@ -47,10 +47,7 @@ public class PatientServiceImpl implements PatientService {
         return patientDao.deletePatient(id);
     }
 
-    @Override
-    public MAXIdDTO getMaxPatientId() {
-        return patientDao.getMaxPatientId();
-    }
+
 
 
 }

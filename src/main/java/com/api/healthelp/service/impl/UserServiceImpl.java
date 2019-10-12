@@ -2,7 +2,6 @@ package com.api.healthelp.service.impl;
 
 
 import com.api.healthelp.dao.UserDao;
-import com.api.healthelp.model.dto.MAXIdDTO;
 import com.api.healthelp.model.dto.UserDTO;
 import com.api.healthelp.model.dto.UserKeyValueDTO;
 import com.api.healthelp.model.entity.User;

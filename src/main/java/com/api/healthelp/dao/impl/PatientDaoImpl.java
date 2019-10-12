@@ -55,8 +55,4 @@ public class PatientDaoImpl implements PatientDao {
         return patientMapper.deletePatient(id);
     }
 
-    @Override
-    public MAXIdDTO getMaxPatientId() {
-        return patientMapper.getMaxPatientId();
-    }
 }

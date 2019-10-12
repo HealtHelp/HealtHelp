@@ -14,5 +14,5 @@ public interface PatientService {
     PatientDTO insertPatient(Patient patient);
     PatientDTO updatePatient(Patient patient);
     Boolean deletePatient(Integer id);
-    MAXIdDTO getMaxPatientId();
+
 }

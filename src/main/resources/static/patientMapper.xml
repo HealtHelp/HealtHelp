@@ -19,14 +19,8 @@
     </resultMap>
 
 
-    <resultMap id="patientMAXIdDTO" type="MAXIdDTO">
-        <result column="max" property="maxId"/>
-    </resultMap>
 
 
-    <select id="getMaxPatientId" resultMap="patientMAXIdDTO">
-        select max(id)  from patients
-    </select>
 
 
     <select id="getPatients" resultMap="patientMap">

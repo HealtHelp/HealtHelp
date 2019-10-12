@@ -81,13 +81,5 @@ public interface PatientController {
             paramType = "header")})
     ResponseEntity<Resource<Boolean>> deletePatient(@ApiParam(name="Patient id request", value="Patient id", required = true,defaultValue = "0")@PathVariable("id") Integer id);
 
-    @ApiOperation(value = "Get max patientId", notes="Get patient request.")
-    @GetMapping(path="/api/patient/lastPatientId",produces = {MediaType.APPLICATION_JSON_VALUE})
-    @ApiImplicitParams({ @ApiImplicitParam(name = "Authorization",
-            value = "JWT Token",
-            required = true,
-            dataType = "string",
-            paramType = "header") })
-    ResponseEntity<Resource<MAXIdDTO>> getMaxPatientId()throws RuntimeException;
 
 }

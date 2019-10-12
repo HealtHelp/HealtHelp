@@ -14,5 +14,4 @@ public interface PatientDao {
     PatientDTO insertPatient(Patient patient);
     PatientDTO updatePatient(Patient patient);
     Boolean deletePatient(Integer id);
-    MAXIdDTO getMaxPatientId();
 }
