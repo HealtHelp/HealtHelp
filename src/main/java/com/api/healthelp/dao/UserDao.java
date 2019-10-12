@@ -16,11 +16,12 @@ public interface UserDao extends Serializable {
     JwtUser getUserByPassword(String password) throws NullPointerException;
     User getUserById(Integer id);
     User updateUser(User updateUser);
-    Boolean insertUser(User user);
+    UserDTO insertUser(User user);
     Boolean deleteUser(Integer id);
     List<JwtUser> getUsersRoles();
     JwtUser getUserByEmail(String email);
     UserKeyValueDTO getUserIdByEmail(String email);
     MAXIdDTO getMaxUserId();
+
 }
 

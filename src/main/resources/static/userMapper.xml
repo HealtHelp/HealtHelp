@@ -88,10 +88,13 @@
     </select>
 
     <select id="getUserDTOByEmail" resultMap="userMapDTO">
-         select u.id, decrypt(u.email::bytea, 'key_to_encrypt', 'aes') as email, decrypt(u.password::bytea, 'key_to_encrypt', 'aes') as password, p.name as role
-      from users u
-      inner join profiles p ON
-      u.profile_id=p.id
+          select u.id, u.username, convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') as email,
+              p.name as profile, t.name as tenant
+        from users u
+        inner join profiles p on
+            u.profile_id=p.id
+        inner join tenants t on
+            u.tenant_id=t.id
       where convert_from(decrypt(u.email::bytea, 'key_to_encrypt', 'aes'), 'SQL_ASCII') =#{userEmail}
 
     </select>

@@ -71,7 +71,7 @@ public interface  UserController {
             required = true,
             dataType = "string",
             paramType = "header") })
-    ResponseEntity<Boolean> insertUser(@ApiParam(name="User request", value="User request",required = true)@RequestBody User user);
+    ResponseEntity<Resource<UserDTO>> insertUser(@ApiParam(name="User request", value="User request",required = true)@RequestBody User user);
 
 
     @ApiOperation(value="Delete user",notes="Delete user request.")

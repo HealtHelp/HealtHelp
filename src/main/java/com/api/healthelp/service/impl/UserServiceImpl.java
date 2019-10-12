@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean insertUser(User user) {
+    public UserDTO insertUser(User user) {
         JwtUser userValidate = userDao.getUserByEmail(user.getEmail());
         if(userValidate == null){
             return userDao.insertUser(user);
